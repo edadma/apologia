@@ -3,7 +3,8 @@
 *.swp
 *~
 
-# texish build output
-/build/
-/out/
+# texish rendered output (regenerated from .texish sources)
 *.pdf
+*.png
+/out
+/build/
