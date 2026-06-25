@@ -1,0 +1,9 @@
+# Editor / OS cruft
+.DS_Store
+*.swp
+*~
+
+# texish build output
+/build/
+/out/
+*.pdf
