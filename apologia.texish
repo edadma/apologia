@@ -3,6 +3,9 @@
 // ── Page frame: half-letter (5.5x8.5in) field guide, narrow side margins to maximize text ──
 \geometry paperwidth:5.5in paperheight:8.5in left:0.5cm right:0.5cm top:0.6in bottom:0.6in
 
+// Enable US-English hyphenation (helps justification on the narrow column)
+\usehyphenation{en-us}
+
 // ── Running head: short title centered at the top; the format ships the page number in the foot ──
 \def headline {\hfil\italic{Apologia — Field Reference}\hfil}
 
