@@ -16,17 +16,15 @@ Scripture is quoted from public-domain translations — **Louis Segond 1910** in
 
 ## Contents
 
+The deck is organized under five broad sections:
+
 | Section | Cards |
 |---|---|
 | Sharing the Gospel | Opening questions · The good news · Leading to faith |
-| The Existence of God | Evidence and science |
-| The Reliability of the Bible | Contradictions · Reliable transmission |
-| Jesus | Just a good teacher · A legend |
-| Suffering and Evil | Why suffering |
-| Other Religions | All roads to God |
-| Science and Faith | Evolution |
-| Morality | Good without God |
-| The Church and Me | Hypocrites · I'm a good person |
+| God | Evidence and science · Why suffering |
+| The Bible | Contradictions and transmission · Evolution |
+| Jesus | Good teacher and resurrection · All roads to God |
+| The human heart | Good, and good enough · Hypocrites |
 
 ## Building
 
@@ -40,3 +38,7 @@ cd /path/to/texish
 
 This writes `apologia.pdf` beside the source. The rendered PDF is not tracked in this
 repository.
+
+A ready-to-print PDF of the latest version is attached to the most recent
+[GitHub release](https://github.com/edadma/apologia/releases). Releases are versioned by the
+cover date (tag `v<YYYY.MM.DD>`), which doubles as the document version.
