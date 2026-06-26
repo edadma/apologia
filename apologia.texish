@@ -68,8 +68,8 @@
 // \dotfill (centred), so the dots fall on a fixed column grid and line up from row to row, as in a LaTeX
 // contents. One format per language; they are the same.
 \def tocleader {\leaders\hbox to:0.5em {\hss.\hss}{0pt plus 1fil}}
-\def tocfrformat lvl num ttl pg {\hbox to:\hsize {\num\hskip 8 \ttl\hskip 6 \tocleader\hskip 6 \pg}}
-\def tocenformat lvl num ttl pg {\hbox to:\hsize {\num\hskip 8 \ttl\hskip 6 \tocleader\hskip 6 \pg}}
+\def tocfrformat lvl num ttl pg {\hbox to:\hsize {\num\hskip 8 \ttl\tocleader\hskip 6 \pg}}
+\def tocenformat lvl num ttl pg {\hbox to:\hsize {\num\hskip 8 \ttl\tocleader\hskip 6 \pg}}
 
 // ════════════════════════════════════════════════════════════════════════════
 // Cover (page 1, recto) — the Greek word, set in Gentium (Latin Modern has no Greek),
