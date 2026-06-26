@@ -62,7 +62,8 @@
 
 }
 
-// \lab{…} is a bold run-in label, e.g. \lab{Short answer} Because …
+// \lab{…} is a bold run-in label, e.g. \lab{Key points} or \lab{See also} — used for the
+// named sections of a card. The objection's answer leads directly, with no label.
 \def lab t {\textbf{\t.}}
 
 // \verse{ref}{text} — a printed scripture verse: a bold reference, then the verse set flush as its own short
@@ -298,7 +299,7 @@ may know that you have eternal life.}
 
 \begin{fr}{Preuve et science}
 \q{« Il n'y a aucune preuve de l'existence de Dieu. »}
-\lab{Réponse brève} Il y a quantité d'indices --- simplement pas du genre qu'on met dans une
+Il y a quantité d'indices --- simplement pas du genre qu'on met dans une
 éprouvette. Le commencement de l'univers, son réglage si précis, l'existence d'une loi morale
 et la réalité de la conscience pointent au-delà de la nature, vers une intelligence qui en
 est la source.
@@ -318,7 +319,7 @@ mains.}
 
 \medskip
 \q{« La science a tout expliqué --- nous n'avons pas besoin de Dieu. »}
-\lab{Réponse brève} La science explique \emph{comment} le monde fonctionne ; elle ne peut pas
+La science explique \emph{comment} le monde fonctionne ; elle ne peut pas
 dire \emph{pourquoi} il y a un monde, ni à quoi il sert. Dieu n'est pas une explication rivale
 de la science --- il est la raison d'un univers ordonné que la science peut étudier.
 \begin{itemize}
@@ -337,7 +338,7 @@ de Dieu, en sorte que ce qu'on voit n'a pas été fait de choses visibles.}
 
 \begin{en}{Evidence and science}
 \q{``There's no evidence that God exists.''}
-\lab{Short answer} There's a great deal of evidence --- just not the kind you put in a test
+There's a great deal of evidence --- just not the kind you put in a test
 tube. The beginning of the universe, its fine-tuning, the existence of a moral law, and the
 reality of consciousness all point beyond nature to a mind behind it.
 \begin{itemize}
@@ -356,7 +357,7 @@ hands.}
 
 \medskip
 \q{``Science has explained everything --- we don't need God.''}
-\lab{Short answer} Science explains \emph{how} the world works; it cannot tell you \emph{why}
+Science explains \emph{how} the world works; it cannot tell you \emph{why}
 there is a world at all, or what it is for. God is not a rival explanation to science --- he
 is the reason there is an orderly universe to study.
 \begin{itemize}
@@ -379,7 +380,7 @@ what is seen was not made out of what was visible.}
 
 \begin{fr}{Contradictions et transmission}
 \q{« La Bible est pleine de contradictions. »}
-\lab{Réponse brève} La plupart des prétendues contradictions sont des différences de
+La plupart des prétendues contradictions sont des différences de
 perspective ou de détail, et non des contradictions logiques. Une vraie contradiction doit
 affirmer et nier la même chose, au même sens, au même moment --- et les exemples clairs sont
 remarquablement difficiles à produire.
@@ -399,7 +400,7 @@ l'Écriture ne peut être anéantie.}
 
 \medskip
 \q{« La Bible a été copiée tant de fois qu'on ne peut pas connaître l'original. »}
-\lab{Réponse brève} Le Nouveau Testament est le document le mieux attesté du monde antique.
+Le Nouveau Testament est le document le mieux attesté du monde antique.
 Nous possédons environ 5~800 manuscrits grecs ; les variantes en sont en écrasante majorité
 insignifiantes, et aucune doctrine chrétienne ne dépend d'une leçon contestée.
 \begin{itemize}
@@ -418,7 +419,7 @@ insignifiantes, et aucune doctrine chrétienne ne dépend d'une leçon contesté
 
 \begin{en}{Contradictions and transmission}
 \q{``The Bible is full of contradictions.''}
-\lab{Short answer} Most alleged contradictions are differences of perspective or detail, not
+Most alleged contradictions are differences of perspective or detail, not
 logical contradictions. A real contradiction must affirm and deny the same thing, in the same
 sense, at the same time --- and clear examples are remarkably hard to produce.
 \begin{itemize}
@@ -435,7 +436,7 @@ cannot be broken.}
 
 \medskip
 \q{``The Bible was copied so many times we can't know the original.''}
-\lab{Short answer} The New Testament is the best-attested document of the ancient world. We
+The New Testament is the best-attested document of the ancient world. We
 have roughly 5,800 Greek manuscripts, the variants among them are overwhelmingly trivial, and
 not one Christian doctrine hangs on a disputed reading.
 \begin{itemize}
@@ -459,7 +460,7 @@ forever.}
 
 \begin{fr}{Bon maître et résurrection}
 \q{« Jésus n'était qu'un bon maître de morale. »}
-\lab{Réponse brève} C'est justement la seule chose qu'il ne peut pas être. Un bon maître qui a
+C'est justement la seule chose qu'il ne peut pas être. Un bon maître qui a
 prétendu pardonner les péchés, être un avec le Père et juger le monde dit ou bien la vérité, ou
 bien se trompe, ou bien ment. « Bon maître » n'est pas une option --- il ne nous a pas laissé
 de moyen terme.
@@ -479,7 +480,7 @@ parle-t-il ainsi ? Il blasphème. Qui peut pardonner les péchés, si ce n'est D
 
 \medskip
 \q{« La résurrection est une légende qui s'est formée avec le temps. »}
-\lab{Réponse brève} L'affirmation est trop précoce et trop coûteuse pour être une légende.
+L'affirmation est trop précoce et trop coûteuse pour être une légende.
 Quelques années après la croix, des témoins oculaires proclamaient un Jésus ressuscité, et la
 plupart sont morts pour cela. Les légendes mettent des générations à se former ; or ceci était
 prêché alors que des témoins hostiles vivaient encore et pouvaient le démentir.
@@ -499,7 +500,7 @@ esprit n'a ni chair ni os, comme vous voyez que j'ai.}
 
 \begin{en}{Good teacher and resurrection}
 \q{``Jesus was just a good moral teacher.''}
-\lab{Short answer} That is the one thing he cannot be. A good teacher who claimed to forgive
+That is the one thing he cannot be. A good teacher who claimed to forgive
 sins, to be one with the Father, and to judge the world is either telling the truth, deluded,
 or lying. ``Good teacher'' is not on the menu --- he left us no middle ground.
 \begin{itemize}
@@ -518,7 +519,7 @@ this man speak like this? He is blaspheming! Who can forgive sins but God alone?
 
 \medskip
 \q{``The resurrection is a legend that grew over time.''}
-\lab{Short answer} The claim is too early and too costly to be legend. Within a few years of
+The claim is too early and too costly to be legend. Within a few years of
 the cross, eyewitnesses were proclaiming a risen Jesus, and most went to their deaths for it.
 Legends take generations to grow; this was preached while hostile eyewitnesses were still alive
 to deny it.
@@ -542,7 +543,7 @@ does not have flesh and bones, as you see I have.}
 \begin{fr}{Pourquoi la souffrance}
 \q{« Si Dieu est bon et tout-puissant, pourquoi tant de souffrance ? »}
 
-\lab{Réponse brève} La Bible ne traite jamais la souffrance à la légère --- elle la prend plus
+La Bible ne traite jamais la souffrance à la légère --- elle la prend plus
 au sérieux qu'aucune autre vision du monde. La réponse de Dieu au mal n'est pas d'abord une
 explication mais une Personne : il est entré dans notre souffrance à la croix, et il promet
 d'y mettre fin un jour entièrement.
@@ -562,7 +563,7 @@ d'y mettre fin un jour entièrement.
 \begin{en}{Why suffering}
 \q{``If God is good and all-powerful, why is there so much suffering?''}
 
-\lab{Short answer} The Bible never treats suffering as small --- it takes it more seriously
+The Bible never treats suffering as small --- it takes it more seriously
 than any other worldview. God's answer to evil is not first an explanation but a Person: he
 entered our suffering at the cross, and he promises one day to end it entirely.
 
@@ -584,7 +585,7 @@ entered our suffering at the cross, and he promises one day to end it entirely.
 \begin{fr}{Tous les chemins}
 \q{« Toutes les religions mènent à Dieu --- elles sont au fond les mêmes. »}
 
-\lab{Réponse brève} Elles ne peuvent pas toutes être vraies, car elles affirment des choses
+Elles ne peuvent pas toutes être vraies, car elles affirment des choses
 opposées sur l'essentiel --- qui est Dieu, ce qui ne va pas en nous, et comment y remédier.
 Respecter les personnes ne veut pas dire faire comme si leurs croyances ne se contredisaient
 pas. Le christianisme est unique : non pas nous montant vers Dieu, mais Dieu descendant vers
@@ -606,7 +607,7 @@ nous par grâce.
 \begin{en}{All roads to God}
 \q{``All religions lead to God --- they're basically the same.''}
 
-\lab{Short answer} They cannot all be true, because they say opposite things about what
+They cannot all be true, because they say opposite things about what
 matters most --- who God is, what is wrong with us, and how it is fixed. Respecting people
 doesn't mean pretending their beliefs don't contradict. Christianity is unique: not us
 reaching up to God, but God reaching down to us in grace.
@@ -629,7 +630,7 @@ reaching up to God, but God reaching down to us in grace.
 \begin{fr}{L'évolution}
 \q{« L'évolution réfute la Bible. »}
 
-\lab{Réponse brève} Une théorie sur le mécanisme de la vie ne dit rien sur l'existence d'un
+Une théorie sur le mécanisme de la vie ne dit rien sur l'existence d'un
 Dieu qui en serait l'auteur. Même en accordant la science, les questions profondes demeurent :
 pourquoi y a-t-il quelque chose plutôt que rien, d'où vient la première vie, et pourquoi
 l'univers est-il si finement ajusté pour elle ? La Genèse dit \emph{que} Dieu a fait le monde
@@ -653,7 +654,7 @@ et \emph{pourquoi} ; ce n'est pas un manuel de sciences.
 \begin{en}{Evolution}
 \q{``Evolution disproves the Bible.''}
 
-\lab{Short answer} A theory about the mechanism of life says nothing about whether there is a
+A theory about the mechanism of life says nothing about whether there is a
 God behind it. Even granting the science, the deep questions remain: why is there anything at
 all, where did the first life come from, and why is the universe so finely tuned for it?
 Genesis tells us \emph{that} God made the world and \emph{why}; it is not a science textbook.
@@ -677,7 +678,7 @@ Genesis tells us \emph{that} God made the world and \emph{why}; it is not a scie
 \begin{fr}{Être bon sans Dieu}
 \q{« On n'a pas besoin de Dieu pour être quelqu'un de bien. »}
 
-\lab{Réponse brève} C'est vrai --- beaucoup de non-croyants mènent une vie droite, car chacun
+C'est vrai --- beaucoup de non-croyants mènent une vie droite, car chacun
 est fait à l'image de Dieu et connaît sa loi dans sa conscience. La question n'est pas de
 savoir si l'on peut être bon sans croire en Dieu, mais si le bien et le mal existent réellement
 sans lui. Sans Législateur, le « bien » n'est qu'une opinion --- rien qui oblige.
@@ -700,7 +701,7 @@ sans lui. Sans Législateur, le « bien » n'est qu'une opinion --- rien qui obl
 \begin{en}{Good without God}
 \q{``You don't need God to be a good person.''}
 
-\lab{Short answer} True --- many non-believers live good lives, because everyone is made in
+True --- many non-believers live good lives, because everyone is made in
 God's image and knows his law in their conscience. The question isn't whether you can be good
 without believing in God, but whether good and evil are real at all without him. Without a
 Lawgiver, ``good'' is just opinion --- nothing binding.
@@ -726,7 +727,7 @@ Lawgiver, ``good'' is just opinion --- nothing binding.
 \begin{fr}{Des hypocrites}
 \q{« L'Église est pleine d'hypocrites. »}
 
-\lab{Réponse brève} Parfois c'est vrai --- Jésus l'a annoncé, et il a condamné l'hypocrisie
+Parfois c'est vrai --- Jésus l'a annoncé, et il a condamné l'hypocrisie
 plus durement que quiconque. L'Église n'est pas un musée de gens parfaits mais un hôpital pour
 des gens brisés ; que certains patients se conduisent mal n'est pas un argument contre le
 remède. Ne laissez pas un hypocrite se dresser entre vous et Christ.
@@ -748,7 +749,7 @@ remède. Ne laissez pas un hypocrite se dresser entre vous et Christ.
 \begin{en}{Hypocrites}
 \q{``The church is full of hypocrites.''}
 
-\lab{Short answer} Sometimes true --- Jesus said it would be, and he condemned hypocrisy more
+Sometimes true --- Jesus said it would be, and he condemned hypocrisy more
 sharply than anyone. The church is not a museum of the perfect but a hospital for the broken;
 that some patients behave badly is no argument against the medicine. Don't let a hypocrite
 stand between you and Christ.
@@ -769,7 +770,7 @@ stand between you and Christ.
 \begin{fr}{Je suis quelqu'un de bien}
 \q{« Je suis quelqu'un de bien --- je n'ai pas besoin d'être sauvé. »}
 
-\lab{Réponse brève} Comparé aux autres, peut-être --- mais la norme n'est pas votre voisin,
+Comparé aux autres, peut-être --- mais la norme n'est pas votre voisin,
 c'est la sainteté parfaite de Dieu. À cette mesure, aucun de nous ne passe ; nous avons tous
 menti, haï, et fait passer notre intérêt d'abord. La bonne nouvelle, c'est que le salut n'a
 jamais consisté à être assez bon --- c'est un don pour ceux qui savent qu'ils ne le sont pas.
@@ -791,7 +792,7 @@ jamais consisté à être assez bon --- c'est un don pour ceux qui savent qu'ils
 \begin{en}{I'm a good person}
 \q{``I'm a good person --- I don't need to be saved.''}
 
-\lab{Short answer} Compared to other people, perhaps --- but the standard isn't your
+Compared to other people, perhaps --- but the standard isn't your
 neighbour, it's God's perfect holiness. By that measure none of us passes; we've all lied,
 hated, and put ourselves first. The good news is that salvation was never about being good
 enough --- it's a gift for people who know they aren't.
