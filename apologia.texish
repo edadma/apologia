@@ -8,8 +8,11 @@
 // (recto). Because every card is held to exactly one page and ejected, French keeps to
 // the even folios and English to the odd ones, so the two languages stay in lockstep.
 
-// ── Running foot: the folio, suppressed on the cover (page 1) ──────────────────
-\def footline {\if {\> {\calc{pageno}} {1}}\hss\font lmroman 9 regular \the\pageno\hss\fi}
+// ── Running foot ──────────────────────────────────────────────────────────────
+// The front matter (cover and the two contents pages) carries no folio; the body turns the centred page number on
+// and restarts it at 1, so the first card is page 1. \hss alone keeps the empty front-matter footer from setting
+// an underfull box.
+\def footline {\hss}
 
 // ════════════════════════════════════════════════════════════════════════════
 // Card authoring vocabulary
@@ -76,7 +79,8 @@
 \vskip 5pt
 \centerline{\font lmroman 13 regular A Field Reference for Evangelists}
 \vfil
-\centerline{\font lmroman 11 regular 2026}
+// The full build date doubles as the document version.
+\centerline{\font lmroman 11 regular 26 June 2026}
 \vskip 24pt
 \eject
 
@@ -91,6 +95,10 @@
 \vskip 12pt
 \noindent\contentslist{tocen}{tocenformat}
 \vfil\eject
+
+// ── Body: turn the folio on and number the first card page 1 ───────────────────
+\def footline {\hss\font lmroman 9 regular \the\pageno\hss}
+\set pageno {1}
 
 // ════════════════════════════════════════════════════════════════════════════
 \settopic{La fiabilité de la Bible}{The Reliability of the Bible}
