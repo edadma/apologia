@@ -3,67 +3,183 @@
 // ── Page frame: half-letter (5.5x8.5in) field guide, narrow side margins to maximize text ──
 \geometry paperwidth:5.5in paperheight:8.5in left:0.5cm right:0.5cm top:0.6in bottom:0.6in
 
-// Enable US-English hyphenation (helps justification on the narrow column)
-\usehyphenation{en-us}
+// A bilingual field reference. The book reads as a series of facing pairs: the French
+// take of each card on the left (verso) page, the matching English take on the right
+// (recto). Because every card is held to exactly one page and ejected, French keeps to
+// the even folios and English to the odd ones, so the two languages stay in lockstep.
 
-// ── Running head: short title centered at the top; the format ships the page number in the foot ──
-\def headline {\hfil\italic{Apologia — Field Reference}\hfil}
-
-// ── Card authoring vocabulary ──────────────────────────────────────────────
-// \objection{tag}{full question}
-//   tag           short label for the numbered entry + table-of-contents index
-//   full question shown in bold above the answer (wraps to the page width)
-// \lab{...}        a bold run-in label, e.g. \lab{Short answer} Because ...
-\def objection s q {\subsection{\s}\textbf{\q}
-
-}
-\def lab t {\textbf{\t.}}
-
-\title{Apologia}
-\author{A Field Reference for Evangelists}
-\date{2026}
-\maketitle
-
-\contents
+// ── Running foot: the folio, suppressed on the cover (page 1) ──────────────────
+\def footline {\if {\> {\calc{pageno}} {1}}\hss\font lmroman 9 regular \the\pageno\hss\fi}
 
 // ════════════════════════════════════════════════════════════════════════════
-\section{The Reliability of the Bible}
+// Card authoring vocabulary
+// ════════════════════════════════════════════════════════════════════════════
+// Each topic sets a bilingual heading once with \settopic{French}{English}; the card
+// environments read whichever side they belong to. A card is then a facing pair:
+//
+//     \begin{fr}{tag} … French body … \end{fr}
+//     \begin{en}{tag} … English body … \end{en}
+//
+// \begin{fr} steps the shared card counter and files the French table-of-contents entry;
+// \begin{en} reuses the same number (counters are global) and files the English entry.
+// Both lay out a header, then their body, then fill to the foot and eject — one card,
+// one page.
 
-\objection{Contradictions}{``The Bible is full of contradictions.''}
+\newcounter{card}
 
-\lab{Short answer} Most alleged contradictions are differences of perspective or
-detail, not logical contradictions. A real contradiction must affirm and deny the
-same thing, in the same sense, at the same time --- and clear examples are remarkably
-hard to produce.
+\def topicfr {}
+\def topicen {}
+\def settopic f e {\def topicfr {\f}\def topicen {\e}}
+
+// The header of a card page: a small-caps topic kicker, then the card number and its tag.
+\def cardhead num topic tag {
+  \leftline{\font lmroman 9 regular \smallcaps{\topic}}
+  \smallskip
+  \leftline{\font lmroman 15 bold \num\hskip 10 \tag}
+  \vskip 6pt
+  \noindent
+}
+
+\newenvironment fr tag {
+  \usehyphenation{fr}
+  \stepcounter{card}
+  \addcontentsline{tocfr}{1}{\arabic{\value{card}}}{\tag}
+  \cardhead{\arabic{\value{card}}}{\topicfr}{\tag}
+} {\vfil\eject}
+
+\newenvironment en tag {
+  \usehyphenation{en-us}
+  \addcontentsline{tocen}{1}{\arabic{\value{card}}}{\tag}
+  \cardhead{\arabic{\value{card}}}{\topicen}{\tag}
+} {\vfil\eject}
+
+// \q{…} sets the objection itself: bold, wrapping to the page width, a paragraph break after.
+\def q text {{\font lmroman 11 bold \text}
+
+}
+
+// \lab{…} is a bold run-in label, e.g. \lab{Short answer} Because …
+\def lab t {\textbf{\t.}}
+
+// Table-of-contents lines: number, title, dotted leader, folio. One format per language.
+\def tocfrformat lvl num ttl pg {\hbox to:\hsize {\num\hskip 8 \ttl\dotfill \pg}}
+\def tocenformat lvl num ttl pg {\hbox to:\hsize {\num\hskip 8 \ttl\dotfill \pg}}
+
+// ════════════════════════════════════════════════════════════════════════════
+// Cover (page 1, recto) — the Greek word, set in Gentium (Latin Modern has no Greek),
+// over French and English subtitles.
+// ════════════════════════════════════════════════════════════════════════════
+\vskip 90pt
+\centerline{\font gentium 48 bold Ἀπολογία}
+\vskip 36pt
+\centerline{\font lmroman 13 italic Manuel de terrain pour l'évangéliste}
+\vskip 5pt
+\centerline{\font lmroman 13 regular A Field Reference for Evangelists}
+\vfil
+\centerline{\font lmroman 11 regular 2026}
+\vskip 24pt
+\eject
+
+// ── French table of contents (verso) ──────────────────────────────────────────
+\leftline{\font lmroman 16 bold Table des matières}
+\vskip 12pt
+\noindent\contentslist{tocfr}{tocfrformat}
+\vfil\eject
+
+// ── English table of contents (recto) ─────────────────────────────────────────
+\leftline{\font lmroman 16 bold Contents}
+\vskip 12pt
+\noindent\contentslist{tocen}{tocenformat}
+\vfil\eject
+
+// ════════════════════════════════════════════════════════════════════════════
+\settopic{La fiabilité de la Bible}{The Reliability of the Bible}
+
+\begin{fr}{Contradictions}
+\q{« La Bible est pleine de contradictions. »}
+
+\lab{Réponse brève} La plupart des prétendues contradictions sont des différences de
+perspective ou de détail, et non des contradictions logiques. Une vraie contradiction
+doit affirmer et nier la même chose, au même sens, au même moment --- et les exemples
+clairs sont remarquablement difficiles à produire.
+
+\lab{Points clés}
+\begin{itemize}
+\item Demandez un exemple \emph{précis} ; les affirmations vagues se dissipent dès qu'on
+  les examine.
+\item Des détails divergents (le nombre d'anges au tombeau, les mots d'un écriteau) sont
+  la marque d'un témoignage oculaire \emph{indépendant}, non d'une collusion.
+\item La plupart des conflits apparents s'harmonisent une fois pesés le contexte, le
+  genre et l'intention.
+\end{itemize}
+
+\lab{Écritures} 2~Tim.~3.16 ; Jean~10.35.
+
+\lab{Voir aussi} L'entrée sur les manuscrits, sur l'altération du texte.
+\end{fr}
+
+\begin{en}{Contradictions}
+\q{``The Bible is full of contradictions.''}
+
+\lab{Short answer} Most alleged contradictions are differences of perspective or detail,
+not logical contradictions. A real contradiction must affirm and deny the same thing, in
+the same sense, at the same time --- and clear examples are remarkably hard to produce.
 
 \lab{Key points}
 \begin{itemize}
 \item Ask for a \emph{specific} example; vague claims dissolve once examined.
-\item Differing details (the number of angels at the tomb, the wording of a sign)
-  are the mark of \emph{independent} eyewitness testimony, not collusion.
+\item Differing details (the number of angels at the tomb, the wording of a sign) are the
+  mark of \emph{independent} eyewitness testimony, not collusion.
 \item Most apparent conflicts harmonize once context, genre, and intent are weighed.
 \end{itemize}
 
 \lab{Scripture} 2~Tim.~3:16; John~10:35.
 
-\lab{See also} The manuscript entry below, on whether the text was changed.
+\lab{See also} The manuscript entry, on whether the text was changed.
+\end{en}
 
-\objection{Reliable transmission}{``The Bible was copied so many times we can't know the original.''}
+// ════════════════════════════════════════════════════════════════════════════
+\begin{fr}{Transmission fiable}
+\q{« La Bible a été copiée tant de fois qu'on ne peut pas connaître l'original. »}
 
-\lab{Short answer} The New Testament is the best-attested document of the ancient
-world. We have roughly 5,800 Greek manuscripts, the variants among them are
-overwhelmingly trivial, and not one Christian doctrine hangs on a disputed reading.
+\lab{Réponse brève} Le Nouveau Testament est le document le mieux attesté du monde
+antique. Nous possédons environ 5~800 manuscrits grecs ; les variantes en sont en
+écrasante majorité insignifiantes, et aucune doctrine chrétienne ne dépend d'une leçon
+contestée.
+
+\lab{Points clés}
+\begin{itemize}
+\item Comparez ce nombre de manuscrits à celui d'autres œuvres antiques, qui ne survivent
+  qu'en quelques copies tardives.
+\item Certains fragments datent d'un siècle ou deux après les originaux --- bien plus près
+  que pour des textes comparables.
+\item La grande majorité des variantes touchent l'orthographe ou l'ordre des mots ; la
+  critique textuelle reconstitue le texte avec une grande confiance.
+\end{itemize}
+
+\lab{Écritures} Ésaïe~40.8 ; Matthieu~24.35.
+
+\lab{Voir aussi} L'entrée sur les contradictions.
+\end{fr}
+
+\begin{en}{Reliable transmission}
+\q{``The Bible was copied so many times we can't know the original.''}
+
+\lab{Short answer} The New Testament is the best-attested document of the ancient world.
+We have roughly 5,800 Greek manuscripts, the variants among them are overwhelmingly
+trivial, and not one Christian doctrine hangs on a disputed reading.
 
 \lab{Key points}
 \begin{itemize}
-\item Compare the manuscript count to other ancient works, which survive in only a
-  handful of late copies.
-\item Some fragments date within a century or two of the originals --- far closer
-  than for comparable texts.
+\item Compare the manuscript count to other ancient works, which survive in only a handful
+  of late copies.
+\item Some fragments date within a century or two of the originals --- far closer than for
+  comparable texts.
 \item The vast majority of variants are spelling or word order; textual criticism
   reconstructs the wording with high confidence.
 \end{itemize}
 
 \lab{Scripture} Isa.~40:8; Matt.~24:35.
 
-\lab{See also} The contradictions entry above.
+\lab{See also} The contradictions entry.
+\end{en}
