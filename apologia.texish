@@ -64,6 +64,12 @@
 // \lab{…} is a bold run-in label, e.g. \lab{Short answer} Because …
 \def lab t {\textbf{\t.}}
 
+// \verse{ref}{text} — a printed scripture verse: a bold reference, then the verse set flush as its own short
+// paragraph. The Roman Road card prints the verses in full so the evangelist can read them straight from the page.
+\def verse r body {\noindent\textbf{\r}\hskip 6 \body
+
+\smallskip}
+
 // Table-of-contents lines: number, title, dotted leader, folio. The leader is \leaders (grid-aligned), not
 // \dotfill (centred), so the dots fall on a fixed column grid and line up from row to row, as in a LaTeX
 // contents. One format per language; they are the same.
@@ -170,8 +176,8 @@ place pour nos péchés, et il est ressuscité. (Rom.~5.8 ; 1~Cor.~15.3--4)
 Christ seul ; recevez le pardon et la vie éternelle comme un don gratuit. (Rom.~10.9--10, 13 ;
 Éph.~2.8--9)
 
-\lab{La voie romaine} Un chemin de versets à parcourir avec n'importe qui :
-Rom.~3.23, 6.23, 5.8, 10.9--10, 10.13.
+\lab{La voie romaine} Cinq versets qui tracent le chemin du salut, imprimés un par un sur la
+fiche suivante.
 \end{fr}
 
 \begin{en}{The good news}
@@ -189,8 +195,42 @@ and rose again. (Rom.~5:8; 1~Cor.~15:3--4)
 \lab{Response} Turn from sin --- this is repentance --- and trust Christ alone; receive
 forgiveness and eternal life as a free gift. (Rom.~10:9--10, 13; Eph.~2:8--9)
 
-\lab{The Roman Road} A path of verses you can walk anyone through:
-Rom.~3:23, 6:23, 5:8, 10:9--10, 10:13.
+\lab{The Roman Road} Five verses that trace the way of salvation, printed one by one on the
+next card.
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\begin{fr}{La voie romaine}
+\q{Cinq versets de l'épître aux Romains qui tracent le chemin du salut.}
+
+\verse{Romains 3.23}{car tous ont péché et sont privés de la gloire de Dieu.}
+\verse{Romains 6.23}{Car le salaire du péché, c'est la mort ; mais le don gratuit de Dieu,
+c'est la vie éternelle en Jésus-Christ notre Seigneur.}
+\verse{Romains 5.8}{Mais Dieu prouve son amour envers nous, en ce que, lorsque nous étions
+encore des pécheurs, Christ est mort pour nous.}
+\verse{Romains 10.9-10}{Si tu confesses de ta bouche le Seigneur Jésus, et si tu crois dans
+ton cœur que Dieu l'a ressuscité des morts, tu seras sauvé. Car c'est en croyant du cœur
+qu'on parvient à la justice, et c'est en confessant de la bouche qu'on parvient au salut.}
+\verse{Romains 10.13}{Car quiconque invoquera le nom du Seigneur sera sauvé.}
+
+\lab{Traduction} Louis Segond (1910).
+\end{fr}
+
+\begin{en}{The Roman Road}
+\q{Five verses from Romans that trace the way of salvation.}
+
+\verse{Romans 3:23}{for all have sinned, and fall short of the glory of God;}
+\verse{Romans 6:23}{For the wages of sin is death, but the free gift of God is eternal life
+in Christ Jesus our Lord.}
+\verse{Romans 5:8}{But God commends his own love toward us, in that while we were yet
+sinners, Christ died for us.}
+\verse{Romans 10:9-10}{that if you will confess with your mouth that Jesus is Lord, and
+believe in your heart that God raised him from the dead, you will be saved. For with the
+heart one believes resulting in righteousness; and with the mouth confession is made
+resulting in salvation.}
+\verse{Romans 10:13}{For whoever will call on the name of the Lord will be saved.}
+
+\lab{Translation} World English Bible.
 \end{en}
 
 // ════════════════════════════════════════════════════════════════════════════
