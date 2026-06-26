@@ -61,11 +61,9 @@
 // \lab{…} is a bold run-in label, e.g. \lab{Short answer} Because …
 \def lab t {\textbf{\t.}}
 
-// Table-of-contents lines: number, title, dotted leader, folio. Each line sets its own font (10pt body) so both
-// lists render identically regardless of the surrounding state, as a LaTeX contents line does. One format per
-// language; they are otherwise the same.
-\def tocfrformat lvl num ttl pg {\hbox to:\hsize {\font lmroman 10 regular \num\hskip 8 \ttl\dotfill \pg}}
-\def tocenformat lvl num ttl pg {\hbox to:\hsize {\font lmroman 10 regular \num\hskip 8 \ttl\dotfill \pg}}
+// Table-of-contents lines: number, title, dotted leader, folio. One format per language; they are the same.
+\def tocfrformat lvl num ttl pg {\hbox to:\hsize {\num\hskip 8 \ttl\dotfill \pg}}
+\def tocenformat lvl num ttl pg {\hbox to:\hsize {\num\hskip 8 \ttl\dotfill \pg}}
 
 // ════════════════════════════════════════════════════════════════════════════
 // Cover (page 1, recto) — the Greek word, set in Gentium (Latin Modern has no Greek),
