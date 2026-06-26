@@ -73,7 +73,7 @@
 // over French and English subtitles.
 // ════════════════════════════════════════════════════════════════════════════
 \vskip 90pt
-\centerline{\font gentium 48 bold Ἀπολογία}
+\centerline{\font noto 48 bold Ἀπολογία}
 \vskip 36pt
 \centerline{\font lmroman 13 italic Manuel de terrain pour l'évangéliste}
 \vskip 5pt
