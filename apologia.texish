@@ -56,8 +56,9 @@
   \cardhead{\arabic{\value{card}}}{\topicen}{\tag}
 } {\vfil\eject}
 
-// \q{…} sets the objection itself: bold, wrapping to the page width, a paragraph break after.
-\def q text {{\font lmroman 11 bold \text}
+// \q{…} sets the objection itself: bold, flush-left (no paragraph indent), wrapping to the page width, a
+// paragraph break after.
+\def q text {\noindent{\font lmroman 11 bold \text}
 
 }
 
