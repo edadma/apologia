@@ -3,8 +3,8 @@
 A bilingual evangelical-Protestant apologetics **field reference**, typeset with the
 [texish](https://github.com/edadma/texish) document engine. It comes in two editions:
 
-- **French / English** — `apologia.texish`
-- **Spanish / English** — `apologia-es.texish`
+- **French / English** — `apologia-fr-en.texish`
+- **Spanish / English** — `apologia-es-en.texish`
 
 The document is a deck of one-page "cards," each answering a common question or objection
 with a short answer, a few key points, and the scripture printed in full so it can be read
@@ -36,12 +36,12 @@ Each edition is a self-contained texish document. Render one to PDF from a texis
 
 ```sh
 cd /path/to/texish
-./cli/target/scala-3.8.4/texish-cli /path/to/apologia/apologia.texish      # French / English
-./cli/target/scala-3.8.4/texish-cli /path/to/apologia/apologia-es.texish   # Spanish / English
+./cli/target/scala-3.8.4/texish-cli /path/to/apologia/apologia-fr-en.texish   # French / English
+./cli/target/scala-3.8.4/texish-cli /path/to/apologia/apologia-es-en.texish   # Spanish / English
 ```
 
-This writes the PDF beside the source (`apologia.pdf`, `apologia-es.pdf`). Rendered PDFs are not
-tracked in this repository.
+This writes the PDF beside the source (`apologia-fr-en.pdf`, `apologia-es-en.pdf`). Rendered PDFs
+are not tracked in this repository.
 
 A ready-to-print PDF of the latest version is attached to the most recent
 [GitHub release](https://github.com/edadma/apologia/releases). Releases are versioned by the
