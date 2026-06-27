@@ -199,6 +199,16 @@ encore des pécheurs, Christ est mort pour nous.}
 ton cœur que Dieu l'a ressuscité des morts, tu seras sauvé. Car c'est en croyant du cœur
 qu'on parvient à la justice, et c'est en confessant de la bouche qu'on parvient au salut.}
 \verse{Romains 10.13}{Car quiconque invoquera le nom du Seigneur sera sauvé.}
+
+\medskip
+\lab{L'Évangile lui-même} Le résumé que Paul place au premier rang --- un crédo plus ancien que
+ses lettres :
+
+\verse{1~Cor.~15.3--6}{Je vous ai enseigné avant tout, comme je l'avais aussi reçu, que Christ
+est mort pour nos péchés, selon les Écritures ; qu'il a été enseveli, et qu'il est ressuscité le
+troisième jour, selon les Écritures ; et qu'il est apparu à Céphas, puis aux douze. Ensuite, il
+est apparu à plus de cinq cents frères à la fois, dont la plupart sont encore vivants, et dont
+quelques-uns sont morts.}
 \end{fr}
 
 \begin{en}{The good news}
@@ -227,6 +237,16 @@ Christ died for us.}
 your heart that God raised Him from the dead, you will be saved. For with your heart you
 believe and are justified, and with your mouth you confess and are saved.}
 \verse{Romans 10:13}{for, ``Everyone who calls on the name of the Lord will be saved.''}
+
+\medskip
+\lab{The gospel itself} The summary Paul calls of first importance --- a creed older than any of
+his letters:
+
+\verse{1~Cor.~15:3--6}{For what I received I passed on to you as of first importance: that Christ
+died for our sins according to the Scriptures, that He was buried, that He was raised on the third
+day according to the Scriptures, and that He appeared to Cephas, and then to the Twelve. After
+that, He appeared to more than five hundred brothers at once, most of whom are still living,
+though some have fallen asleep.}
 \end{en}
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -826,3 +846,33 @@ call the righteous, but sinners to repentance.}
 
 \lab{See also} The ``Good, and good enough'' card.
 \end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+// Public-domain dedication — the closing page. No folio: this is back matter, not a card.
+// ════════════════════════════════════════════════════════════════════════════
+\def footline {\hss}
+\vfil
+\centerline{\font noto 30 regular Ἀπολογία}
+\vskip 30pt
+\centerline{\font lmroman 14 bold Dans le domaine public}
+\vskip 5pt
+\centerline{\font lmroman 14 bold In the Public Domain}
+\vskip 30pt
+
+\noindent{\font lmroman 10 regular Dans la mesure permise par la loi, l'auteur a renoncé à tout
+droit d'auteur et droit voisin sur cet ouvrage (CC0~1.0 Universel). Vous êtes libre de le copier,
+le modifier, le distribuer et l'imprimer, même à des fins commerciales, sans demander la
+permission. Diffusez-le largement.}
+
+\medskip
+\noindent{\font lmroman 10 regular To the extent possible under law, the author has waived all
+copyright and related rights to this work (CC0~1.0 Universal). You are free to copy, modify,
+distribute, and print it, even commercially, without asking permission. Spread it freely.}
+
+\vskip 26pt
+\noindent{\font lmroman 9 regular Les citations bibliques proviennent de traductions du domaine
+public : la \textbf{Bible Louis Segond 1910} (français) et la \textbf{Berean Standard Bible}
+(anglais). \quad Scripture is quoted from public-domain translations: the \textbf{Louis Segond
+1910} (French) and the \textbf{Berean Standard Bible} (English).}
+\vfil
+\eject

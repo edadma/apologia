@@ -42,3 +42,12 @@ repository.
 A ready-to-print PDF of the latest version is attached to the most recent
 [GitHub release](https://github.com/edadma/apologia/releases). Releases are versioned by the
 cover date (tag `v<YYYY.MM.DD>`), which doubles as the document version.
+
+## License
+
+This work is dedicated to the public domain under
+[CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/) — see [`LICENSE`](LICENSE).
+Copy, modify, distribute, and print it freely, even commercially, without asking permission.
+
+Scripture is quoted from public-domain translations: the **Louis Segond 1910** (French) and the
+**Berean Standard Bible** (English).
