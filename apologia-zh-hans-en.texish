@@ -28,10 +28,11 @@
 \def settopic z e {\def topiczh {\z}\def topicen {\e}}
 
 \def bodyface {lmroman}
+\def qfontsize {11}
 
 \def cardheadcjk num topic tag {
-  \if {\> {\size{\topic}} {0}}\leftline{\font cjksc 9 regular \topic}\smallskip\fi
-  \leftline{\font cjksc 15 bold \num\hskip 10 \tag}
+  \if {\> {\size{\topic}} {0}}\leftline{\font cjksc 10 regular \topic}\smallskip\fi
+  \leftline{\font cjksc 17 bold \num\hskip 10 \tag}
   \vskip 6pt
   \noindent
 }
@@ -45,7 +46,8 @@
 
 \newenvironment zh tag {
   \def bodyface {cjksc}
-  \font cjksc 10 regular
+  \def qfontsize {12.5}
+  \font cjksc 11.5 regular
   \stepcounter{card}
   \addcontentsline{toczh}{1}{\arabic{\value{card}}}{\tag}
   \cardheadcjk{\arabic{\value{card}}}{\topiczh}{\tag}
@@ -54,13 +56,14 @@
 \newenvironment en tag {
   \usehyphenation{en-us}
   \def bodyface {lmroman}
+  \def qfontsize {11}
   \font lmroman 10 regular
   \addcontentsline{tocen}{1}{\arabic{\value{card}}}{\tag}
   \cardheadlatin{\arabic{\value{card}}}{\topicen}{\tag}
 } {\vfil\eject}
 
 // \q{…} — the objection itself: bold, flush-left, in the current body face.
-\def q text {\noindent{\font \bodyface 11 bold \text}
+\def q text {\noindent{\font \bodyface \qfontsize bold \text}
 
 }
 
@@ -95,7 +98,7 @@
 // ── Chinese table of contents (verso) ──────────────────────────────────────────
 \leftline{\font cjksc 16 bold 目录}
 \vskip 12pt
-{\font cjksc 10 regular \noindent\contentslist{toczh}{toczhformat}}
+{\font cjksc 11.5 regular \noindent\contentslist{toczh}{toczhformat}}
 \vfil\eject
 
 // ── English table of contents (recto) ─────────────────────────────────────────
