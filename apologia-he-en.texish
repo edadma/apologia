@@ -35,9 +35,9 @@
 
 // Hebrew head: a right-to-left paragraph (rtl is already active in the `he` environment). The
 // number leads on the right, the tag follows; the section topic sits above in a smaller cut.
-\def cardheadhebrew num topic tag {{\font hebrew 10 regular \topic}
+\def cardheadhebrew num topic tag {\noindent{\font hebrew 10 regular \topic}
 
-{\font hebrew 16 bold \num\hskip 10 \tag}
+\noindent{\font hebrew 16 bold \num\hskip 10 \tag}
 
 \vskip 6pt
 \noindent}
