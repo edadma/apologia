@@ -52,7 +52,8 @@ cd /path/to/texish
 This writes the PDF beside the source (`apologia-fr-en.pdf`, `apologia-es-en.pdf`,
 `apologia-zh-hans-en.pdf`, `apologia-zh-hant-en.pdf`, `apologia-he-en.pdf`). Rendered PDFs are not
 tracked in this repository. The Chinese editions need texish ≥ 0.11.1 (bundled Noto Serif CJK with a
-bold weight); the Hebrew edition needs texish ≥ 0.12.0 (right-to-left Hebrew with niqqud).
+bold weight); the Hebrew edition needs texish ≥ 0.12.1 (right-to-left Hebrew with niqqud, and the
+right-to-left first-line-indent fix).
 
 A ready-to-print PDF of the latest version is attached to the most recent
 [GitHub release](https://github.com/edadma/apologia/releases). Releases are versioned by the
