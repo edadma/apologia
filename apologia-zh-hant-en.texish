@@ -1,0 +1,793 @@
+\use{document}
+
+// ── Page frame: half-letter (5.5x8.5in) field guide, a uniform 1cm margin all round ──
+\geometry paperwidth:5.5in paperheight:8.5in left:1cm right:1cm top:1cm bottom:1cm
+
+// The Traditional-Chinese / English edition of the field reference. Same facing-pair design as
+// the other editions: the Chinese take of each card sits on the left (verso) page and the
+// matching English take on the right (recto). Chinese keeps to the even folios and English to
+// the odd ones. The English cards are the same text as the other editions.
+
+// Chinese is set in Noto Serif CJK (bundled as the `cjktc` face: regular + bold); English in
+// Latin Modern. The engine breaks and justifies the Chinese on its own (kinsoku line breaking).
+
+// Scripture: public-domain translations — the Chinese Union Version (和合本, 1919) in Chinese,
+// the Berean Standard Bible in English.
+
+\def footline {\hss}
+
+// ════════════════════════════════════════════════════════════════════════════
+// Card authoring vocabulary. The body face is parameterized (\bodyface) so the shared card
+// macros set Chinese on the verso and Latin on the recto; the card head and run-in label have
+// a Chinese cut (cjktc, no small caps; a full-width colon lead-in) and a Latin cut.
+// ════════════════════════════════════════════════════════════════════════════
+\newcounter{card}
+
+\def topiczh {}
+\def topicen {}
+\def settopic z e {\def topiczh {\z}\def topicen {\e}}
+
+\def bodyface {lmroman}
+\def qfontsize {11}
+
+\def cardheadcjk num topic tag {
+  \if {\> {\size{\topic}} {0}}\leftline{\font cjktc 10 regular \topic}\smallskip\fi
+  \leftline{\font cjktc 17 bold \num\hskip 10 \tag}
+  \vskip 6pt
+  \noindent
+}
+
+\def cardheadlatin num topic tag {
+  \if {\> {\size{\topic}} {0}}\leftline{\font lmroman 9 regular \smallcaps{\topic}}\smallskip\fi
+  \leftline{\font lmroman 15 bold \num\hskip 10 \tag}
+  \vskip 6pt
+  \noindent
+}
+
+\newenvironment zh tag {
+  \def bodyface {cjktc}
+  \def qfontsize {12.5}
+  \font cjktc 11.5 regular
+  \stepcounter{card}
+  \addcontentsline{toczh}{1}{\arabic{\value{card}}}{\tag}
+  \cardheadcjk{\arabic{\value{card}}}{\topiczh}{\tag}
+} {\vfil\eject}
+
+\newenvironment en tag {
+  \usehyphenation{en-us}
+  \def bodyface {lmroman}
+  \def qfontsize {11}
+  \font lmroman 10 regular
+  \addcontentsline{tocen}{1}{\arabic{\value{card}}}{\tag}
+  \cardheadlatin{\arabic{\value{card}}}{\topicen}{\tag}
+} {\vfil\eject}
+
+// \q{…} — the objection itself: bold, flush-left, in the current body face.
+\def q text {\noindent{\font \bodyface \qfontsize bold \text}
+
+}
+
+// Run-in labels: \lab (Latin, period lead-in) on the recto, \labz (Chinese, full-width colon) on
+// the verso. Both bold in the current body face.
+\def lab t {\textbf{\t.}}
+\def labz t {\textbf{\t：}}
+
+// \verse{ref}{text} — a printed scripture verse: a bold reference, then the verse set flush.
+\def verse r body {\noindent\textbf{\r}\hskip 6 \body
+
+\smallskip}
+
+\def tocleader {\leaders\hbox to:0.5em {\hss.\hss}{0pt plus 1fil}}
+\def toczhformat lvl num ttl pg {\hbox to:\hsize {\num\hskip 8 \ttl\tocleader\hskip 6 \pg}}
+\def tocenformat lvl num ttl pg {\hbox to:\hsize {\num\hskip 8 \ttl\tocleader\hskip 6 \pg}}
+
+// ════════════════════════════════════════════════════════════════════════════
+// Cover (page 1, recto)
+// ════════════════════════════════════════════════════════════════════════════
+\vskip 90pt
+\centerline{\font noto 48 regular Ἀπολογία}
+\vskip 36pt
+\centerline{\font cjktc 15 regular 傳福音者實地手冊}
+\vskip 5pt
+\centerline{\font lmroman 13 regular A Field Reference for Evangelists}
+\vfil
+\centerline{\font cjktc 11 regular 二〇二六年六月二十八日}
+\vskip 24pt
+\eject
+
+// ── Chinese table of contents (verso) ──────────────────────────────────────────
+\leftline{\font cjktc 16 bold 目錄}
+\vskip 12pt
+{\font cjktc 11.5 regular \noindent\contentslist{toczh}{toczhformat}}
+\vfil\eject
+
+// ── English table of contents (recto) ─────────────────────────────────────────
+\leftline{\font lmroman 16 bold Contents}
+\vskip 12pt
+\noindent\contentslist{tocen}{tocenformat}
+\vfil\eject
+
+// ── Body: turn the folio on and number the first card page 1 ───────────────────
+\def footline {\hss\font lmroman 9 regular \the\pageno\hss}
+\set pageno {1}
+
+// ════════════════════════════════════════════════════════════════════════════
+\settopic{傳揚福音}{Sharing the Gospel}
+
+\begin{zh}{開場提問}
+\q{從對方所在之處開始，而不是從你所在之處開始。}
+
+\labz{先發問，再聆聽} 只要你以善意相問，大多數人都樂意談論自己和自己的信念。你的首要目標是瞭解
+對方，而不是贏得辯論。
+
+\labz{好的問題}
+\begin{itemize}
+\item “你平時會思考屬靈的事嗎？”
+\item “你從小是在某種信仰中長大的嗎？”
+\item “你認為耶穌是誰？”
+\item “如果這是真的，你願意親自認識神嗎？”
+\item “我可以告訴你是什麼改變了我的生命嗎？”
+\end{itemize}
+
+\labz{關鍵的問題} 一個溫和而經典的切入：“如果你今晚就離世，你能確定自己會與神同在嗎？”接著問：
+“如果神問你：我為什麼要讓你進來？你會怎樣回答？”他們的回答會顯明：他們究竟是倚靠基督，還是倚靠
+自己的善行。
+
+\smallskip
+\verse{彼前 3:15}{只要心裡尊主基督為聖。有人問你們心中盼望的緣由，就要常作準備，以溫柔、敬畏的心
+回答各人。}
+\verse{西 4:6}{你們的言語要常常帶著和氣，好像用鹽調和，就可知道該怎樣回答各人。}
+\end{zh}
+
+\begin{en}{Opening questions}
+\q{Start where they are, not where you are.}
+
+\lab{Ask, then listen} Most people will gladly talk about themselves and their beliefs if
+you ask kindly. Your first goal is to understand, not to win an argument.
+
+\lab{Good questions}
+\begin{itemize}
+\item ``Do you think much about spiritual things?''
+\item ``Were you raised with any faith?''
+\item ``Who do you think Jesus was?''
+\item ``If it were true, would you want to know God personally?''
+\item ``May I tell you what changed my life?''
+\end{itemize}
+
+\lab{The diagnostic question} A gentle, classic way in: ``If you were to die tonight, would
+you know for certain you'd be with God?'', then ``If God asked you, \emph{Why should I let
+you in?}, what would you say?'' Their answer shows whether they trust Christ or their own
+goodness.
+
+\smallskip
+\verse{1~Pet.~3:15}{But in your hearts sanctify Christ as Lord. Always be prepared to give a
+defense to everyone who asks you the reason for the hope that is in you. But respond with
+gentleness and respect.}
+\verse{Col. 4:6}{Let your speech always be gracious, seasoned with salt, so that you may know
+how to answer everyone.}
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\begin{zh}{好消息}
+\q{神、罪、基督、回應——信息的核心。}
+
+\labz{神} 神是聖潔的，是我們的創造主，也愛我們；他造我們，是要我們與他相交。（創 1:1；約一 4:8）
+
+\labz{罪} 我們都悖逆了神，虧缺了他的榮耀；罪使我們與神隔絕，並且通向死亡。（羅 3:23；6:23上）
+
+\labz{基督} 在耶穌裡，神成為人；他活出無罪的生命，為我們的罪代替我們而死，並且復活了。
+（羅 5:8；林前 15:3-4）
+
+\labz{回應} 離棄罪——這就是悔改——單單信靠基督；白白領受赦免和永生這份恩賜。
+（羅 10:9-10, 13；弗 2:8-9）
+
+\labz{羅馬路} 逐節讀下來（和合本）：
+
+\verse{羅馬書 3:23}{因為世人都犯了罪，虧缺了神的榮耀，}
+\verse{羅馬書 6:23}{因為罪的工價乃是死；惟有神的恩賜，在我們的主基督耶穌裡，乃是永生。}
+\verse{羅馬書 5:8}{惟有基督在我們還作罪人的時候為我們死，神的愛就在此向我們顯明了。}
+\verse{羅馬書 10:9-10}{你若口裡認耶穌為主，心裡信神叫他從死裡復活，就必得救。因為人心裡相信，
+就可以稱義；口裡承認，就可以得救。}
+\verse{羅馬書 10:13}{因為“凡求告主名的，就必得救。”}
+
+\medskip
+\labz{福音本身} 保羅看為最要緊的總結——一段比他的書信更古老的信經：
+
+\verse{林前 15:3-6}{我當日所領受又傳給你們的，第一，就是基督照聖經所說，為我們的罪死了，而且埋葬
+了；又照聖經所說，第三天覆活了，並且顯給磯法看，然後顯給十二使徒看；後來一時顯給五百多弟兄看，
+其中一大半到如今還在，卻也有已經睡了的。}
+\end{zh}
+
+\begin{en}{The good news}
+\q{God, sin, Christ, response --- the heart of the message.}
+
+\lab{God} God is holy, he is our Maker, and he loves us; he made us to live in relationship
+with him. (Gen.~1:1; 1~John~4:8)
+
+\lab{Sin} We have all rebelled and fall short of his glory; sin separates us from God and
+leads to death. (Rom.~3:23; 6:23a)
+
+\lab{Christ} In Jesus, God became man; he lived without sin, died in our place for our sins,
+and rose again. (Rom.~5:8; 1~Cor.~15:3--4)
+
+\lab{Response} Turn from sin --- this is repentance --- and trust Christ alone; receive
+forgiveness and eternal life as a free gift. (Rom.~10:9--10, 13; Eph.~2:8--9)
+
+\lab{The Roman Road} To read one by one (Berean Standard Bible):
+
+\verse{Romans 3:23}{for all have sinned and fall short of the glory of God,}
+\verse{Romans 6:23}{For the wages of sin is death, but the gift of God is eternal life in
+Christ Jesus our Lord.}
+\verse{Romans 5:8}{But God proves His love for us in this: While we were still sinners,
+Christ died for us.}
+\verse{Romans 10:9-10}{that if you confess with your mouth, ``Jesus is Lord,'' and believe in
+your heart that God raised Him from the dead, you will be saved. For with your heart you
+believe and are justified, and with your mouth you confess and are saved.}
+\verse{Romans 10:13}{for, ``Everyone who calls on the name of the Lord will be saved.''}
+
+\medskip
+\lab{The gospel itself} The summary Paul calls of first importance --- a creed older than any of
+his letters:
+
+\verse{1~Cor.~15:3--6}{For what I received I passed on to you as of first importance: that Christ
+died for our sins according to the Scriptures, that He was buried, that He was raised on the third
+day according to the Scriptures, and that He appeared to Cephas, and then to the Twelve. After
+that, He appeared to more than five hundred brothers at once, most of whom are still living,
+though some have fallen asleep.}
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\begin{zh}{引導信主}
+\q{當對方預備好時，幫助他回應——不催逼，不施壓。}
+
+\labz{確認他明白} 簡要地確認他抓住了要點：他的罪、基督的死與復活，以及救恩是憑信心白白領受的恩
+賜，不是靠行為賺來的。
+
+\labz{呼召回應} 直接地問：“你有什麼理由現在不願意歸向基督嗎？”叫人得救的是悔改和信心，不是一段
+禱文。
+
+\labz{一個可作的禱告} 用他自己的話，或帶著他禱告：“神啊，我得罪了你。感謝你，耶穌為我死了又復活
+了。我離棄我的罪，單單信靠他。求你作我的主、我的救主。”
+
+\labz{給他確據} 救恩是建立在基督的應許上，不是建立在感覺上。鼓勵他邁出最初的幾步：一本聖經、禱
+告、一間教會。
+
+\smallskip
+\verse{約 1:12}{凡接待他的，就是信他名的人，他就賜他們權柄作神的兒女。}
+\verse{啟 3:20}{看哪，我站在門外叩門，若有聽見我聲音就開門的，我要進到他那裡去，我與他，他與我一
+同坐席。}
+\verse{約 5:24}{我實實在在的告訴你們，那聽我話、又信差我來者的，就有永生，不至於定罪，是已經出死
+入生了。}
+\verse{約一 5:11-13}{這見證就是神賜給我們永生，這永生也是在他兒子裡面。人有了神的兒子就有生命，
+沒有神的兒子就沒有生命。我將這些話寫給你們信奉神兒子之名的人，要叫你們知道自己有永生。}
+\end{zh}
+
+\begin{en}{Leading to faith}
+\q{When someone is ready, help them respond --- without rushing or pressure.}
+
+\lab{Make sure they understand} Briefly confirm they grasp the essentials: their sin,
+Christ's death and resurrection, and that salvation is a free gift received by faith, not
+earned.
+
+\lab{Call for a response} Ask plainly: ``Is there any reason you wouldn't want to turn to
+Christ right now?'' It is repentance and faith, not a formula, that save.
+
+\lab{A prayer to pray} In their own words, or guide them: ``God, I have sinned against you.
+Thank you that Jesus died and rose for me. I turn from my sin and trust him alone. Be my Lord
+and Savior.''
+
+\lab{Assure them} Salvation rests on Christ's promise, not on feelings. Encourage the first
+steps: a Bible, prayer, a church.
+
+\smallskip
+\verse{John 1:12}{But to all who did receive Him, to those who believed in His name, He gave the
+right to become children of God.}
+\verse{Rev. 3:20}{Behold, I stand at the door and knock. If anyone hears My voice and opens the
+door, I will come in and dine with him, and he with Me.}
+\verse{John 5:24}{Truly, truly, I tell you, whoever hears My word and believes Him who sent Me
+has eternal life and will not come into judgment. Indeed, he has crossed over from death to
+life.}
+\verse{1~John 5:11--13}{And this is that testimony: God has given us eternal life, and this life
+is in His Son. Whoever has the Son has life; whoever does not have the Son of God does not have
+life. I have written these things to you who believe in the name of the Son of God, so that you
+may know that you have eternal life.}
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\settopic{神}{God}
+
+\begin{zh}{證據與科學}
+\q{“沒有證據證明神存在。”}
+證據其實有很多——只是不屬於你能放進試管裡的那一類。宇宙的起初、它精確到極點的微調、道德律的存
+在，以及意識的真實，都指向自然界之外、指向那位作為根源的心智。
+\begin{itemize}
+\item 凡開始存在的都有原因；宇宙有起初——所以它有一個超乎自身的原因。
+\item 使生命成為可能的各樣常數，被微調到極其精細的地步；設計是最自然的解釋。
+\item 你預設了真實的對與錯；道德律指向一位立法者。
+\end{itemize}
+\smallskip
+\verse{羅 1:20}{自從造天地以來，神的永能和神性是明明可知的，雖是眼不能見，但藉著所造之物就可以曉
+得，叫人無可推諉。}
+\verse{詩 19:1}{諸天述說神的榮耀，穹蒼傳揚他的手段。}
+
+\medskip
+\q{“科學已經解釋了一切——我們不需要神。”}
+科學解釋世界\emph{如何}運作；它無法告訴你\emph{為什麼}會有一個世界，也無法告訴你它的意義何在。
+神不是與科學相爭的另一種解釋——他是那位使一個有序、可供科學研究的宇宙得以存在的根由。
+\begin{itemize}
+\item “如何”與“為什麼”是兩個不同的問題；解釋引擎的構造，並不能告訴你這輛車為何被造。
+\item 科學預設了一個有序、可理解的宇宙——這正是一位理性的神所造的世界會有的樣子。
+\item 對於意義、道德與目的，科學是緘默的——而這些正是我們最需要答案的問題。
+\end{itemize}
+\smallskip
+\verse{西 1:17}{他在萬有之先；萬有也靠他而立。}
+\verse{來 11:3}{我們因著信，就知道諸世界是藉神話造成的；這樣，所看見的，並不是從顯然之物造出來
+的。}
+\end{zh}
+
+\begin{en}{Evidence and science}
+\q{``There's no evidence that God exists.''}
+There's a great deal of evidence --- just not the kind you put in a test
+tube. The beginning of the universe, its fine-tuning, the existence of a moral law, and the
+reality of consciousness all point beyond nature to a mind behind it.
+\begin{itemize}
+\item Everything that begins to exist has a cause; the universe began --- so it has a cause
+  beyond itself.
+\item The constants that make life possible are fine-tuned to a razor's edge; design is the
+  most natural explanation.
+\item You assume real right and wrong; a moral law points to a Lawgiver.
+\end{itemize}
+\smallskip
+\verse{Rom. 1:20}{For since the creation of the world God's invisible qualities --- His eternal
+power and divine nature --- have been clearly seen, being understood from His workmanship, so
+that men are without excuse.}
+\verse{Ps. 19:1}{The heavens declare the glory of God; the skies proclaim the work of His
+hands.}
+
+\medskip
+\q{``Science has explained everything --- we don't need God.''}
+Science explains \emph{how} the world works; it cannot tell you \emph{why}
+there is a world at all, or what it is for. God is not a rival explanation to science --- he
+is the reason there is an orderly universe to study.
+\begin{itemize}
+\item ``How'' and ``why'' are different questions; explaining an engine doesn't tell you why
+  the car was built.
+\item Science assumes an orderly, intelligible universe --- just what you'd expect if a
+  rational God made it.
+\item Science is silent on meaning, morality, and purpose --- the questions we most need
+  answered.
+\end{itemize}
+\smallskip
+\verse{Col. 1:17}{He is before all things, and in Him all things hold together.}
+\verse{Heb. 11:3}{By faith we understand that the universe was formed at God's command, so that
+what is seen was not made out of what was visible.}
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\begin{zh}{為何有苦難}
+\q{“如果神是良善又全能的，為什麼會有這麼多苦難？”}
+
+聖經從不輕看苦難——它比任何其他世界觀都更嚴肅地對待苦難。神對邪惡的回應，首先不是一套解釋，而是
+一位位格：他在十字架上進入了我們的苦難，並且應許有一天要將它完全除去。
+
+\labz{要點}
+\begin{itemize}
+\item 許多苦難源於自由的濫用——一個有真實之愛的世界，也是一個愛可以被拒絕的世界。
+\item 要把任何事稱為“惡”，你就需要一個善的標準；邪惡的問題恰恰預設了它所質疑的那位神。
+\item 在十字架上，神並不遠離痛苦——他親自擔當了其中最深的痛。
+\end{itemize}
+
+\smallskip
+\verse{羅 8:18}{我想現在的苦楚若比起將來要顯於我們的榮耀，就不足介意了。}
+\verse{啟 21:4}{神要擦去他們一切的眼淚；不再有死亡，也不再有悲哀、哭號、疼痛，因為以前的事都過去
+了。}
+\verse{約 11:35}{耶穌哭了。}
+\end{zh}
+
+\begin{en}{Why suffering}
+\q{``If God is good and all-powerful, why is there so much suffering?''}
+
+The Bible never treats suffering as small --- it takes it more seriously
+than any other worldview. God's answer to evil is not first an explanation but a Person: he
+entered our suffering at the cross, and he promises one day to end it entirely.
+
+\lab{Key points}
+\begin{itemize}
+\item Much suffering flows from the misuse of freedom --- a world with real love is a world
+  where love can be refused.
+\item To call anything ``evil'' you need a standard of good; the problem of evil assumes the
+  very God it questions.
+\item At the cross God does not stay distant from pain --- he bears the worst of it himself.
+\end{itemize}
+
+\smallskip
+\verse{Rom. 8:18}{I consider that our present sufferings are not comparable to the glory that
+will be revealed in us.}
+\verse{Rev. 21:4}{He will wipe away every tear from their eyes. There will be no more death or
+mourning or crying or pain, for the former things have passed away.}
+\verse{John 11:35}{Jesus wept.}
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\settopic{聖經}{The Bible}
+
+\begin{zh}{矛盾與傳抄}
+\q{“聖經滿了矛盾。”}
+大多數所謂的矛盾，是視角或細節上的差異，並非邏輯上的矛盾。真正的矛盾必須在同一意義上、同一時
+間，既肯定又否定同一件事——而清楚的例子，出奇地難以舉出。
+\begin{itemize}
+\item 請對方舉出一個\emph{具體}的例子；含糊的說法一經查考就煙消雲散。
+\item 細節上的不同（墳墓旁有幾位天使、牌子上的字句）正是\emph{獨立}目擊見證的標記，而非串通。
+\item 大多數表面的衝突，一旦衡量上下文、文體和寫作意圖，就彼此協調了。
+\end{itemize}
+\smallskip
+\verse{提後 3:16}{聖經都是神所默示的，於教訓、督責、使人歸正、教導人學義都是有益的。}
+\verse{約 10:35}{經上的話是不能廢的。}
+
+\medskip
+\q{“聖經被抄了那麼多次，我們無法知道原文。”}
+新約是古代世界中佐證最充分的文獻。我們擁有約五千八百份希臘文抄本；它們之間的異文絕大多數無關緊
+要，沒有任何一條基督教教義繫於一處有爭議的讀法。
+\begin{itemize}
+\item 把這個抄本數目與其他古代著作相比——後者往往只靠寥寥幾份晚出的抄本流傳下來。
+\item 有些殘卷的年代距原稿僅一兩百年——比可比的文獻近得多。
+\item 絕大多數異文只關乎拼寫或詞序；文本校勘能以很高的把握重建原文。
+\end{itemize}
+\smallskip
+\verse{賽 40:8}{草必枯乾，花必凋殘，惟有我們神的話必永遠立定。}
+\verse{太 24:35}{天地要廢去，我的話卻不能廢去。}
+\end{zh}
+
+\begin{en}{Contradictions and transmission}
+\q{``The Bible is full of contradictions.''}
+Most alleged contradictions are differences of perspective or detail, not
+logical contradictions. A real contradiction must affirm and deny the same thing, in the same
+sense, at the same time --- and clear examples are remarkably hard to produce.
+\begin{itemize}
+\item Ask for a \emph{specific} example; vague claims dissolve once examined.
+\item Differing details (the number of angels at the tomb, the wording of a sign) are the mark
+  of \emph{independent} eyewitness testimony, not collusion.
+\item Most apparent conflicts harmonize once context, genre, and intent are weighed.
+\end{itemize}
+\smallskip
+\verse{2~Tim.~3:16}{All Scripture is God-breathed and is useful for instruction, for conviction,
+for correction, and for training in righteousness.}
+\verse{John 10:35}{If he called them gods to whom the word of God came --- and the Scripture
+cannot be broken.}
+
+\medskip
+\q{``The Bible was copied so many times we can't know the original.''}
+The New Testament is the best-attested document of the ancient world. We
+have roughly 5,800 Greek manuscripts, the variants among them are overwhelmingly trivial, and
+not one Christian doctrine hangs on a disputed reading.
+\begin{itemize}
+\item Compare the manuscript count to other ancient works, which survive in only a handful of
+  late copies.
+\item Some fragments date within a century or two of the originals --- far closer than for
+  comparable texts.
+\item The vast majority of variants are spelling or word order; textual criticism reconstructs
+  the wording with high confidence.
+\end{itemize}
+\smallskip
+\verse{Isa. 40:8}{The grass withers and the flowers fall, but the word of our God stands
+forever.}
+\verse{Matt. 24:35}{Heaven and earth will pass away, but My words will never pass away.}
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\begin{zh}{進化論}
+\q{“進化論否定了聖經。”}
+
+一套關於生命機制的理論，對於其背後是否有一位神，並沒有任何說明。即便承認這套科學，那些深層的問題
+依然存在：為什麼會有萬物存在而非一無所有？最初的生命從何而來？宇宙又為何為生命作了如此精細的調
+校？創世記告訴我們神\emph{創造}了世界，以及\emph{為什麼}創造；它並不是一本科學教科書。
+
+\labz{要點}
+\begin{itemize}
+\item 過程不等於目的：即使是一個自然的機制，也可能是創造主所使用的手段。
+\item 進化論並不處理宇宙的起源、生命本身的起源，或它所依賴的各樣定律的起源。
+\item 許多接受進化論的科學家是基督徒；信仰與科學並非仇敵。
+\end{itemize}
+
+\labz{經文} 創 1:1；詩 139:14。
+
+\labz{另見} 關於神存在的那一張卡片。
+\end{zh}
+
+\begin{en}{Evolution}
+\q{``Evolution disproves the Bible.''}
+
+A theory about the mechanism of life says nothing about whether there is a
+God behind it. Even granting the science, the deep questions remain: why is there anything at
+all, where did the first life come from, and why is the universe so finely tuned for it?
+Genesis tells us \emph{that} God made the world and \emph{why}; it is not a science textbook.
+
+\lab{Key points}
+\begin{itemize}
+\item Process is not purpose: even a natural mechanism could be the means a Creator uses.
+\item Evolution doesn't address the origin of the universe, of life itself, or of the laws it
+  depends on.
+\item Many scientists who accept evolution are Christians; faith and science are not enemies.
+\end{itemize}
+
+\lab{Scripture} Gen.~1:1; Ps.~139:14.
+
+\lab{See also} The card on the existence of God.
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\settopic{耶穌}{Jesus}
+
+\begin{zh}{好老師與復活}
+\q{“耶穌不過是一位好的道德老師。”}
+這恰恰是他唯一不可能是的身份。一位好老師，若聲稱能赦免罪、與父原為一、並要審判世界，那麼他要麼在
+說真話，要麼是被迷惑了，要麼是在撒謊。“好老師”不在選項之內——他沒有給我們留下中間地帶。
+\begin{itemize}
+\item 他接受敬拜、赦免罪，並聲稱在亞伯拉罕之前就已存在——這些是唯有神才能理直氣壯地做的。
+\item 一個僅僅是良善的人若說出這樣的話，便是狂妄自大的人，而非智者。
+\item 這選擇是真實的：主、說謊者，或瘋子——但絕不只是一位偉大的老師。
+\end{itemize}
+\smallskip
+\verse{約 8:58}{耶穌說：“我實實在在的告訴你們，還沒有亞伯拉罕就有了我。”}
+\verse{約 10:30}{我與父原為一。}
+\verse{可 2:5-7}{耶穌見他們的信心，就對癱子說：“小子，你的罪赦了。”有幾個文士坐在那裡，心裡議
+論，說：“這個人為什麼這樣說呢？他說僭妄的話了。除了神以外，誰能赦罪呢？”}
+
+\medskip
+\q{“復活是日久而成的傳說。”}
+這個宣告太早、代價又太高，不可能是傳說。在十字架之後短短幾年內，目擊者就在傳揚一位復活的耶穌，而
+他們大多為此付上了性命。傳說需要幾代人才能形成；而這事在仍有懷有敵意的目擊者活著、可以加以否認的
+時候，就已經被傳開了。
+\begin{itemize}
+\item 最早的信經（林前 15:3-7）列出具名的見證人，其年代上溯至事發後短短數年。
+\item 墳墓是空的——連耶穌的對頭也承認屍身不見了，並設法加以解釋。
+\item 人會為自己相信是真的事而死；門徒卻是為自己有條件知道其真偽的事而死。
+\end{itemize}
+\smallskip
+\verse{路 24:39}{你們看我的手，我的腳，就知道實在是我了。摸我看看！魂無骨無肉，你們看，我是有
+的。}
+\verse{徒 2:32}{這耶穌，神已經叫他復活了，我們都為這事作見證。}
+\end{zh}
+
+\begin{en}{Good teacher and resurrection}
+\q{``Jesus was just a good moral teacher.''}
+That is the one thing he cannot be. A good teacher who claimed to forgive
+sins, to be one with the Father, and to judge the world is either telling the truth, deluded,
+or lying. ``Good teacher'' is not on the menu --- he left us no middle ground.
+\begin{itemize}
+\item He accepted worship, forgave sins, and claimed to exist before Abraham --- things only
+  God can rightly do.
+\item A merely good man who said such things would be a megalomaniac, not a sage.
+\item The choice is real: Lord, liar, or lunatic --- but not merely a great teacher.
+\end{itemize}
+\smallskip
+\verse{John 8:58}{Jesus said to them, ``Truly, truly, I tell you, before Abraham was born, I
+am!''}
+\verse{John 10:30}{I and the Father are one.}
+\verse{Mark 2:5--7}{When Jesus saw their faith, He said to the paralytic, ``Son, your sins are
+forgiven.'' But some of the scribes were sitting there, thinking in their hearts, ``Why does
+this man speak like this? He is blaspheming! Who can forgive sins but God alone?''}
+
+\medskip
+\q{``The resurrection is a legend that grew over time.''}
+The claim is too early and too costly to be legend. Within a few years of
+the cross, eyewitnesses were proclaiming a risen Jesus, and most went to their deaths for it.
+Legends take generations to grow; this was preached while hostile eyewitnesses were still alive
+to deny it.
+\begin{itemize}
+\item The earliest creed (1~Cor.~15:3--7) names eyewitnesses and dates to within a few years of
+  the events.
+\item The tomb was empty --- even Jesus' opponents admitted the body was gone and tried to
+  explain it away.
+\item People die for what they believe is true; the disciples died for what they were in a
+  position to know was true or false.
+\end{itemize}
+\smallskip
+\verse{Luke 24:39}{Look at My hands and My feet. It is I Myself. Touch Me and see; for a spirit
+does not have flesh and bones, as you see I have.}
+\verse{Acts 2:32}{God has raised this Jesus to life, to which we are all witnesses.}
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\begin{zh}{條條大路}
+\q{“條條大路通向神——各宗教本質上都一樣。”}
+
+它們不可能都是真的，因為在最要緊的事上，它們的主張彼此相反——神是誰、我們出了什麼問題、又如何得
+著解決。尊重人，並不意味著假裝他們的信念彼此並不衝突。基督教是獨特的：不是我們向上攀向神，而是神
+憑恩典向下俯就我們。
+
+\labz{要點}
+\begin{itemize}
+\item 各宗教在神（一位、多位、沒有、非位格）、在人的根本問題、以及在解決之道上彼此分歧——這是真
+  實的矛盾，而非同一真理的不同風味。
+\item 其他一切體系都說“去做”；福音卻說“成了”——救恩是恩賜，不是工價。
+\item 寬容是以尊重待人，而非相信每一種主張都同樣真確。
+\end{itemize}
+
+\smallskip
+\verse{約 14:6}{耶穌說：“我就是道路、真理、生命；若不藉著我，沒有人能到父那裡去。”}
+\verse{徒 4:12}{除他以外，別無拯救；因為在天下人間，沒有賜下別的名，我們可以靠著得救。}
+\end{zh}
+
+\begin{en}{All roads to God}
+\q{``All religions lead to God --- they're basically the same.''}
+
+They cannot all be true, because they say opposite things about what
+matters most --- who God is, what is wrong with us, and how it is fixed. Respecting people
+doesn't mean pretending their beliefs don't contradict. Christianity is unique: not us
+reaching up to God, but God reaching down to us in grace.
+
+\lab{Key points}
+\begin{itemize}
+\item The religions disagree on God (one, many, none, impersonal), on the human problem, and
+  on the cure --- real contradictions, not flavors of one truth.
+\item Every other system says ``do''; the gospel says ``done'' --- salvation is a gift, not a
+  wage.
+\item Tolerance means treating people with respect, not believing every claim is equally true.
+\end{itemize}
+
+\smallskip
+\verse{John 14:6}{Jesus answered, ``I am the way and the truth and the life. No one comes to the
+Father except through Me.''}
+\verse{Acts 4:12}{Salvation exists in no one else, for there is no other name under heaven given
+to men by which we must be saved.}
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\settopic{人心}{The human heart}
+
+\begin{zh}{好人，與夠好}
+\q{“不信神也能做個好人。”}
+這是真的——許多不信的人過著正直的生活，因為人人都是按神的形象造的，良心裡也認得他的律法。問題不
+在於不信神能否做好人，而在於若沒有神，善與惡是否真實存在。若沒有立法者，“善”就不過是一種意見——
+沒有任何約束力。
+\begin{itemize}
+\item 問題在於根基，而非行為：若沒有神，誰能說你的“善”就比暴君的“善”更好？
+\item 人人都知道有些事確實是錯的（殘忍、背叛）——這指向一條在我們之上的道德律。
+\end{itemize}
+\smallskip
+\verse{羅 2:14-15}{沒有律法的外邦人若順著本性行律法上的事，他們雖然沒有律法，自己就是自己的律
+法。這是顯出律法的功用刻在他們心裡，他們是非之心同作見證。}
+\verse{賽 64:6}{我們都像不潔淨的人；所有的義都像汙穢的衣服。}
+
+\medskip
+\q{“我是個好人——我不需要被拯救。”}
+與別人相比，或許如此——但標準不是你的鄰舍，而是神完全的聖潔。以那標準衡量，我們無一人及格；我們
+都曾說謊、恨人、把自己擺在第一。好消息是：救恩從來不在於夠不夠好——它是給那些知道自己不夠好之人
+的恩賜。
+\begin{itemize}
+\item 試試這個測驗：你可曾從未說過謊、從未恨過人、從未貪圖過不屬於自己的東西？神的律法直達人心。
+\item 天堂不是靠做好人掙來的；若是這樣，基督就白白死了。
+\item “好人”不覺得自己需要一位救主——而這恰恰是叫他們遠離他的那一件事。
+\end{itemize}
+\smallskip
+\verse{羅 3:10-12}{沒有義人，連一個也沒有。沒有明白的，沒有尋求神的；都是偏離正路，一同變為無
+用。沒有行善的，連一個也沒有。}
+\verse{加 2:21}{我不廢掉神的恩；義若是藉著律法得的，基督就是徒然死了。}
+\verse{弗 2:8-9}{你們得救是本乎恩，也因著信；這並不是出於自己，乃是神所賜的；也不是出於行為，免
+得有人自誇。}
+\end{zh}
+
+\begin{en}{Good, and good enough}
+\q{``You don't need God to be a good person.''}
+True --- many non-believers live good lives, because everyone is made in God's image and knows
+his law in their conscience. The question isn't whether you can be good without believing in
+God, but whether good and evil are real at all without him. Without a Lawgiver, ``good'' is just
+opinion --- nothing binding.
+\begin{itemize}
+\item The issue is grounding, not behaviour: without God, who says your ``good'' is better than
+  a tyrant's?
+\item Everyone knows some things are really wrong (cruelty, betrayal) --- that points to a moral
+  law above us.
+\end{itemize}
+\smallskip
+\verse{Rom. 2:14--15}{When Gentiles, who do not have the law, do by nature what the law requires,
+they are a law to themselves; they show that the work of the law is written on their hearts,
+their consciences also bearing witness.}
+\verse{Isa. 64:6}{All of us have become like one who is unclean, and all our righteous acts are
+like filthy rags.}
+
+\medskip
+\q{``I'm a good person --- I don't need to be saved.''}
+Compared to other people, perhaps --- but the standard isn't your neighbour, it's God's perfect
+holiness. By that measure none of us passes; we've all lied, hated, and put ourselves first. The
+good news is that salvation was never about being good enough --- it's a gift for people who know
+they aren't.
+\begin{itemize}
+\item Try the test: have you never lied, never hated, never wanted what isn't yours? God's law
+  reaches the heart.
+\item Heaven isn't earned by being good; if it were, Christ died for nothing.
+\item ``Good people'' don't think they need a Saviour --- which is the one thing that keeps them
+  from him.
+\end{itemize}
+\smallskip
+\verse{Rom. 3:10--12}{There is no one righteous, not even one; there is no one who understands,
+no one who seeks God. All have turned away; there is no one who does good, not even one.}
+\verse{Gal. 2:21}{I do not set aside the grace of God. For if righteousness comes through the law,
+Christ died for nothing.}
+\verse{Eph. 2:8--9}{For it is by grace you have been saved, through faith --- and this not from
+yourselves; it is the gift of God --- not by works, so that no one can boast.}
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\begin{zh}{偽君子}
+\q{“教會裡滿了偽君子。”}
+
+有時確實如此——耶穌早已說過會這樣，而且他斥責假冒為善比誰都嚴厲。教會不是完全人的博物館，而是為
+破碎之人開設的醫院；有些病人行為不端，並不能成為反對這藥的理由。不要讓一個偽君子擋在你與基督之
+間。
+
+\labz{要點}
+\begin{itemize}
+\item 偽君子是沒有活出一個良善標準的人——這本身就承認那標準是好的。
+\item 要憑基督來評判基督教，而非憑他最差的跟隨者。
+\item 這指控臨到我們每一個人；福音正是為失敗的人預備的——這對人人都是好消息。
+\end{itemize}
+
+\smallskip
+\verse{太 23:27-28}{你們這假冒為善的文士和法利賽人有禍了！因為你們好像粉飾的墳墓，外面好看，裡
+面卻裝滿了死人的骨頭和一切的汙穢。你們也是如此，在人前外面顯出公義來，裡面卻裝滿了假善和不法的
+事。}
+\verse{路 5:31-32}{無病的人用不著醫生；有病的人才用得著。我來本不是召義人悔改，乃是召罪人悔改。}
+\verse{羅 3:23}{因為世人都犯了罪，虧缺了神的榮耀。}
+
+\labz{另見} “好人，與夠好”那一張卡片。
+\end{zh}
+
+\begin{en}{Hypocrites}
+\q{``The church is full of hypocrites.''}
+
+Sometimes true --- Jesus said it would be, and he condemned hypocrisy more
+sharply than anyone. The church is not a museum of the perfect but a hospital for the broken;
+that some patients behave badly is no argument against the medicine. Don't let a hypocrite
+stand between you and Christ.
+
+\lab{Key points}
+\begin{itemize}
+\item A hypocrite fails to live up to a good standard --- which admits the standard is good.
+\item Judge Christianity by Christ, not by the worst of his followers.
+\item The charge fits us all; the gospel is for failures --- good news for everyone.
+\end{itemize}
+
+\smallskip
+\verse{Matt. 23:27--28}{Woe to you, scribes and Pharisees, you hypocrites! You are like
+whitewashed tombs, which look beautiful on the outside, but on the inside are full of dead men's
+bones. On the outside you appear to be righteous, but on the inside you are full of hypocrisy and
+wickedness.}
+\verse{Luke 5:31--32}{It is not the healthy who need a doctor, but the sick. I have not come to
+call the righteous, but sinners to repentance.}
+\verse{Rom. 3:23}{for all have sinned and fall short of the glory of God.}
+
+\lab{See also} The ``Good, and good enough'' card.
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+// Public-domain dedication — the closing page. No folio: this is back matter, not a card.
+// ════════════════════════════════════════════════════════════════════════════
+\def footline {\hss}
+\vfil
+\centerline{\font noto 30 regular Ἀπολογία}
+\vskip 30pt
+\centerline{\font cjktc 14 bold 屬於公共領域}
+\vskip 5pt
+\centerline{\font lmroman 14 bold In the Public Domain}
+\vskip 30pt
+
+\noindent{\font cjktc 10 regular 在法律允許的範圍內，作者已放棄對本作品的一切著作權及相關權利
+（CC0 1.0 通用）。您可以自由地複製、修改、分發和印製本作品，甚至用於商業目的，無需徵求許可。請廣
+傳。}
+
+\medskip
+\noindent{\font lmroman 10 regular To the extent possible under law, the author has waived all
+copyright and related rights to this work (CC0~1.0 Universal). You are free to copy, modify,
+distribute, and print it, even commercially, without asking permission. Spread it freely.}
+
+\vskip 26pt
+\noindent{\font cjktc 9 regular 中文經文取自《聖經和合本》（1919 年，公共領域）；英文經文取自
+Berean Standard Bible（公共領域）。}
+
+\medskip
+\noindent{\font lmroman 9 regular Chinese scripture is from the public-domain Chinese Union
+Version (1919); English scripture is the Berean Standard Bible.}
+\vfil
+\eject
