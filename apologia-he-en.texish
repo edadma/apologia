@@ -120,7 +120,7 @@
 \ltr
 \vskip 12pt
 \rtl
-{\font hebrew 11.5 regular \noindent\contentslist{toche}{tocheformat}}
+{\font hebrew 11.5 regular \set parfillskip {0}\contentslist{toche}{tocheformat}}
 \ltr
 \vfil\eject
 
