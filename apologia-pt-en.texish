@@ -1,0 +1,834 @@
+\use{document}
+
+// ── Page frame: half-letter (5.5x8.5in) field guide, a uniform 1cm margin all round ──
+\geometry paperwidth:5.5in paperheight:8.5in left:1cm right:1cm top:1cm bottom:1cm
+
+// The Portuguese/English edition of the field reference. Same facing-pair design as the other
+// Latin-script editions: the Portuguese take of each card sits on the left (verso) page and the
+// matching English take on the right (recto). The English cards are the same text as the other
+// editions.
+
+// Scripture: public-domain translations — the Bíblia Livre (a public-domain corrected Almeida) in
+// Portuguese, the Berean Standard Bible in English. Uses \usehyphenation{pt}, so it needs a texish
+// build that bundles the Portuguese hyphenation patterns (hyph-pt).
+
+\def footline {\hss}
+
+// ════════════════════════════════════════════════════════════════════════════
+// Card authoring vocabulary (identical to the Spanish/English edition, with the left-hand
+// environment renamed \begin{pt}).
+// ════════════════════════════════════════════════════════════════════════════
+\newcounter{card}
+
+\def topicpt {}
+\def topicen {}
+\def settopic p e {\def topicpt {\p}\def topicen {\e}}
+
+\def cardhead num topic tag {
+  \if {\> {\size{\topic}} {0}}\leftline{\font lmroman 9 regular \smallcaps{\topic}}\smallskip\fi
+  \leftline{\font lmroman 15 bold \num\hskip 10 \tag}
+  \vskip 6pt
+  \noindent
+}
+
+\newenvironment pt tag {
+  \usehyphenation{pt}
+  \stepcounter{card}
+  \addcontentsline{tocpt}{1}{\arabic{\value{card}}}{\tag}
+  \cardhead{\arabic{\value{card}}}{\topicpt}{\tag}
+} {\vfil\eject}
+
+\newenvironment en tag {
+  \usehyphenation{en-us}
+  \addcontentsline{tocen}{1}{\arabic{\value{card}}}{\tag}
+  \cardhead{\arabic{\value{card}}}{\topicen}{\tag}
+} {\vfil\eject}
+
+\def q text {\noindent{\font lmroman 11 bold \text}
+
+}
+
+\def lab t {\textbf{\t.}}
+
+\def verse r body {\noindent\textbf{\r}\hskip 6 \body
+
+\smallskip}
+
+\def tocleader {\leaders\hbox to:0.5em {\hss.\hss}{0pt plus 1fil}}
+\def tocptformat lvl num ttl pg {\hbox to:\hsize {\num\hskip 8 \ttl\tocleader\hskip 6 \pg}}
+\def tocenformat lvl num ttl pg {\hbox to:\hsize {\num\hskip 8 \ttl\tocleader\hskip 6 \pg}}
+
+// ════════════════════════════════════════════════════════════════════════════
+// Cover (page 1, recto)
+// ════════════════════════════════════════════════════════════════════════════
+\vskip 90pt
+\centerline{\font noto 48 regular Ἀπολογία}
+\vskip 36pt
+\centerline{\font lmroman 13 italic Manual de campo para o evangelista}
+\vskip 5pt
+\centerline{\font lmroman 13 regular A Field Reference for Evangelists}
+\vfil
+\centerline{\font lmroman 11 regular 30 June 2026}
+\vskip 24pt
+\eject
+
+// ── Portuguese table of contents (verso) ────────────────────────────────────────
+\leftline{\font lmroman 16 bold Sumário}
+\vskip 12pt
+\noindent\contentslist{tocpt}{tocptformat}
+\vfil\eject
+
+// ── English table of contents (recto) ─────────────────────────────────────────
+\leftline{\font lmroman 16 bold Contents}
+\vskip 12pt
+\noindent\contentslist{tocen}{tocenformat}
+\vfil\eject
+
+// ── Body: turn the folio on and number the first card page 1 ───────────────────
+\def footline {\hss\font lmroman 9 regular \the\pageno\hss}
+\set pageno {1}
+
+// ════════════════════════════════════════════════════════════════════════════
+\settopic{Anunciar o Evangelho}{Sharing the Gospel}
+
+\begin{pt}{Iniciar a conversa}
+\q{Comece onde a pessoa está, não onde você está.}
+
+\lab{Pergunte, depois ouça} A maioria das pessoas falará com prazer de si mesma e de suas crenças
+se você perguntar com gentileza. Seu primeiro objetivo é compreender, não vencer um debate.
+
+\lab{Boas perguntas}
+\begin{itemize}
+\item «Você pensa muito nas coisas espirituais?»
+\item «Você foi criado em alguma fé?»
+\item «Quem você acha que Jesus foi?»
+\item «Se fosse verdade, você gostaria de conhecer a Deus pessoalmente?»
+\item «Posso lhe contar o que mudou a minha vida?»
+\end{itemize}
+
+\lab{A pergunta decisiva} Uma entrada suave e clássica: «Se você morresse esta noite, saberia com
+certeza que estaria com Deus?», e depois: «Se Deus lhe perguntasse: \emph{Por que eu deveria
+deixá-lo entrar?}, o que você responderia?» A resposta revela se a pessoa confia em Cristo ou na
+própria bondade.
+
+\smallskip
+\verse{1~Ped.~3:15}{Mas santificai a Deus como Senhor em vossos corações; e estai sempre preparados
+para responder com mansidão e respeito a todo aquele que vos pedir a razão da esperança que há em
+vós.}
+\verse{Col. 4:6}{A vossa palavra seja sempre com graça, temperada com sal, para que saibais como
+deveis responder a cada um.}
+\end{pt}
+
+\begin{en}{Opening questions}
+\q{Start where they are, not where you are.}
+
+\lab{Ask, then listen} Most people will gladly talk about themselves and their beliefs if
+you ask kindly. Your first goal is to understand, not to win an argument.
+
+\lab{Good questions}
+\begin{itemize}
+\item ``Do you think much about spiritual things?''
+\item ``Were you raised with any faith?''
+\item ``Who do you think Jesus was?''
+\item ``If it were true, would you want to know God personally?''
+\item ``May I tell you what changed my life?''
+\end{itemize}
+
+\lab{The diagnostic question} A gentle, classic way in: ``If you were to die tonight, would
+you know for certain you'd be with God?'', then ``If God asked you, \emph{Why should I let
+you in?}, what would you say?'' Their answer shows whether they trust Christ or their own
+goodness.
+
+\smallskip
+\verse{1~Pet.~3:15}{But in your hearts sanctify Christ as Lord. Always be prepared to give a
+defense to everyone who asks you the reason for the hope that is in you. But respond with
+gentleness and respect.}
+\verse{Col. 4:6}{Let your speech always be gracious, seasoned with salt, so that you may know
+how to answer everyone.}
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\begin{pt}{As boas novas}
+\q{Deus, o pecado, Cristo, a resposta — o cerne da mensagem.}
+
+\lab{Deus} Deus é santo, é o nosso Criador, e nos ama; ele nos fez para vivermos em relacionamento
+com ele. (Gênesis 1:1; 1 João 4:8)
+
+\lab{O pecado} Todos nós nos rebelamos e estamos destituídos da sua glória; o pecado nos separa de
+Deus e conduz à morte. (Romanos 3:23; 6:23)
+
+\lab{Cristo} Em Jesus, Deus se fez homem; viveu sem pecado, morreu em nosso lugar pelos nossos
+pecados, e ressuscitou. (Romanos 5:8; 1 Coríntios 15:3-4)
+
+\lab{A resposta} Afaste-se do pecado — isto é o arrependimento — e confie somente em Cristo; receba
+o perdão e a vida eterna como um dom gratuito. (Romanos 10:9-10, 13; Efésios 2:8-9)
+
+\lab{O caminho de Romanos} Para ler versículo por versículo:
+
+\verse{Romanos 3:23}{porque todos pecaram, e estão destituídos da glória de Deus;}
+\verse{Romanos 6:23}{porque o salário do pecado é a morte, mas o dom gratuito de Deus é a vida
+eterna em Cristo Jesus nosso Senhor.}
+\verse{Romanos 5:8}{Mas Deus prova o seu amor por nós: quando ainda éramos pecadores, Cristo morreu
+por nós.}
+\verse{Romanos 10:9-10}{Se com a tua boca declarares que Jesus é Senhor, e em teu coração creres
+que Deus o ressuscitou dos mortos, serás salvo. Pois com o coração se crê para a justiça, e com a
+boca se confessa para a salvação.}
+\verse{Romanos 10:13}{Pois: «Todo aquele que invocar o nome do Senhor será salvo.»}
+
+\medskip
+\lab{O próprio evangelho} O resumo que Paulo chama de primeira importância — um credo mais antigo
+que todas as suas cartas:
+
+\verse{1~Cor.~15:3-6}{Porque primeiramente vos entreguei o que também recebi: que Cristo morreu por
+nossos pecados, segundo as Escrituras; e que foi sepultado, e que ressuscitou ao terceiro dia,
+segundo as Escrituras; e que foi visto por Cefas, depois pelos doze. Depois foi visto de uma vez
+por mais de quinhentos irmãos, dos quais a maioria ainda vive, ainda que alguns já durmam.}
+\end{pt}
+
+\begin{en}{The good news}
+\q{God, sin, Christ, response --- the heart of the message.}
+
+\lab{God} God is holy, he is our Maker, and he loves us; he made us to live in relationship
+with him. (Gen.~1:1; 1~John~4:8)
+
+\lab{Sin} We have all rebelled and fall short of his glory; sin separates us from God and
+leads to death. (Rom.~3:23; 6:23a)
+
+\lab{Christ} In Jesus, God became man; he lived without sin, died in our place for our sins,
+and rose again. (Rom.~5:8; 1~Cor.~15:3--4)
+
+\lab{Response} Turn from sin --- this is repentance --- and trust Christ alone; receive
+forgiveness and eternal life as a free gift. (Rom.~10:9--10, 13; Eph.~2:8--9)
+
+\lab{The Roman Road} To read one by one (Berean Standard Bible):
+
+\verse{Romans 3:23}{for all have sinned and fall short of the glory of God,}
+\verse{Romans 6:23}{For the wages of sin is death, but the gift of God is eternal life in
+Christ Jesus our Lord.}
+\verse{Romans 5:8}{But God proves His love for us in this: While we were still sinners,
+Christ died for us.}
+\verse{Romans 10:9-10}{that if you confess with your mouth, ``Jesus is Lord,'' and believe in
+your heart that God raised Him from the dead, you will be saved. For with your heart you
+believe and are justified, and with your mouth you confess and are saved.}
+\verse{Romans 10:13}{for, ``Everyone who calls on the name of the Lord will be saved.''}
+
+\medskip
+\lab{The gospel itself} The summary Paul calls of first importance --- a creed older than any of
+his letters:
+
+\verse{1~Cor.~15:3--6}{For what I received I passed on to you as of first importance: that Christ
+died for our sins according to the Scriptures, that He was buried, that He was raised on the third
+day according to the Scriptures, and that He appeared to Cephas, and then to the Twelve. After
+that, He appeared to more than five hundred brothers at once, most of whom are still living,
+though some have fallen asleep.}
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\begin{pt}{Conduzir à fé}
+\q{Quando a pessoa estiver pronta, ajude-a a responder — sem pressa e sem pressão.}
+
+\lab{Confirme que ela entendeu} Confirme brevemente que ela captou o essencial: o seu pecado, a
+morte e a ressurreição de Cristo, e que a salvação é um dom gratuito recebido pela fé, não
+conquistado por obras.
+
+\lab{Chame à resposta} Pergunte com simplicidade: «Há alguma razão pela qual você não queira se
+voltar para Cristo agora?» São o arrependimento e a fé que salvam, não uma fórmula.
+
+\lab{Uma oração para orar} Com as palavras dela, ou conduza-a: «Deus, pequei contra ti. Obrigado
+porque Jesus morreu e ressuscitou por mim. Afasto-me do meu pecado e confio somente nele. Sê o meu
+Senhor e Salvador.»
+
+\lab{Dê-lhe segurança} A salvação repousa na promessa de Cristo, não em sentimentos. Incentive os
+primeiros passos: uma Bíblia, a oração, uma igreja.
+
+\smallskip
+\verse{João 1:12}{Mas a todos quantos o receberam, deu-lhes poder de serem feitos filhos de Deus:
+aos que creem em seu nome.}
+\verse{Apocalipse 3:20}{Eis que eu estou à porta, e bato; se alguém ouvir a minha voz, e abrir a
+porta, entrarei até ele, e cearei com ele, e ele comigo.}
+\verse{João 5:24}{Em verdade, em verdade vos digo: quem ouve a minha palavra, e crê naquele que me
+enviou, tem a vida eterna, e não virá em condenação, mas passou da morte para a vida.}
+\verse{1~João 5:11-13}{E este é o testemunho: que Deus nos deu a vida eterna; e essa vida está no
+seu Filho. Quem tem o Filho tem a vida; quem não tem o Filho de Deus não tem a vida. Estas coisas
+escrevi para vós que credes no nome do Filho de Deus, para que saibais que tendes a vida eterna.}
+\end{pt}
+
+\begin{en}{Leading to faith}
+\q{When someone is ready, help them respond --- without rushing or pressure.}
+
+\lab{Make sure they understand} Briefly confirm they grasp the essentials: their sin,
+Christ's death and resurrection, and that salvation is a free gift received by faith, not
+earned.
+
+\lab{Call for a response} Ask plainly: ``Is there any reason you wouldn't want to turn to
+Christ right now?'' It is repentance and faith, not a formula, that save.
+
+\lab{A prayer to pray} In their own words, or guide them: ``God, I have sinned against you.
+Thank you that Jesus died and rose for me. I turn from my sin and trust him alone. Be my Lord
+and Savior.''
+
+\lab{Assure them} Salvation rests on Christ's promise, not on feelings. Encourage the first
+steps: a Bible, prayer, a church.
+
+\smallskip
+\verse{John 1:12}{But to all who did receive Him, to those who believed in His name, He gave the
+right to become children of God.}
+\verse{Rev. 3:20}{Behold, I stand at the door and knock. If anyone hears My voice and opens the
+door, I will come in and dine with him, and he with Me.}
+\verse{John 5:24}{Truly, truly, I tell you, whoever hears My word and believes Him who sent Me
+has eternal life and will not come into judgment. Indeed, he has crossed over from death to
+life.}
+\verse{1~John 5:11--13}{And this is that testimony: God has given us eternal life, and this life
+is in His Son. Whoever has the Son has life; whoever does not have the Son of God does not have
+life. I have written these things to you who believe in the name of the Son of God, so that you
+may know that you have eternal life.}
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\settopic{Deus}{God}
+
+\begin{pt}{Evidências e ciência}
+\q{«Não há nenhuma evidência de que Deus exista.»}
+Há uma grande quantidade de evidências — só que não do tipo que se põe num tubo de ensaio. O início
+do universo, o seu ajuste finíssimo, a existência de uma lei moral e a realidade da consciência
+apontam todos para além da natureza, para uma mente por trás dela.
+\begin{itemize}
+\item Tudo o que começa a existir tem uma causa; o universo teve um início — logo, tem uma causa
+  além de si mesmo.
+\item As constantes que tornam a vida possível estão ajustadas com precisão extrema; o projeto é a
+  explicação mais natural.
+\item Você pressupõe um certo e um errado reais; uma lei moral aponta para um Legislador.
+\end{itemize}
+\smallskip
+\verse{Rom. 1:20}{Pois as suas qualidades invisíveis, o seu eterno poder e a sua divindade, desde a
+criação do mundo se percebem claramente por meio das coisas criadas, de modo que ninguém tem
+desculpa.}
+\verse{Sl. 19:1}{Os céus declaram a glória de Deus; e o firmamento anuncia a obra de suas mãos.}
+
+\medskip
+\q{«A ciência já explicou tudo — não precisamos de Deus.»}
+A ciência explica \emph{como} o mundo funciona; não pode lhe dizer \emph{por que} existe um mundo,
+nem para que ele serve. Deus não é uma explicação rival da ciência — ele é a razão de haver um
+universo ordenado a ser estudado.
+\begin{itemize}
+\item «Como» e «por quê» são perguntas diferentes; explicar um motor não diz por que o carro foi
+  construído.
+\item A ciência pressupõe um universo ordenado e inteligível — exatamente o que se esperaria se um
+  Deus racional o tivesse feito.
+\item Sobre o sentido, a moral e o propósito a ciência é silenciosa — e são as perguntas que mais
+  precisamos responder.
+\end{itemize}
+\smallskip
+\verse{Col. 1:17}{Ele existe antes de todas as coisas, e nele todas as coisas se mantêm.}
+\verse{Heb. 11:3}{Pela fé entendemos que o universo foi formado pela palavra de Deus, de maneira que
+o que se vê não foi feito do que é visível.}
+\end{pt}
+
+\begin{en}{Evidence and science}
+\q{``There's no evidence that God exists.''}
+There's a great deal of evidence --- just not the kind you put in a test
+tube. The beginning of the universe, its fine-tuning, the existence of a moral law, and the
+reality of consciousness all point beyond nature to a mind behind it.
+\begin{itemize}
+\item Everything that begins to exist has a cause; the universe began --- so it has a cause
+  beyond itself.
+\item The constants that make life possible are fine-tuned to a razor's edge; design is the
+  most natural explanation.
+\item You assume real right and wrong; a moral law points to a Lawgiver.
+\end{itemize}
+\smallskip
+\verse{Rom. 1:20}{For since the creation of the world God's invisible qualities --- His eternal
+power and divine nature --- have been clearly seen, being understood from His workmanship, so
+that men are without excuse.}
+\verse{Ps. 19:1}{The heavens declare the glory of God; the skies proclaim the work of His
+hands.}
+
+\medskip
+\q{``Science has explained everything --- we don't need God.''}
+Science explains \emph{how} the world works; it cannot tell you \emph{why}
+there is a world at all, or what it is for. God is not a rival explanation to science --- he
+is the reason there is an orderly universe to study.
+\begin{itemize}
+\item ``How'' and ``why'' are different questions; explaining an engine doesn't tell you why
+  the car was built.
+\item Science assumes an orderly, intelligible universe --- just what you'd expect if a
+  rational God made it.
+\item Science is silent on meaning, morality, and purpose --- the questions we most need
+  answered.
+\end{itemize}
+\smallskip
+\verse{Col. 1:17}{He is before all things, and in Him all things hold together.}
+\verse{Heb. 11:3}{By faith we understand that the universe was formed at God's command, so that
+what is seen was not made out of what was visible.}
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\begin{pt}{Por que há sofrimento}
+\q{«Se Deus é bom e todo-poderoso, por que há tanto sofrimento?»}
+
+A Bíblia nunca trata o sofrimento como algo pequeno — leva-o mais a sério do que qualquer outra
+visão de mundo. A resposta de Deus ao mal não é primeiro uma explicação, mas uma Pessoa: ele entrou
+no nosso sofrimento na cruz, e promete um dia acabar com ele por completo.
+
+\lab{Pontos-chave}
+\begin{itemize}
+\item Muito sofrimento decorre do mau uso da liberdade — um mundo com amor verdadeiro é um mundo em
+  que o amor pode ser recusado.
+\item Para chamar algo de «mal» você precisa de um padrão de bem; o problema do mal pressupõe o
+  próprio Deus que ele questiona.
+\item Na cruz Deus não fica distante da dor — ele mesmo suporta o pior dela.
+\end{itemize}
+
+\smallskip
+\verse{Rom. 8:18}{Pois considero que os sofrimentos do tempo presente nem se comparam com a glória
+que há de ser revelada em nós.}
+\verse{Ap. 21:4}{E Deus enxugará toda lágrima dos olhos deles; e não haverá mais morte, nem pranto,
+nem clamor, nem dor; porque as primeiras coisas já passaram.}
+\verse{João 11:35}{Jesus chorou.}
+\end{pt}
+
+\begin{en}{Why suffering}
+\q{``If God is good and all-powerful, why is there so much suffering?''}
+
+The Bible never treats suffering as small --- it takes it more seriously
+than any other worldview. God's answer to evil is not first an explanation but a Person: he
+entered our suffering at the cross, and he promises one day to end it entirely.
+
+\lab{Key points}
+\begin{itemize}
+\item Much suffering flows from the misuse of freedom --- a world with real love is a world
+  where love can be refused.
+\item To call anything ``evil'' you need a standard of good; the problem of evil assumes the
+  very God it questions.
+\item At the cross God does not stay distant from pain --- he bears the worst of it himself.
+\end{itemize}
+
+\smallskip
+\verse{Rom. 8:18}{I consider that our present sufferings are not comparable to the glory that
+will be revealed in us.}
+\verse{Rev. 21:4}{He will wipe away every tear from their eyes. There will be no more death or
+mourning or crying or pain, for the former things have passed away.}
+\verse{John 11:35}{Jesus wept.}
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\settopic{A Bíblia}{The Bible}
+
+\begin{pt}{Contradições e transmissão}
+\q{«A Bíblia está cheia de contradições.»}
+A maioria das supostas contradições são diferenças de perspectiva ou de detalhe, não contradições
+lógicas. Uma contradição real precisa afirmar e negar a mesma coisa, no mesmo sentido, ao mesmo
+tempo — e exemplos claros são surpreendentemente difíceis de apresentar.
+\begin{itemize}
+\item Peça um exemplo \emph{específico}; as afirmações vagas se dissolvem ao serem examinadas.
+\item Diferenças de detalhe (o número de anjos junto ao túmulo, a redação de uma placa) são a marca
+  de testemunho ocular \emph{independente}, não de conluio.
+\item A maioria dos conflitos aparentes se harmoniza depois de pesar o contexto, o gênero e a
+  intenção.
+\end{itemize}
+\smallskip
+\verse{2~Tim.~3:16}{Toda a Escritura é inspirada por Deus e proveitosa para ensinar, para repreender,
+para corrigir e para instruir na justiça.}
+\verse{João 10:35}{E a Escritura não pode ser anulada.}
+
+\medskip
+\q{«A Bíblia foi copiada tantas vezes que não podemos conhecer o original.»}
+O Novo Testamento é o documento mais bem atestado do mundo antigo. Temos cerca de cinco mil e
+oitocentos manuscritos gregos; as variantes entre eles são, na esmagadora maioria, triviais, e
+nenhuma doutrina cristã depende de uma leitura em disputa.
+\begin{itemize}
+\item Compare o número de manuscritos com outras obras antigas, que sobrevivem em apenas alguns
+  poucos exemplares tardios.
+\item Alguns fragmentos datam de um ou dois séculos após os originais — muito mais próximos do que
+  os de textos comparáveis.
+\item A vasta maioria das variantes é de ortografia ou de ordem das palavras; a crítica textual
+  reconstrói o texto com alta confiança.
+\end{itemize}
+\smallskip
+\verse{Is. 40:8}{A erva se seca, as flores caem; porém a palavra do nosso Deus permanece firme para
+sempre.}
+\verse{Mt. 24:35}{O céu e a terra passarão, mas as minhas palavras de modo nenhum passarão.}
+\end{pt}
+
+\begin{en}{Contradictions and transmission}
+\q{``The Bible is full of contradictions.''}
+Most alleged contradictions are differences of perspective or detail, not
+logical contradictions. A real contradiction must affirm and deny the same thing, in the same
+sense, at the same time --- and clear examples are remarkably hard to produce.
+\begin{itemize}
+\item Ask for a \emph{specific} example; vague claims dissolve once examined.
+\item Differing details (the number of angels at the tomb, the wording of a sign) are the mark
+  of \emph{independent} eyewitness testimony, not collusion.
+\item Most apparent conflicts harmonize once context, genre, and intent are weighed.
+\end{itemize}
+\smallskip
+\verse{2~Tim.~3:16}{All Scripture is God-breathed and is useful for instruction, for conviction,
+for correction, and for training in righteousness.}
+\verse{John 10:35}{If he called them gods to whom the word of God came --- and the Scripture
+cannot be broken.}
+
+\medskip
+\q{``The Bible was copied so many times we can't know the original.''}
+The New Testament is the best-attested document of the ancient world. We
+have roughly 5,800 Greek manuscripts, the variants among them are overwhelmingly trivial, and
+not one Christian doctrine hangs on a disputed reading.
+\begin{itemize}
+\item Compare the manuscript count to other ancient works, which survive in only a handful of
+  late copies.
+\item Some fragments date within a century or two of the originals --- far closer than for
+  comparable texts.
+\item The vast majority of variants are spelling or word order; textual criticism reconstructs
+  the wording with high confidence.
+\end{itemize}
+\smallskip
+\verse{Isa. 40:8}{The grass withers and the flowers fall, but the word of our God stands
+forever.}
+\verse{Matt. 24:35}{Heaven and earth will pass away, but My words will never pass away.}
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\begin{pt}{A evolução}
+\q{«A evolução refuta a Bíblia.»}
+
+Uma teoria sobre o mecanismo da vida nada diz sobre se há um Deus por trás dele. Mesmo admitindo a
+ciência, as perguntas profundas permanecem: por que existe algo em vez de nada, de onde veio a
+primeira vida, e por que o universo é tão finamente ajustado para ela? Gênesis nos diz \emph{que}
+Deus fez o mundo e \emph{por quê}; não é um livro de ciências.
+
+\lab{Pontos-chave}
+\begin{itemize}
+\item Processo não é propósito: até um mecanismo natural pode ser o meio que um Criador usa.
+\item A evolução não trata da origem do universo, da origem da própria vida, nem da origem das leis
+  de que depende.
+\item Muitos cientistas que aceitam a evolução são cristãos; fé e ciência não são inimigas.
+\end{itemize}
+
+\lab{Escrituras} Gênesis 1:1; Salmos 139:14.
+
+\lab{Veja também} O cartão sobre a existência de Deus.
+\end{pt}
+
+\begin{en}{Evolution}
+\q{``Evolution disproves the Bible.''}
+
+A theory about the mechanism of life says nothing about whether there is a
+God behind it. Even granting the science, the deep questions remain: why is there anything at
+all, where did the first life come from, and why is the universe so finely tuned for it?
+Genesis tells us \emph{that} God made the world and \emph{why}; it is not a science textbook.
+
+\lab{Key points}
+\begin{itemize}
+\item Process is not purpose: even a natural mechanism could be the means a Creator uses.
+\item Evolution doesn't address the origin of the universe, of life itself, or of the laws it
+  depends on.
+\item Many scientists who accept evolution are Christians; faith and science are not enemies.
+\end{itemize}
+
+\lab{Scripture} Gen.~1:1; Ps.~139:14.
+
+\lab{See also} The card on the existence of God.
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\settopic{Jesus}{Jesus}
+
+\begin{pt}{Bom mestre e ressurreição}
+\q{«Jesus foi apenas um bom mestre de moral.»}
+Essa é a única coisa que ele não pode ser. Um bom mestre que afirmou perdoar pecados, ser um com o
+Pai e julgar o mundo, ou está dizendo a verdade, ou está iludido, ou está mentindo. «Bom mestre»
+não está no cardápio — ele não nos deixou meio-termo.
+\begin{itemize}
+\item Ele aceitou adoração, perdoou pecados e afirmou existir antes de Abraão — coisas que só Deus
+  pode fazer com razão.
+\item Um homem apenas bom que dissesse tais coisas seria um megalomaníaco, não um sábio.
+\item A escolha é real: Senhor, mentiroso ou louco — mas não um mero grande mestre.
+\end{itemize}
+\smallskip
+\verse{João 8:58}{Jesus lhes disse: Em verdade, em verdade vos digo: antes que Abraão existisse, eu
+sou.}
+\verse{João 10:30}{Eu e o Pai somos um.}
+\verse{Mc. 2:5-7}{Quando Jesus viu a fé deles, disse ao paralítico: Filho, os teus pecados te são
+perdoados. E estavam ali sentados alguns escribas, que pensavam em seus corações: Por que este
+homem fala assim? Quem pode perdoar pecados senão somente Deus?}
+
+\medskip
+\q{«A ressurreição é uma lenda que cresceu com o tempo.»}
+A afirmação é cedo demais e cara demais para ser lenda. Poucos anos após a cruz, testemunhas
+oculares já anunciavam um Jesus ressuscitado, e a maioria delas deu a vida por isso. As lendas
+levam gerações para crescer; isto foi pregado enquanto testemunhas oculares hostis ainda viviam e
+podiam desmenti-lo.
+\begin{itemize}
+\item O credo mais antigo (1 Coríntios 15:3-7) nomeia testemunhas e remonta a poucos anos dos
+  acontecimentos.
+\item O túmulo estava vazio — até os adversários de Jesus admitiram que o corpo sumira e tentaram
+  explicá-lo.
+\item As pessoas morrem por aquilo que creem ser verdade; os discípulos morreram por aquilo que
+  estavam em posição de saber se era verdade ou mentira.
+\end{itemize}
+\smallskip
+\verse{Lc. 24:39}{Vede as minhas mãos e os meus pés, que sou eu mesmo. Tocai-me e vede, porque um
+espírito não tem carne nem ossos, como vedes que eu tenho.}
+\verse{At. 2:32}{A este Jesus Deus ressuscitou, do qual todos nós somos testemunhas.}
+\end{pt}
+
+\begin{en}{Good teacher and resurrection}
+\q{``Jesus was just a good moral teacher.''}
+That is the one thing he cannot be. A good teacher who claimed to forgive
+sins, to be one with the Father, and to judge the world is either telling the truth, deluded,
+or lying. ``Good teacher'' is not on the menu --- he left us no middle ground.
+\begin{itemize}
+\item He accepted worship, forgave sins, and claimed to exist before Abraham --- things only
+  God can rightly do.
+\item A merely good man who said such things would be a megalomaniac, not a sage.
+\item The choice is real: Lord, liar, or lunatic --- but not merely a great teacher.
+\end{itemize}
+\smallskip
+\verse{John 8:58}{Jesus said to them, ``Truly, truly, I tell you, before Abraham was born, I
+am!''}
+\verse{John 10:30}{I and the Father are one.}
+\verse{Mark 2:5--7}{When Jesus saw their faith, He said to the paralytic, ``Son, your sins are
+forgiven.'' But some of the scribes were sitting there, thinking in their hearts, ``Why does
+this man speak like this? He is blaspheming! Who can forgive sins but God alone?''}
+
+\medskip
+\q{``The resurrection is a legend that grew over time.''}
+The claim is too early and too costly to be legend. Within a few years of
+the cross, eyewitnesses were proclaiming a risen Jesus, and most went to their deaths for it.
+Legends take generations to grow; this was preached while hostile eyewitnesses were still alive
+to deny it.
+\begin{itemize}
+\item The earliest creed (1~Cor.~15:3--7) names eyewitnesses and dates to within a few years of
+  the events.
+\item The tomb was empty --- even Jesus' opponents admitted the body was gone and tried to
+  explain it away.
+\item People die for what they believe is true; the disciples died for what they were in a
+  position to know was true or false.
+\end{itemize}
+\smallskip
+\verse{Luke 24:39}{Look at My hands and My feet. It is I Myself. Touch Me and see; for a spirit
+does not have flesh and bones, as you see I have.}
+\verse{Acts 2:32}{God has raised this Jesus to life, to which we are all witnesses.}
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\begin{pt}{Todos os caminhos levam a Deus}
+\q{«Todas as religiões levam a Deus — são basicamente a mesma coisa.»}
+
+Não podem todas ser verdadeiras, porque dizem coisas opostas sobre o que mais importa — quem Deus é,
+o que há de errado conosco e como se resolve. Respeitar as pessoas não significa fingir que suas
+crenças não se contradizem. O cristianismo é único: não somos nós subindo até Deus, mas Deus
+descendo até nós pela graça.
+
+\lab{Pontos-chave}
+\begin{itemize}
+\item As religiões discordam sobre Deus (um, muitos, nenhum, impessoal), sobre o problema humano e
+  sobre a cura — contradições reais, não sabores de uma só verdade.
+\item Todo outro sistema diz «faça»; o evangelho diz «está consumado» — a salvação é um dom, não um
+  salário.
+\item Tolerância é tratar as pessoas com respeito, não crer que toda afirmação é igualmente
+  verdadeira.
+\end{itemize}
+
+\smallskip
+\verse{João 14:6}{Jesus lhe disse: Eu sou o caminho, e a verdade, e a vida. Ninguém vem ao Pai senão
+por mim.}
+\verse{At. 4:12}{E em nenhum outro há salvação; porque não há debaixo do céu nenhum outro nome dado
+entre os homens pelo qual devamos ser salvos.}
+\end{pt}
+
+\begin{en}{All roads to God}
+\q{``All religions lead to God --- they're basically the same.''}
+
+They cannot all be true, because they say opposite things about what
+matters most --- who God is, what is wrong with us, and how it is fixed. Respecting people
+doesn't mean pretending their beliefs don't contradict. Christianity is unique: not us
+reaching up to God, but God reaching down to us in grace.
+
+\lab{Key points}
+\begin{itemize}
+\item The religions disagree on God (one, many, none, impersonal), on the human problem, and
+  on the cure --- real contradictions, not flavors of one truth.
+\item Every other system says ``do''; the gospel says ``done'' --- salvation is a gift, not a
+  wage.
+\item Tolerance means treating people with respect, not believing every claim is equally true.
+\end{itemize}
+
+\smallskip
+\verse{John 14:6}{Jesus answered, ``I am the way and the truth and the life. No one comes to the
+Father except through Me.''}
+\verse{Acts 4:12}{Salvation exists in no one else, for there is no other name under heaven given
+to men by which we must be saved.}
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\settopic{O coração humano}{The human heart}
+
+\begin{pt}{Bom, e bom o suficiente}
+\q{«Não é preciso Deus para ser uma boa pessoa.»}
+É verdade — muitos não crentes vivem vidas íntegras, porque todo ser humano é feito à imagem de Deus
+e conhece a sua lei na consciência. A questão não é se você pode ser bom sem crer em Deus, mas se o
+bem e o mal existem de fato sem ele. Sem um Legislador, «bom» não passa de opinião — sem nada que
+obrigue.
+\begin{itemize}
+\item A questão é o fundamento, não o comportamento: sem Deus, quem diz que o seu «bem» é melhor que
+  o de um tirano?
+\item Todos sabem que certas coisas são realmente más (a crueldade, a traição) — e isso aponta para
+  uma lei moral acima de nós.
+\end{itemize}
+\smallskip
+\verse{Rom. 2:14-15}{Quando os gentios, que não têm a Lei, fazem por natureza as coisas da Lei,
+eles, não tendo Lei, são lei para si mesmos. Mostram a obra da Lei escrita em seus corações, dando
+testemunho a sua consciência.}
+\verse{Is. 64:6}{Porém todos nós somos como o imundo, e todas as nossas justiças são como trapos
+imundos.}
+
+\medskip
+\q{«Sou uma boa pessoa — não preciso ser salvo.»}
+Em comparação com os outros, talvez — mas o padrão não é o seu próximo, e sim a santidade perfeita
+de Deus. Por essa medida, nenhum de nós passa; todos mentimos, odiamos e nos pusemos em primeiro
+lugar. A boa notícia é que a salvação nunca dependeu de ser bom o suficiente — é um dom para quem
+sabe que não é.
+\begin{itemize}
+\item Faça o teste: você nunca mentiu, nunca odiou, nunca cobiçou o que não é seu? A lei de Deus
+  alcança o coração.
+\item O céu não se ganha por ser bom; se assim fosse, Cristo teria morrido em vão.
+\item As «boas pessoas» não acham que precisam de um Salvador — e é justamente isso que as afasta
+  dele.
+\end{itemize}
+\smallskip
+\verse{Rom. 3:10-12}{Como está escrito: Não há justo, nem um sequer; não há quem entenda, não há quem
+busque a Deus. Todos se desviaram, e juntamente se tornaram inúteis; não há quem faça o bem, não há
+um sequer.}
+\verse{Gál. 2:21}{Não anulo a graça de Deus; pois, se a justiça vem pela Lei, então Cristo morreu em
+vão.}
+\verse{Ef. 2:8-9}{Porque pela graça sois salvos, por meio da fé; e isto não vem de vós, é dom de
+Deus; não por obras, para que ninguém se glorie.}
+\end{pt}
+
+\begin{en}{Good, and good enough}
+\q{``You don't need God to be a good person.''}
+True --- many non-believers live good lives, because everyone is made in God's image and knows
+his law in their conscience. The question isn't whether you can be good without believing in
+God, but whether good and evil are real at all without him. Without a Lawgiver, ``good'' is just
+opinion --- nothing binding.
+\begin{itemize}
+\item The issue is grounding, not behaviour: without God, who says your ``good'' is better than
+  a tyrant's?
+\item Everyone knows some things are really wrong (cruelty, betrayal) --- that points to a moral
+  law above us.
+\end{itemize}
+\smallskip
+\verse{Rom. 2:14--15}{When Gentiles, who do not have the law, do by nature what the law requires,
+they are a law to themselves; they show that the work of the law is written on their hearts,
+their consciences also bearing witness.}
+\verse{Isa. 64:6}{All of us have become like one who is unclean, and all our righteous acts are
+like filthy rags.}
+
+\medskip
+\q{``I'm a good person --- I don't need to be saved.''}
+Compared to other people, perhaps --- but the standard isn't your neighbour, it's God's perfect
+holiness. By that measure none of us passes; we've all lied, hated, and put ourselves first. The
+good news is that salvation was never about being good enough --- it's a gift for people who know
+they aren't.
+\begin{itemize}
+\item Try the test: have you never lied, never hated, never wanted what isn't yours? God's law
+  reaches the heart.
+\item Heaven isn't earned by being good; if it were, Christ died for nothing.
+\item ``Good people'' don't think they need a Saviour --- which is the one thing that keeps them
+  from him.
+\end{itemize}
+\smallskip
+\verse{Rom. 3:10--12}{There is no one righteous, not even one; there is no one who understands,
+no one who seeks God. All have turned away; there is no one who does good, not even one.}
+\verse{Gal. 2:21}{I do not set aside the grace of God. For if righteousness comes through the law,
+Christ died for nothing.}
+\verse{Eph. 2:8--9}{For it is by grace you have been saved, through faith --- and this not from
+yourselves; it is the gift of God --- not by works, so that no one can boast.}
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\begin{pt}{Hipócritas}
+\q{«A igreja está cheia de hipócritas.»}
+
+Às vezes é verdade — Jesus disse que seria assim, e condenou a hipocrisia com mais dureza do que
+ninguém. A igreja não é um museu dos perfeitos, mas um hospital para os quebrantados; que alguns
+pacientes se comportem mal não é argumento contra o remédio. Não deixe um hipócrita ficar entre você
+e Cristo.
+
+\lab{Pontos-chave}
+\begin{itemize}
+\item O hipócrita não vive à altura de um bom padrão — o que já admite que o padrão é bom.
+\item Julgue o cristianismo por Cristo, não pelos piores dos seus seguidores.
+\item A acusação recai sobre todos nós; o evangelho é para os que falham — boa notícia para todos.
+\end{itemize}
+
+\smallskip
+\verse{Mt. 23:27-28}{Ai de vós, escribas e fariseus, hipócritas! Porque sois semelhantes aos
+sepulcros caiados, que por fora parecem belos, mas por dentro estão cheios de ossos de mortos e de
+toda imundícia. Assim também vós, por fora pareceis justos aos homens, mas por dentro estais cheios
+de hipocrisia e de iniquidade.}
+\verse{Lc. 5:31-32}{Os sãos não precisam de médico, mas sim os doentes. Não vim chamar os justos,
+mas os pecadores, ao arrependimento.}
+\verse{Rom. 3:23}{porque todos pecaram, e estão destituídos da glória de Deus.}
+
+\lab{Veja também} O cartão «Bom, e bom o suficiente».
+\end{pt}
+
+\begin{en}{Hypocrites}
+\q{``The church is full of hypocrites.''}
+
+Sometimes true --- Jesus said it would be, and he condemned hypocrisy more
+sharply than anyone. The church is not a museum of the perfect but a hospital for the broken;
+that some patients behave badly is no argument against the medicine. Don't let a hypocrite
+stand between you and Christ.
+
+\lab{Key points}
+\begin{itemize}
+\item A hypocrite fails to live up to a good standard --- which admits the standard is good.
+\item Judge Christianity by Christ, not by the worst of his followers.
+\item The charge fits us all; the gospel is for failures --- good news for everyone.
+\end{itemize}
+
+\smallskip
+\verse{Matt. 23:27--28}{Woe to you, scribes and Pharisees, you hypocrites! You are like
+whitewashed tombs, which look beautiful on the outside, but on the inside are full of dead men's
+bones. On the outside you appear to be righteous, but on the inside you are full of hypocrisy and
+wickedness.}
+\verse{Luke 5:31--32}{It is not the healthy who need a doctor, but the sick. I have not come to
+call the righteous, but sinners to repentance.}
+\verse{Rom. 3:23}{for all have sinned and fall short of the glory of God.}
+
+\lab{See also} The ``Good, and good enough'' card.
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+// Public-domain dedication — the closing page. No folio: this is back matter, not a card.
+// ════════════════════════════════════════════════════════════════════════════
+\def footline {\hss}
+\vfil
+\centerline{\font noto 30 regular Ἀπολογία}
+\vskip 30pt
+\centerline{\font lmroman 14 bold Domínio público}
+\vskip 5pt
+\centerline{\font lmroman 14 bold In the Public Domain}
+\vskip 30pt
+
+\noindent{\font lmroman 10 regular Na medida do permitido por lei, o autor renunciou a todos os
+direitos autorais e conexos sobre esta obra (CC0~1.0 Universal). Você é livre para copiá-la,
+modificá-la, distribuí-la e imprimi-la, até mesmo comercialmente, sem pedir permissão. Divulgue-a
+livremente.}
+
+\medskip
+\noindent{\font lmroman 10 regular To the extent possible under law, the author has waived all
+copyright and related rights to this work (CC0~1.0 Universal). You are free to copy, modify,
+distribute, and print it, even commercially, without asking permission. Spread it freely.}
+
+\vskip 26pt
+\noindent{\font lmroman 9 regular As citações bíblicas em português são da Bíblia Livre (domínio
+público); as citações em inglês são da Berean Standard Bible.}
+
+\medskip
+\noindent{\font lmroman 9 regular Portuguese scripture is from the public-domain Bíblia Livre;
+English scripture is the Berean Standard Bible.}
+\vfil
+\eject
