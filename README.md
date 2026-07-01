@@ -1,7 +1,7 @@
 # apologia
 
 A bilingual evangelical-Protestant apologetics **field reference**, typeset with the
-[texish](https://github.com/edadma/texish) document engine. It comes in eight editions:
+[texish](https://github.com/edadma/texish) document engine. It comes in nine editions:
 
 - **French / English** — `apologia-fr-en.texish`
 - **Spanish / English** — `apologia-es-en.texish`
@@ -9,6 +9,7 @@ A bilingual evangelical-Protestant apologetics **field reference**, typeset with
 - **Simplified Chinese / English** — `apologia-zh-hans-en.texish`
 - **Traditional Chinese / English** — `apologia-zh-hant-en.texish`
 - **Hindi / English** — `apologia-hi-en.texish` (Devanagari)
+- **Bengali / English** — `apologia-bn-en.texish` (Bengali–Assamese script)
 - **Hebrew / English** — `apologia-he-en.texish` (right-to-left)
 - **Arabic / English** — `apologia-ar-en.texish` (right-to-left)
 
@@ -25,9 +26,9 @@ Scripture is quoted from public-domain translations — the **Berean Standard Bi
 Livre** (a public-domain corrected Almeida) in Portuguese, the **Chinese Union Version** (和合本,
 1919) in Chinese (Simplified and Traditional script), in Hebrew, the **Salkinson-Ginsburg Hebrew New
 Testament** (1885) with the **Westminster Leningrad Codex** for Old Testament quotations, and, in
-Arabic, the **Smith–Van Dyck Bible** (1865). The Hindi edition has no public-domain Hindi Bible to
-draw on, so its verses are an **original translation from the Hebrew and Greek**, likewise dedicated
-to the public domain.
+Arabic, the **Smith–Van Dyck Bible** (1865). The Hindi and Bengali editions have no suitable
+public-domain modern Bible to draw on, so their verses are an **original translation from the Hebrew
+and Greek**, likewise dedicated to the public domain.
 
 ## Contents
 
@@ -54,17 +55,19 @@ cd /path/to/texish
 ./cli/target/scala-3.8.4/texish-cli /path/to/apologia/apologia-zh-hans-en.texish # Simplified Chinese / English
 ./cli/target/scala-3.8.4/texish-cli /path/to/apologia/apologia-zh-hant-en.texish # Traditional Chinese / English
 ./cli/target/scala-3.8.4/texish-cli /path/to/apologia/apologia-hi-en.texish      # Hindi / English
+./cli/target/scala-3.8.4/texish-cli /path/to/apologia/apologia-bn-en.texish      # Bengali / English
 ./cli/target/scala-3.8.4/texish-cli /path/to/apologia/apologia-he-en.texish      # Hebrew / English
 ./cli/target/scala-3.8.4/texish-cli /path/to/apologia/apologia-ar-en.texish      # Arabic / English
 ```
 
 This writes the PDF beside the source (`apologia-fr-en.pdf`, `apologia-es-en.pdf`,
 `apologia-pt-en.pdf`, `apologia-zh-hans-en.pdf`, `apologia-zh-hant-en.pdf`, `apologia-hi-en.pdf`,
-`apologia-he-en.pdf`, `apologia-ar-en.pdf`). Rendered PDFs are not tracked in this repository. The
-Chinese editions need texish ≥ 0.11.1 (bundled Noto Serif CJK with a bold weight); the Hebrew and
-Arabic editions need texish ≥ 0.13.1 (right-to-left Hebrew and Arabic with vocalization, and
-right-to-left lists); the Portuguese edition needs texish ≥ 0.14.0 (bundled Portuguese hyphenation)
-and the Hindi edition needs texish ≥ 0.14.0 (Devanagari shaping).
+`apologia-bn-en.pdf`, `apologia-he-en.pdf`, `apologia-ar-en.pdf`). Rendered PDFs are not tracked in
+this repository. The Chinese editions need texish ≥ 0.11.1 (bundled Noto Serif CJK with a bold
+weight); the Hebrew and Arabic editions need texish ≥ 0.13.1 (right-to-left Hebrew and Arabic with
+vocalization, and right-to-left lists); the Portuguese edition needs texish ≥ 0.14.0 (bundled
+Portuguese hyphenation) and the Hindi edition needs texish ≥ 0.14.0 (Devanagari shaping); the Bengali
+edition needs texish ≥ 0.15.0 (Bengali–Assamese script shaping).
 
 A ready-to-print PDF of the latest version is attached to the most recent
 [GitHub release](https://github.com/christian-evangelism-media/apologia/releases). Releases are versioned by the
@@ -76,5 +79,5 @@ This work is dedicated to the public domain under
 [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/) — see [`LICENSE`](LICENSE).
 Copy, modify, distribute, and print it freely, even commercially, without asking permission.
 
-Scripture is quoted from public-domain translations (see above); the Hindi verses are an original
-translation from the Hebrew and Greek, also dedicated to the public domain.
+Scripture is quoted from public-domain translations (see above); the Hindi and Bengali verses are an
+original translation from the Hebrew and Greek, also dedicated to the public domain.

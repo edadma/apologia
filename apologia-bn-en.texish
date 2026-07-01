@@ -1,0 +1,810 @@
+\use{document}
+
+// ── Page frame: half-letter (5.5x8.5in) field guide, a uniform 1cm margin all round ──
+\geometry paperwidth:5.5in paperheight:8.5in left:1cm right:1cm top:1cm bottom:1cm
+
+// The Bengali/English edition of the field reference. Same facing-pair design as the other
+// editions: the Bengali take of each card sits on the left (verso) page and the matching English
+// take on the right (recto). Bengali is LTR, set in the bundled Noto Serif Bengali face via
+// \font bengali. The English cards are the same text as the other editions.
+
+// Scripture: the Bengali verses are an ORIGINAL translation from the Hebrew and Greek, dedicated to
+// the public domain (CC0). The only fully public-domain Bengali Bible (Carey, 1809) is in archaic
+// Sadhu-bhasha; a modern rendering is both more readable and keeps this work uniformly CC0. The
+// Bengali needs a fluent, scholarly proofread before print. English scripture is the public-domain
+// Berean Standard Bible.
+
+\def footline {\hss}
+
+// ════════════════════════════════════════════════════════════════════════════
+// Card authoring vocabulary. The left-hand (Bengali) environment is \begin{bn} and sets the
+// Bengali face; its run-in helpers (\qb \labb \verseb \cardheadbn) mirror the English ones
+// but typeset in bengali. The right-hand English side keeps the lmroman helpers.
+// ════════════════════════════════════════════════════════════════════════════
+\newcounter{card}
+
+\def topicbn {}
+\def topicen {}
+\def settopic b e {\def topicbn {\b}\def topicen {\e}}
+
+// English card head (lmroman)
+\def cardhead num topic tag {
+  \if {\> {\size{\topic}} {0}}\leftline{\font lmroman 9 regular \smallcaps{\topic}}\smallskip\fi
+  \leftline{\font lmroman 15 bold \num\hskip 10 \tag}
+  \vskip 6pt
+  \noindent
+}
+
+// Bengali card head (bengali — no small caps in Bengali)
+\def cardheadbn num topic tag {
+  \if {\> {\size{\topic}} {0}}\leftline{\font bengali 9 regular \topic}\smallskip\fi
+  \leftline{\font bengali 14 bold \num\hskip 10 \tag}
+  \vskip 6pt
+  \noindent
+}
+
+\newenvironment bn tag {
+  \font bengali 10 regular
+  \stepcounter{card}
+  \addcontentsline{tocbn}{1}{\arabic{\value{card}}}{\tag}
+  \cardheadbn{\arabic{\value{card}}}{\topicbn}{\tag}
+} {\vfil\eject}
+
+\newenvironment en tag {
+  \font lmroman 10 regular
+  \usehyphenation{en-us}
+  \addcontentsline{tocen}{1}{\arabic{\value{card}}}{\tag}
+  \cardhead{\arabic{\value{card}}}{\topicen}{\tag}
+} {\vfil\eject}
+
+// English run-in helpers
+\def q text {\noindent{\font lmroman 11 bold \text}\par}
+\def lab t {\textbf{\t.}}
+\def verse r body {\noindent\textbf{\r}\hskip 6 \body\par\smallskip}
+
+// Bengali run-in helpers (bengali)
+\def qb text {\noindent{\font bengali 11 bold \text}\par}
+\def labb t {\textbf{\t}\hskip 5 }
+\def verseb r body {\noindent\textbf{\r}\hskip 6 \body\par\smallskip}
+
+\def tocleader {\leaders\hbox to:0.5em {\hss.\hss}{0pt plus 1fil}}
+\def tocbnformat lvl num ttl pg {\hbox to:\hsize {\num\hskip 8 {\font bengali 10 regular \ttl}\tocleader\hskip 6 \pg}}
+\def tocenformat lvl num ttl pg {\hbox to:\hsize {\num\hskip 8 \ttl\tocleader\hskip 6 \pg}}
+
+// ════════════════════════════════════════════════════════════════════════════
+// Cover (page 1, recto)
+// ════════════════════════════════════════════════════════════════════════════
+\vskip 90pt
+\centerline{\font noto 48 regular Ἀπολογία}
+\vskip 36pt
+\centerline{\font bengali 14 regular সুসমাচার প্রচারকের ক্ষেত্র-পুস্তিকা}
+\vskip 5pt
+\centerline{\font lmroman 13 regular A Field Reference for Evangelists}
+\vfil
+\centerline{\font lmroman 11 regular 1 July 2026}
+\vskip 24pt
+\eject
+
+// ── Bengali table of contents (verso) ──────────────────────────────────────────
+\leftline{\font bengali 16 bold সূচিপত্র}
+\vskip 12pt
+\noindent\contentslist{tocbn}{tocbnformat}
+\vfil\eject
+
+// ── English table of contents (recto) ─────────────────────────────────────────
+\leftline{\font lmroman 16 bold Contents}
+\vskip 12pt
+\noindent\contentslist{tocen}{tocenformat}
+\vfil\eject
+
+// ── Body: turn the folio on and number the first card page 1 ───────────────────
+\def footline {\hss\font lmroman 9 regular \the\pageno\hss}
+\set pageno {1}
+
+// ════════════════════════════════════════════════════════════════════════════
+\settopic{সুসমাচার প্রচার}{Sharing the Gospel}
+
+\begin{bn}{কথার সূচনা}
+\qb{তারা যেখানে আছে সেখান থেকে শুরু করুন, আপনি যেখানে আছেন সেখান থেকে নয়।}
+
+\labb{জিজ্ঞাসা করুন, তারপর শুনুন} অধিকাংশ লোক নিজের ও নিজের বিশ্বাস সম্বন্ধে সানন্দে কথা বলবে, যদি আপনি
+নম্রভাবে জিজ্ঞাসা করেন। আপনার প্রথম লক্ষ্য বোঝা, তর্কে জেতা নয়।
+
+\labb{ভালো প্রশ্ন}
+\begin{itemize}
+\item ``আপনি কি আত্মিক বিষয় নিয়ে বেশি ভাবেন?''
+\item ``আপনি কি কোনো ধর্মে বড় হয়েছেন?''
+\item ``আপনার মতে যীশু কে ছিলেন?''
+\item ``যদি তা সত্য হয়, তবে আপনি কি ঈশ্বরকে ব্যক্তিগতভাবে জানতে চাইবেন?''
+\item ``আমি কি আপনাকে বলব কী আমার জীবন বদলে দিয়েছে?''
+\end{itemize}
+
+\labb{নির্ণায়ক প্রশ্ন} ভিতরে ঢোকার একটি কোমল, পুরনো উপায়: ``আজ রাতে যদি আপনার মৃত্যু হয়, তবে আপনি কি
+নিশ্চিতভাবে জানেন যে আপনি ঈশ্বরের সঙ্গে থাকবেন?'', তারপর ``ঈশ্বর যদি আপনাকে জিজ্ঞাসা করেন, \textbf{আমি তোমাকে
+কেন ভিতরে আসতে দেব?}, তবে আপনি কী বলবেন?'' তাদের উত্তর দেখায় যে তারা খ্রীষ্টের উপর নির্ভর করে, না নিজের
+সততার উপর।
+
+\smallskip
+\verseb{1~পিতর~3:15}{কিন্তু তোমাদের হৃদয়ে খ্রীষ্টকে প্রভু বলে পবিত্র জেনে মান্য করো; আর তোমাদের অন্তরে যে প্রত্যাশা
+আছে, তার কারণ কেউ জিজ্ঞাসা করলে প্রত্যেককে উত্তর দিতে সর্বদা প্রস্তুত থাকো — কিন্তু নম্রতা ও ভয়ের সঙ্গে।}
+\verseb{কল.~4:6}{তোমাদের কথা সর্বদা অনুগ্রহযুক্ত ও লবণে আস্বাদিত হোক, যেন প্রত্যেক জনকে কীভাবে উত্তর দিতে হয় তা
+তোমরা জানতে পারো।}
+\end{bn}
+
+\begin{en}{Opening questions}
+\q{Start where they are, not where you are.}
+
+\lab{Ask, then listen} Most people will gladly talk about themselves and their beliefs if
+you ask kindly. Your first goal is to understand, not to win an argument.
+
+\lab{Good questions}
+\begin{itemize}
+\item ``Do you think much about spiritual things?''
+\item ``Were you raised with any faith?''
+\item ``Who do you think Jesus was?''
+\item ``If it were true, would you want to know God personally?''
+\item ``May I tell you what changed my life?''
+\end{itemize}
+
+\lab{The diagnostic question} A gentle, classic way in: ``If you were to die tonight, would
+you know for certain you'd be with God?'', then ``If God asked you, \emph{Why should I let
+you in?}, what would you say?'' Their answer shows whether they trust Christ or their own
+goodness.
+
+\smallskip
+\verse{1~Pet.~3:15}{But in your hearts sanctify Christ as Lord. Always be prepared to give a
+defense to everyone who asks you the reason for the hope that is in you. But respond with
+gentleness and respect.}
+\verse{Col. 4:6}{Let your speech always be gracious, seasoned with salt, so that you may know
+how to answer everyone.}
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\begin{bn}{শুভ সংবাদ}
+\qb{ঈশ্বর, পাপ, খ্রীষ্ট, সাড়া — বার্তার মর্ম।}
+
+\labb{ঈশ্বর} ঈশ্বর পবিত্র, তিনি আমাদের সৃষ্টিকর্তা, এবং তিনি আমাদের ভালোবাসেন; তিনি আমাদের তাঁর সঙ্গে সম্পর্কে
+বাস করার জন্য সৃষ্টি করেছেন। (আদি. 1:1; 1 যোহন 4:8)
+
+\labb{পাপ} আমরা সকলে বিদ্রোহ করেছি এবং তাঁর মহিমাবিহীন হয়েছি; পাপ আমাদের ঈশ্বর থেকে পৃথক করে এবং মৃত্যুর দিকে
+নিয়ে যায়। (রোমীয় 3:23; 6:23)
+
+\labb{খ্রীষ্ট} যীশুতে ঈশ্বর মানুষ হলেন; তিনি নিষ্পাপ জীবন যাপন করলেন, আমাদের পাপের জন্য আমাদের স্থানে মরলেন,
+এবং পুনরুত্থিত হলেন। (রোমীয় 5:8; 1 করি. 15:3-4)
+
+\labb{সাড়া} পাপ থেকে ফেরো — এটাই মন পরিবর্তন — এবং কেবল খ্রীষ্টের উপর নির্ভর করো; বিনামূল্যে দান হিসেবে ক্ষমা ও
+অনন্ত জীবন গ্রহণ করো। (রোমীয় 10:9-10, 13; ইফি. 2:8-9)
+
+\labb{রোমীয় পথ} একে একে পড়ার জন্য:
+
+\verseb{রোমীয় 3:23}{কারণ সকলেই পাপ করেছে এবং ঈশ্বরের মহিমাবিহীন হয়েছে।}
+\verseb{রোমীয় 6:23}{কারণ পাপের বেতন মৃত্যু, কিন্তু ঈশ্বরের অনুগ্রহ-দান আমাদের প্রভু যীশু খ্রীষ্টে অনন্ত জীবন।}
+\verseb{রোমীয় 5:8}{কিন্তু ঈশ্বর আমাদের প্রতি তাঁর প্রেম এইভাবে প্রমাণ করেন যে, আমরা যখন পাপী ছিলাম, তখনই খ্রীষ্ট
+আমাদের জন্য মরলেন।}
+\verseb{রোমীয় 10:9-10}{কারণ তুমি যদি মুখে যীশুকে প্রভু বলে স্বীকার করো, এবং হৃদয়ে বিশ্বাস করো যে ঈশ্বর তাঁকে
+মৃতদের মধ্য থেকে উঠিয়েছেন, তবে পরিত্রাণ পাবে। কারণ হৃদয়ে বিশ্বাস করলে ধার্মিকতা হয়, আর মুখে স্বীকার করলে পরিত্রাণ
+হয়।}
+\verseb{রোমীয় 10:13}{কারণ ``যে কেউ প্রভুর নামে ডাকে, সে পরিত্রাণ পাবে।''}
+
+\medskip
+\labb{সুসমাচার নিজে} পৌল যাকে সর্বাগ্রগণ্য বলেন সেই সারাংশ — একটি বিশ্বাস-বাক্য যা তাঁর সমস্ত পত্রের চেয়ে প্রাচীন:
+
+\verseb{1~করি.~15:3-6}{কারণ আমি সর্বাগ্রে তোমাদের কাছে সেই বিষয় সমর্পণ করেছি, যা আমিও পেয়েছিলাম: শাস্ত্রানুসারে
+খ্রীষ্ট আমাদের পাপের জন্য মরলেন, আর তাঁকে কবর দেওয়া হলো, আর শাস্ত্রানুসারে তৃতীয় দিনে তিনি উত্থাপিত হলেন, এবং কৈফাকে,
+পরে সেই বারো জনকে দেখা দিলেন। তারপর তিনি একসঙ্গে পাঁচশোরও অধিক ভাইকে দেখা দিলেন, যাদের অধিকাংশ এখনও জীবিত আছেন, কিন্তু
+কেউ কেউ নিদ্রাগত হয়েছেন।}
+\end{bn}
+
+\begin{en}{The good news}
+\q{God, sin, Christ, response --- the heart of the message.}
+
+\lab{God} God is holy, he is our Maker, and he loves us; he made us to live in relationship
+with him. (Gen.~1:1; 1~John~4:8)
+
+\lab{Sin} We have all rebelled and fall short of his glory; sin separates us from God and
+leads to death. (Rom.~3:23; 6:23a)
+
+\lab{Christ} In Jesus, God became man; he lived without sin, died in our place for our sins,
+and rose again. (Rom.~5:8; 1~Cor.~15:3--4)
+
+\lab{Response} Turn from sin --- this is repentance --- and trust Christ alone; receive
+forgiveness and eternal life as a free gift. (Rom.~10:9--10, 13; Eph.~2:8--9)
+
+\lab{The Roman Road} To read one by one (Berean Standard Bible):
+
+\verse{Romans 3:23}{for all have sinned and fall short of the glory of God,}
+\verse{Romans 6:23}{For the wages of sin is death, but the gift of God is eternal life in
+Christ Jesus our Lord.}
+\verse{Romans 5:8}{But God proves His love for us in this: While we were still sinners,
+Christ died for us.}
+\verse{Romans 10:9-10}{that if you confess with your mouth, ``Jesus is Lord,'' and believe in
+your heart that God raised Him from the dead, you will be saved. For with your heart you
+believe and are justified, and with your mouth you confess and are saved.}
+\verse{Romans 10:13}{for, ``Everyone who calls on the name of the Lord will be saved.''}
+
+\medskip
+\lab{The gospel itself} The summary Paul calls of first importance --- a creed older than any of
+his letters:
+
+\verse{1~Cor.~15:3--6}{For what I received I passed on to you as of first importance: that Christ
+died for our sins according to the Scriptures, that He was buried, that He was raised on the third
+day according to the Scriptures, and that He appeared to Cephas, and then to the Twelve. After
+that, He appeared to more than five hundred brothers at once, most of whom are still living,
+though some have fallen asleep.}
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\begin{bn}{বিশ্বাসে আনা}
+\qb{কেউ যখন প্রস্তুত হয়, তখন তাড়াহুড়ো বা চাপ ছাড়াই তাকে সাড়া দিতে সাহায্য করুন।}
+
+\labb{নিশ্চিত হোন যে তারা বুঝেছে} সংক্ষেপে নিশ্চিত করুন যে তারা মূল বিষয়গুলি বুঝেছে: নিজের পাপ, খ্রীষ্টের মৃত্যু ও
+পুনরুত্থান, এবং এই যে পরিত্রাণ বিশ্বাসে পাওয়া বিনামূল্য দান, কর্মে অর্জিত নয়।
+
+\labb{সাড়ার জন্য আহ্বান করুন} সরাসরি জিজ্ঞাসা করুন: ``এমন কোনো কারণ আছে কি যে আপনি এখনই খ্রীষ্টের দিকে ফিরতে
+চান না?'' পরিত্রাণ হয় মন পরিবর্তন ও বিশ্বাসে, কোনো সূত্রে নয়।
+
+\labb{প্রার্থনার জন্য একটি প্রার্থনা} তাদের নিজের ভাষায়, অথবা তাদের পথ দেখান: ``হে ঈশ্বর, আমি তোমার বিরুদ্ধে পাপ
+করেছি। ধন্যবাদ যে যীশু আমার জন্য মরলেন ও পুনরুত্থিত হলেন। আমি আমার পাপ থেকে ফিরছি এবং কেবল তাঁরই উপর নির্ভর করছি।
+তুমি আমার প্রভু ও ত্রাণকর্তা হও।''
+
+\labb{তাদের আশ্বাস দিন} পরিত্রাণ খ্রীষ্টের প্রতিজ্ঞার উপর নির্ভর করে, অনুভূতির উপর নয়। প্রথম পদক্ষেপগুলিতে উৎসাহ
+দিন: একটি বাইবেল, প্রার্থনা, একটি মণ্ডলী।
+
+\smallskip
+\verseb{যোহন 1:12}{কিন্তু যত লোক তাঁকে গ্রহণ করল, অর্থাৎ যারা তাঁর নামে বিশ্বাস করে, তাদের তিনি ঈশ্বরের সন্তান
+হওয়ার অধিকার দিলেন।}
+\verseb{প্রকা.~3:20}{দেখ, আমি দ্বারে দাঁড়িয়ে আঘাত করছি; কেউ যদি আমার রব শুনে দ্বার খোলে, তবে আমি তার কাছে
+ভিতরে গিয়ে তার সঙ্গে ভোজন করব, আর সে আমার সঙ্গে।}
+\verseb{যোহন 5:24}{আমি তোমাদের সত্য সত্য বলছি: যে আমার বাক্য শুনে আমার প্রেরণকর্তাকে বিশ্বাস করে, সে অনন্ত জীবন
+পেয়েছে; তার বিচার হবে না, বরং সে মৃত্যু থেকে জীবনে পার হয়েছে।}
+\verseb{1~যোহন 5:11-13}{আর সেই সাক্ষ্য এই যে, ঈশ্বর আমাদের অনন্ত জীবন দিয়েছেন, এবং সেই জীবন তাঁর পুত্রে আছে।
+পুত্র যার আছে, জীবন তার আছে; ঈশ্বরের পুত্র যার নেই, জীবন তার নেই। তোমরা যারা ঈশ্বরের পুত্রের নামে বিশ্বাস করো, আমি
+তোমাদের এই কথা লিখলাম, যেন তোমরা জানতে পারো যে অনন্ত জীবন তোমাদের আছে।}
+\end{bn}
+
+\begin{en}{Leading to faith}
+\q{When someone is ready, help them respond --- without rushing or pressure.}
+
+\lab{Make sure they understand} Briefly confirm they grasp the essentials: their sin,
+Christ's death and resurrection, and that salvation is a free gift received by faith, not
+earned.
+
+\lab{Call for a response} Ask plainly: ``Is there any reason you wouldn't want to turn to
+Christ right now?'' It is repentance and faith, not a formula, that save.
+
+\lab{A prayer to pray} In their own words, or guide them: ``God, I have sinned against you.
+Thank you that Jesus died and rose for me. I turn from my sin and trust him alone. Be my Lord
+and Savior.''
+
+\lab{Assure them} Salvation rests on Christ's promise, not on feelings. Encourage the first
+steps: a Bible, prayer, a church.
+
+\smallskip
+\verse{John 1:12}{But to all who did receive Him, to those who believed in His name, He gave the
+right to become children of God.}
+\verse{Rev. 3:20}{Behold, I stand at the door and knock. If anyone hears My voice and opens the
+door, I will come in and dine with him, and he with Me.}
+\verse{John 5:24}{Truly, truly, I tell you, whoever hears My word and believes Him who sent Me
+has eternal life and will not come into judgment. Indeed, he has crossed over from death to
+life.}
+\verse{1~John 5:11--13}{And this is that testimony: God has given us eternal life, and this life
+is in His Son. Whoever has the Son has life; whoever does not have the Son of God does not have
+life. I have written these things to you who believe in the name of the Son of God, so that you
+may know that you have eternal life.}
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\settopic{ঈশ্বর}{God}
+
+\begin{bn}{প্রমাণ ও বিজ্ঞান}
+\qb{``ঈশ্বর আছেন এমন কোনো প্রমাণ নেই।''}
+প্রমাণ প্রচুর আছে — কেবল সেই ধরনের নয় যা পরীক্ষা-নলে রাখা যায়। বিশ্বের সূচনা, তার সূক্ষ্ম সমন্বয়, নৈতিক বিধানের
+অস্তিত্ব, এবং চেতনার বাস্তবতা — এসব প্রকৃতির অতীত কোনো মনের দিকে ইঙ্গিত করে।
+\begin{itemize}
+\item যা কিছু অস্তিত্বে আসে তার একটি কারণ থাকে; বিশ্বের সূচনা হয়েছিল — অতএব তার কারণ তার অতীত।
+\item যে ধ্রুবকগুলি জীবনকে সম্ভব করে সেগুলি অতি সূক্ষ্মভাবে সমন্বিত; সৃষ্টিই সবচেয়ে স্বাভাবিক ব্যাখ্যা।
+\item আপনি প্রকৃত ঠিক ও ভুল স্বীকার করেন; একটি নৈতিক বিধান একজন বিধানদাতার দিকে ইঙ্গিত করে।
+\end{itemize}
+\smallskip
+\verseb{রোমীয় 1:20}{কারণ জগৎ সৃষ্টির সময় থেকে তাঁর অদৃশ্য গুণ — অর্থাৎ তাঁর অনন্ত পরাক্রম ও ঈশ্বরত্ব — সৃষ্ট
+বস্তুর দ্বারা বোঝা যায় ও স্পষ্ট দেখা যায়, যেন লোকে নিরুত্তর হয়।}
+\verseb{গীত. 19:1}{আকাশমণ্ডল ঈশ্বরের মহিমা বর্ণনা করে, ও বিতান তাঁর হাতের কাজ প্রকাশ করে।}
+
+\medskip
+\qb{``বিজ্ঞান সব কিছু ব্যাখ্যা করেছে — আমাদের ঈশ্বরের প্রয়োজন নেই।''}
+বিজ্ঞান বলে জগৎ \textbf{কীভাবে} চলে; এটি বলতে পারে না জগৎ আছেই বা \textbf{কেন}, অথবা তা কিসের জন্য। ঈশ্বর
+বিজ্ঞানের প্রতিদ্বন্দ্বী ব্যাখ্যা নন — তিনিই সেই কারণ যে অধ্যয়নযোগ্য একটি সুশৃঙ্খল বিশ্ব আছে।
+\begin{itemize}
+\item ``কীভাবে'' ও ``কেন'' ভিন্ন প্রশ্ন; ইঞ্জিনের ব্যাখ্যা বলে না কেন গাড়িটি তৈরি হয়েছিল।
+\item বিজ্ঞান একটি সুশৃঙ্খল, বোধগম্য বিশ্ব ধরে নেয় — ঠিক যেমন একজন বুদ্ধিমান ঈশ্বর তৈরি করলে প্রত্যাশিত।
+\item অর্থ, নৈতিকতা ও উদ্দেশ্য সম্বন্ধে বিজ্ঞান নীরব — অথচ এই প্রশ্নগুলির উত্তর আমাদের সবচেয়ে বেশি প্রয়োজন।
+\end{itemize}
+\smallskip
+\verseb{কল.~1:17}{আর তিনিই সকলের আগে, এবং তাঁতেই সকল কিছু স্থিতি পায়।}
+\verseb{ইব্রীয় 11:3}{বিশ্বাসেই আমরা বুঝতে পারি যে, ঈশ্বরের বাক্য দ্বারা জগৎ নির্মিত হয়েছে — তাই যা দেখা যায় তা
+দৃশ্য বস্তু থেকে হয়নি।}
+\end{bn}
+
+\begin{en}{Evidence and science}
+\q{``There's no evidence that God exists.''}
+There's a great deal of evidence --- just not the kind you put in a test
+tube. The beginning of the universe, its fine-tuning, the existence of a moral law, and the
+reality of consciousness all point beyond nature to a mind behind it.
+\begin{itemize}
+\item Everything that begins to exist has a cause; the universe began --- so it has a cause
+  beyond itself.
+\item The constants that make life possible are fine-tuned to a razor's edge; design is the
+  most natural explanation.
+\item You assume real right and wrong; a moral law points to a Lawgiver.
+\end{itemize}
+\smallskip
+\verse{Rom. 1:20}{For since the creation of the world God's invisible qualities --- His eternal
+power and divine nature --- have been clearly seen, being understood from His workmanship, so
+that men are without excuse.}
+\verse{Ps. 19:1}{The heavens declare the glory of God; the skies proclaim the work of His
+hands.}
+
+\medskip
+\q{``Science has explained everything --- we don't need God.''}
+Science explains \emph{how} the world works; it cannot tell you \emph{why}
+there is a world at all, or what it is for. God is not a rival explanation to science --- he
+is the reason there is an orderly universe to study.
+\begin{itemize}
+\item ``How'' and ``why'' are different questions; explaining an engine doesn't tell you why
+  the car was built.
+\item Science assumes an orderly, intelligible universe --- just what you'd expect if a
+  rational God made it.
+\item Science is silent on meaning, morality, and purpose --- the questions we most need
+  answered.
+\end{itemize}
+\smallskip
+\verse{Col. 1:17}{He is before all things, and in Him all things hold together.}
+\verse{Heb. 11:3}{By faith we understand that the universe was formed at God's command, so that
+what is seen was not made out of what was visible.}
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\begin{bn}{দুঃখ কেন}
+\qb{``ঈশ্বর যদি মঙ্গলময় ও সর্বশক্তিমান হন, তবে এত দুঃখ কেন?''}
+
+বাইবেল দুঃখকে কখনও তুচ্ছ মনে করে না — অন্য যে কোনো বিশ্বদৃষ্টির চেয়ে এটি একে বেশি গম্ভীরভাবে নেয়। মন্দতার প্রতি
+ঈশ্বরের উত্তর প্রথমে কোনো ব্যাখ্যা নয়, বরং একজন ব্যক্তি: তিনি ক্রুশে আমাদের দুঃখে যোগ দিলেন, এবং প্রতিজ্ঞা করেন যে
+একদিন তিনি একে সম্পূর্ণরূপে মুছে দেবেন।
+
+\labb{মূল বিষয়}
+\begin{itemize}
+\item অনেক দুঃখ স্বাধীনতার অপব্যবহার থেকে আসে — যে জগতে প্রকৃত প্রেম আছে, সেই জগৎই এমন যেখানে প্রেমকে অস্বীকারও
+  করা যায়।
+\item কোনো কিছুকে ``মন্দ'' বলতে হলে আপনার মঙ্গলের একটি মান দরকার; মন্দতার সমস্যা সেই ঈশ্বরকেই ধরে নেয় যাঁর
+  বিষয়ে সে প্রশ্ন তোলে।
+\item ক্রুশে ঈশ্বর যন্ত্রণা থেকে দূরে থাকেন না — তিনি নিজেই তার সবচেয়ে বড় আঘাত সহ্য করেন।
+\end{itemize}
+
+\smallskip
+\verseb{রোমীয় 8:18}{কারণ আমার মনে হয়, এখনকার দুঃখভোগ আমাদের প্রতি যে মহিমা প্রকাশিত হবে, তার সঙ্গে তুলনার
+যোগ্য নয়।}
+\verseb{প্রকা.~21:4}{আর ঈশ্বর তাদের চোখ থেকে সমস্ত অশ্রু মুছে দেবেন; এরপর আর মৃত্যু থাকবে না, শোক, ক্রন্দন বা
+ব্যথাও থাকবে না — কারণ প্রথম বিষয়গুলি লুপ্ত হয়েছে।}
+\verseb{যোহন 11:35}{যীশু কাঁদলেন।}
+\end{bn}
+
+\begin{en}{Why suffering}
+\q{``If God is good and all-powerful, why is there so much suffering?''}
+
+The Bible never treats suffering as small --- it takes it more seriously
+than any other worldview. God's answer to evil is not first an explanation but a Person: he
+entered our suffering at the cross, and he promises one day to end it entirely.
+
+\lab{Key points}
+\begin{itemize}
+\item Much suffering flows from the misuse of freedom --- a world with real love is a world
+  where love can be refused.
+\item To call anything ``evil'' you need a standard of good; the problem of evil assumes the
+  very God it questions.
+\item At the cross God does not stay distant from pain --- he bears the worst of it himself.
+\end{itemize}
+
+\smallskip
+\verse{Rom. 8:18}{I consider that our present sufferings are not comparable to the glory that
+will be revealed in us.}
+\verse{Rev. 21:4}{He will wipe away every tear from their eyes. There will be no more death or
+mourning or crying or pain, for the former things have passed away.}
+\verse{John 11:35}{Jesus wept.}
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\settopic{বাইবেল}{The Bible}
+
+\begin{bn}{স্ববিরোধ ও প্রেরণ}
+\qb{``বাইবেল স্ববিরোধে পূর্ণ।''}
+তথাকথিত স্ববিরোধের অধিকাংশ দৃষ্টিভঙ্গি বা বিবরণের পার্থক্য, যুক্তিগত স্ববিরোধ নয়। একটি প্রকৃত স্ববিরোধকে একই বিষয়কে,
+একই অর্থে, একই সময়ে স্বীকার ও অস্বীকার করতে হয় — আর স্পষ্ট উদাহরণ দেওয়া আশ্চর্যজনকভাবে কঠিন।
+\begin{itemize}
+\item কোনো \textbf{নির্দিষ্ট} উদাহরণ চান; অস্পষ্ট দাবি পরীক্ষা করলেই গলে যায়।
+\item বিবরণের পার্থক্য (কবরে দূতের সংখ্যা, কোনো ফলকের শব্দরূপ) \textbf{স্বতন্ত্র} প্রত্যক্ষদর্শীর সাক্ষ্যের চিহ্ন,
+  ষড়যন্ত্রের নয়।
+\item আপাত বিরোধের অধিকাংশ প্রসঙ্গ, ধরন ও অভিপ্রায় বিবেচনা করলে মিলে যায়।
+\end{itemize}
+\smallskip
+\verseb{2~তীম.~3:16}{সমস্ত শাস্ত্র ঈশ্বর-নিঃশ্বসিত, এবং শিক্ষা, অনুযোগ, সংশোধন ও ধার্মিকতার শাসনের জন্য উপকারী।}
+\verseb{যোহন 10:35}{আর শাস্ত্রের বাক্য লোপ হতে পারে না।}
+
+\medskip
+\qb{``বাইবেল এত বার নকল হয়েছে যে আমরা মূল জানতেই পারি না।''}
+নতুন নিয়ম প্রাচীন জগতের সবচেয়ে সুপ্রমাণিত দলিল। আমাদের কাছে প্রায় পাঁচ হাজার আটশো গ্রিক পাণ্ডুলিপি আছে; সেগুলির
+মধ্যেকার পার্থক্য অত্যন্ত তুচ্ছ, আর কোনো খ্রীষ্টীয় মতবাদ কোনো বিতর্কিত পাঠের উপর নির্ভর করে না।
+\begin{itemize}
+\item অন্য প্রাচীন রচনার সঙ্গে পাণ্ডুলিপির সংখ্যা তুলনা করুন, যেগুলি কেবল অল্প কয়েকটি পরবর্তী নকলে টিকে আছে।
+\item কিছু খণ্ড মূলের এক-দুই শতাব্দীর মধ্যেকার — তুলনীয় গ্রন্থের চেয়ে অনেক নিকটতর।
+\item অধিকাংশ পার্থক্য বানান বা শব্দ-ক্রমের; পাঠ-সমালোচনা উচ্চ নিশ্চয়তার সঙ্গে মূল শব্দ পুনর্গঠন করে।
+\end{itemize}
+\smallskip
+\verseb{যিশা. 40:8}{তৃণ শুকিয়ে যায়, ফুল ঝরে পড়ে; কিন্তু আমাদের ঈশ্বরের বাক্য চিরকাল স্থির থাকে।}
+\verseb{মথি 24:35}{আকাশ ও পৃথিবী লুপ্ত হবে, কিন্তু আমার বাক্য কখনও লুপ্ত হবে না।}
+\end{bn}
+
+\begin{en}{Contradictions and transmission}
+\q{``The Bible is full of contradictions.''}
+Most alleged contradictions are differences of perspective or detail, not
+logical contradictions. A real contradiction must affirm and deny the same thing, in the same
+sense, at the same time --- and clear examples are remarkably hard to produce.
+\begin{itemize}
+\item Ask for a \emph{specific} example; vague claims dissolve once examined.
+\item Differing details (the number of angels at the tomb, the wording of a sign) are the mark
+  of \emph{independent} eyewitness testimony, not collusion.
+\item Most apparent conflicts harmonize once context, genre, and intent are weighed.
+\end{itemize}
+\smallskip
+\verse{2~Tim.~3:16}{All Scripture is God-breathed and is useful for instruction, for conviction,
+for correction, and for training in righteousness.}
+\verse{John 10:35}{If he called them gods to whom the word of God came --- and the Scripture
+cannot be broken.}
+
+\medskip
+\q{``The Bible was copied so many times we can't know the original.''}
+The New Testament is the best-attested document of the ancient world. We
+have roughly 5,800 Greek manuscripts, the variants among them are overwhelmingly trivial, and
+not one Christian doctrine hangs on a disputed reading.
+\begin{itemize}
+\item Compare the manuscript count to other ancient works, which survive in only a handful of
+  late copies.
+\item Some fragments date within a century or two of the originals --- far closer than for
+  comparable texts.
+\item The vast majority of variants are spelling or word order; textual criticism reconstructs
+  the wording with high confidence.
+\end{itemize}
+\smallskip
+\verse{Isa. 40:8}{The grass withers and the flowers fall, but the word of our God stands
+forever.}
+\verse{Matt. 24:35}{Heaven and earth will pass away, but My words will never pass away.}
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\begin{bn}{বিবর্তনবাদ}
+\qb{``বিবর্তনবাদ বাইবেলকে মিথ্যা প্রমাণ করে।''}
+
+জীবনের কার্যপ্রণালী সম্বন্ধে কোনো তত্ত্ব এ বিষয়ে কিছু বলে না যে তার পিছনে কোনো ঈশ্বর আছেন কি নেই। বিজ্ঞান মেনে
+নিলেও গভীর প্রশ্নগুলি থেকে যায়: কিছুই না থেকে বরং কিছু আছে কেন; প্রথম জীবন কোথা থেকে এল; আর বিশ্ব তার জন্য এত
+সূক্ষ্মভাবে সমন্বিত কেন? আদিপুস্তক আমাদের বলে যে ঈশ্বর জগৎ সৃষ্টি করেছেন — \textbf{এই} কথা ও \textbf{কেন}; এটি
+বিজ্ঞানের পাঠ্যপুস্তক নয়।
+
+\labb{মূল বিষয়}
+\begin{itemize}
+\item প্রক্রিয়া উদ্দেশ্য নয়: একটি স্বাভাবিক কার্যপ্রণালীও সেই উপায় হতে পারে যা সৃষ্টিকর্তা ব্যবহার করেন।
+\item বিবর্তনবাদ বিশ্বের উৎপত্তি, জীবনের নিজের উৎপত্তি, বা যে বিধানের উপর তা নির্ভর করে তার উৎপত্তি স্পর্শ করে না।
+\item বিবর্তনবাদ মেনে নেওয়া অনেক বিজ্ঞানী খ্রীষ্টান; বিশ্বাস ও বিজ্ঞান শত্রু নয়।
+\end{itemize}
+
+\labb{শাস্ত্র} আদি. 1:1; গীত. 139:14।
+
+\labb{আরও দেখুন} ঈশ্বরের অস্তিত্ব সম্পর্কিত কার্ড।
+\end{bn}
+
+\begin{en}{Evolution}
+\q{``Evolution disproves the Bible.''}
+
+A theory about the mechanism of life says nothing about whether there is a
+God behind it. Even granting the science, the deep questions remain: why is there anything at
+all, where did the first life come from, and why is the universe so finely tuned for it?
+Genesis tells us \emph{that} God made the world and \emph{why}; it is not a science textbook.
+
+\lab{Key points}
+\begin{itemize}
+\item Process is not purpose: even a natural mechanism could be the means a Creator uses.
+\item Evolution doesn't address the origin of the universe, of life itself, or of the laws it
+  depends on.
+\item Many scientists who accept evolution are Christians; faith and science are not enemies.
+\end{itemize}
+
+\lab{Scripture} Gen.~1:1; Ps.~139:14.
+
+\lab{See also} The card on the existence of God.
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\settopic{যীশু}{Jesus}
+
+\begin{bn}{সৎ গুরু ও পুনরুত্থান}
+\qb{``যীশু কেবল একজন সৎ নৈতিক গুরু ছিলেন।''}
+এটাই সেই একটি বিষয় যা তিনি হতে পারেন না। একজন সৎ গুরু যিনি পাপ ক্ষমা করার, পিতার সঙ্গে এক হওয়ার, ও জগতের বিচার
+করার দাবি করলেন — তিনি হয় সত্য বলছেন, নয় বিভ্রান্ত, নয় মিথ্যা বলছেন। ``সৎ গুরু'' বিকল্পগুলির মধ্যে নেই — তিনি
+আমাদের জন্য কোনো মধ্যপথ রাখেননি।
+\begin{itemize}
+\item তিনি উপাসনা গ্রহণ করলেন, পাপ ক্ষমা করলেন, এবং অব্রাহামের আগে থাকার দাবি করলেন — এমন কাজ যা কেবল ঈশ্বরই
+  যথার্থভাবে করতে পারেন।
+\item এমন কথা বলা কেবল একজন সৎ মানুষ মহা-অহংকারী হতেন, জ্ঞানী নন।
+\item নির্বাচন প্রকৃত: প্রভু, মিথ্যাবাদী, বা উন্মাদ — কিন্তু কেবল একজন মহান গুরু নন।
+\end{itemize}
+\smallskip
+\verseb{যোহন 8:58}{যীশু তাদের বললেন, ``আমি তোমাদের সত্য সত্য বলছি: অব্রাহামের জন্মের আগে থেকেই আমি আছি।''}
+\verseb{যোহন 10:30}{আমি ও পিতা এক।}
+\verseb{মার্ক 2:5-7}{যীশু তাদের বিশ্বাস দেখে সেই পক্ষাঘাতগ্রস্তকে বললেন, ``বৎস, তোমার পাপ ক্ষমা হলো।'' তখন
+কয়েকজন শাস্ত্রী, যারা সেখানে বসে ছিল, মনে মনে ভাবতে লাগল, ``এই লোকটি এমন কথা কেন বলছে? এ তো ঈশ্বরনিন্দা করছে!
+এক ঈশ্বর ছাড়া আর কে পাপ ক্ষমা করতে পারে?''}
+
+\medskip
+\qb{``পুনরুত্থান একটি কিংবদন্তি যা সময়ের সঙ্গে বেড়ে উঠেছে।''}
+কিংবদন্তি হওয়ার পক্ষে এই দাবি বড় তাড়াতাড়ির ও বড় ব্যয়বহুল। ক্রুশের কয়েক বছরের মধ্যেই প্রত্যক্ষদর্শীরা পুনরুত্থিত
+যীশুর প্রচার করছিল, আর তাদের অধিকাংশ এর জন্য প্রাণ দিল। কিংবদন্তি বেড়ে উঠতে প্রজন্ম লাগে; এটি তখন প্রচারিত হলো যখন
+বিরোধী প্রত্যক্ষদর্শীরা তখনও জীবিত ছিল ও একে অস্বীকার করতে পারত।
+\begin{itemize}
+\item সবচেয়ে প্রাচীন বিশ্বাস-বাক্য (1 করিন্থীয় 15:3-7) প্রত্যক্ষদর্শীদের নাম উল্লেখ করে এবং ঘটনার কয়েক বছরের
+  মধ্যেকার।
+\item কবর শূন্য ছিল — যীশুর বিরোধীরাও মানল যে দেহ চলে গেছে, এবং তা ব্যাখ্যা করার চেষ্টা করল।
+\item লোকে তার জন্য মরে যা তারা সত্য মনে করে; শিষ্যেরা তার জন্য মরল যা সত্য বা মিথ্যা তা জানার স্থানে তারা নিজেরাই
+  ছিল।
+\end{itemize}
+\smallskip
+\verseb{লূক 24:39}{আমার হাত ও আমার পা দেখ, আমিই সেই; আমাকে স্পর্শ করে দেখ, কারণ আত্মার মাংস ও অস্থি নেই, যেমন
+আমাতে দেখছ তেমন আছে।}
+\verseb{প্রেরিত 2:32}{এই যীশুকে ঈশ্বর উত্থাপন করেছেন, আমরা সকলে তার সাক্ষী।}
+\end{bn}
+
+\begin{en}{Good teacher and resurrection}
+\q{``Jesus was just a good moral teacher.''}
+That is the one thing he cannot be. A good teacher who claimed to forgive
+sins, to be one with the Father, and to judge the world is either telling the truth, deluded,
+or lying. ``Good teacher'' is not on the menu --- he left us no middle ground.
+\begin{itemize}
+\item He accepted worship, forgave sins, and claimed to exist before Abraham --- things only
+  God can rightly do.
+\item A merely good man who said such things would be a megalomaniac, not a sage.
+\item The choice is real: Lord, liar, or lunatic --- but not merely a great teacher.
+\end{itemize}
+\smallskip
+\verse{John 8:58}{Jesus said to them, ``Truly, truly, I tell you, before Abraham was born, I
+am!''}
+\verse{John 10:30}{I and the Father are one.}
+\verse{Mark 2:5--7}{When Jesus saw their faith, He said to the paralytic, ``Son, your sins are
+forgiven.'' But some of the scribes were sitting there, thinking in their hearts, ``Why does
+this man speak like this? He is blaspheming! Who can forgive sins but God alone?''}
+
+\medskip
+\q{``The resurrection is a legend that grew over time.''}
+The claim is too early and too costly to be legend. Within a few years of
+the cross, eyewitnesses were proclaiming a risen Jesus, and most went to their deaths for it.
+Legends take generations to grow; this was preached while hostile eyewitnesses were still alive
+to deny it.
+\begin{itemize}
+\item The earliest creed (1~Cor.~15:3--7) names eyewitnesses and dates to within a few years of
+  the events.
+\item The tomb was empty --- even Jesus' opponents admitted the body was gone and tried to
+  explain it away.
+\item People die for what they believe is true; the disciples died for what they were in a
+  position to know was true or false.
+\end{itemize}
+\smallskip
+\verse{Luke 24:39}{Look at My hands and My feet. It is I Myself. Touch Me and see; for a spirit
+does not have flesh and bones, as you see I have.}
+\verse{Acts 2:32}{God has raised this Jesus to life, to which we are all witnesses.}
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\begin{bn}{সব পথ ঈশ্বরের কাছে}
+\qb{``সব ধর্ম ঈশ্বরের কাছে পৌঁছায় — সেগুলি মূলত এক।''}
+
+সেগুলি সব সত্য হতে পারে না, কারণ যা সবচেয়ে গুরুত্বপূর্ণ সে বিষয়ে সেগুলি পরস্পরবিরোধী কথা বলে — ঈশ্বর কে, আমাদের
+মধ্যে কী গোলমাল, আর তা কীভাবে ঠিক হয়। লোকদের সম্মান করার অর্থ এই নয় যে আমরা ভান করি তাদের বিশ্বাস একে অপরকে
+কাটে না। খ্রীষ্টধর্ম অনন্য: এটি আমাদের ঈশ্বরের কাছে উপরে ওঠা নয়, বরং ঈশ্বরের অনুগ্রহে আমাদের কাছে নেমে আসা।
+
+\labb{মূল বিষয়}
+\begin{itemize}
+\item ধর্মগুলি ঈশ্বর সম্বন্ধে দ্বিমত (এক, বহু, কেউ নয়, নৈর্ব্যক্তিক), মানব-সমস্যা সম্বন্ধে, এবং প্রতিকার সম্বন্ধে —
+  প্রকৃত বিরোধ, একই সত্যের রূপভেদ নয়।
+\item অন্য প্রতিটি ব্যবস্থা বলে ``করো''; সুসমাচার বলে ``সম্পন্ন'' — পরিত্রাণ দান, বেতন নয়।
+\item সহনশীলতার অর্থ লোকদের সঙ্গে সম্মানের সঙ্গে আচরণ করা, প্রতিটি দাবি সমভাবে সত্য বিশ্বাস করা নয়।
+\end{itemize}
+
+\smallskip
+\verseb{যোহন 14:6}{যীশু তাকে বললেন, ``আমিই পথ ও সত্য ও জীবন; আমার মধ্য দিয়ে না গেলে কেউ পিতার কাছে আসতে পারে
+না।''}
+\verseb{প্রেরিত 4:12}{আর অন্য কারও দ্বারা পরিত্রাণ নেই; কারণ আকাশের নিচে মানুষদের মধ্যে দত্ত এমন আর কোনো নাম নেই,
+যার দ্বারা আমরা পরিত্রাণ পেতে পারি।}
+\end{bn}
+
+\begin{en}{All roads to God}
+\q{``All religions lead to God --- they're basically the same.''}
+
+They cannot all be true, because they say opposite things about what
+matters most --- who God is, what is wrong with us, and how it is fixed. Respecting people
+doesn't mean pretending their beliefs don't contradict. Christianity is unique: not us
+reaching up to God, but God reaching down to us in grace.
+
+\lab{Key points}
+\begin{itemize}
+\item The religions disagree on God (one, many, none, impersonal), on the human problem, and
+  on the cure --- real contradictions, not flavors of one truth.
+\item Every other system says ``do''; the gospel says ``done'' --- salvation is a gift, not a
+  wage.
+\item Tolerance means treating people with respect, not believing every claim is equally true.
+\end{itemize}
+
+\smallskip
+\verse{John 14:6}{Jesus answered, ``I am the way and the truth and the life. No one comes to the
+Father except through Me.''}
+\verse{Acts 4:12}{Salvation exists in no one else, for there is no other name under heaven given
+to men by which we must be saved.}
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\settopic{মানুষের হৃদয়}{The human heart}
+
+\begin{bn}{ভালো, এবং যথেষ্ট ভালো}
+\qb{``ভালো মানুষ হতে আপনার ঈশ্বরের প্রয়োজন নেই।''}
+এটা সত্য — অনেক অবিশ্বাসী ভালো জীবন যাপন করে, কারণ প্রতিটি মানুষ ঈশ্বরের প্রতিমূর্তিতে সৃষ্ট এবং নিজের বিবেকে তাঁর
+বিধান জানে। প্রশ্ন এই নয় যে আপনি ঈশ্বরে বিশ্বাস না করে ভালো হতে পারেন কি না, বরং এই যে তাঁকে ছাড়া ভালো ও মন্দ
+আদৌ বাস্তব কি না। কোনো বিধানদাতা ছাড়া, ``ভালো'' কেবল মত — বাধ্যকর কিছুই নয়।
+\begin{itemize}
+\item প্রশ্ন ভিত্তির, আচরণের নয়: ঈশ্বর ছাড়া, কে বলবে আপনার ``ভালো'' কোনো অত্যাচারীর ``ভালো'' থেকে উত্তম?
+\item সকলে জানে কিছু বিষয় সত্যিই মন্দ (নিষ্ঠুরতা, বিশ্বাসঘাতকতা) — এ আমাদের ঊর্ধ্বের কোনো নৈতিক বিধানের দিকে
+  ইঙ্গিত করে।
+\end{itemize}
+\smallskip
+\verseb{রোমীয় 2:14-15}{যখন পরজাতীয়েরা, যাদের ব্যবস্থা নেই, স্বভাবতই ব্যবস্থার কাজ করে, তখন ব্যবস্থা না থেকেও
+তারা নিজেরাই নিজেদের ব্যবস্থা। তারা দেখায় যে ব্যবস্থার কাজ তাদের হৃদয়ে লেখা আছে, আর তাদের বিবেকও সাক্ষ্য দেয়।}
+\verseb{যিশা. 64:6}{আমরা সকলে অশুচি লোকের মতো হয়েছি, আর আমাদের সমস্ত ধার্মিকতার কাজ মলিন বস্ত্রের মতো।}
+
+\medskip
+\qb{``আমি একজন ভালো মানুষ — আমার পরিত্রাণের প্রয়োজন নেই।''}
+অন্যদের তুলনায় হয়তো — কিন্তু মান আপনার প্রতিবেশী নয়, বরং ঈশ্বরের সিদ্ধ পবিত্রতা। সেই মাপে আমাদের কেউ উত্তীর্ণ হয়
+না; আমরা সকলে মিথ্যা বলেছি, ঘৃণা করেছি, ও নিজেকে প্রথমে রেখেছি। শুভ সংবাদ এই যে পরিত্রাণ কখনও যথেষ্ট ভালো হওয়ার
+উপর নির্ভর করেনি — এটি তাদের জন্য দান যারা জানে যে তারা নয়।
+\begin{itemize}
+\item পরীক্ষা করে দেখুন: আপনি কি কখনও মিথ্যা বলেননি, কখনও ঘৃণা করেননি, কখনও পরের জিনিস চাননি? ঈশ্বরের বিধান
+  হৃদয় পর্যন্ত পৌঁছায়।
+\item স্বর্গ ভালো হয়ে অর্জিত হয় না; তা হলে খ্রীষ্ট অকারণে মরতেন।
+\item ``ভালো লোকেরা'' মনে করে না যে তাদের ত্রাণকর্তার প্রয়োজন — আর এই একটি বিষয়ই তাদের তাঁর থেকে দূরে রাখে।
+\end{itemize}
+\smallskip
+\verseb{রোমীয় 3:10-12}{যেমন লেখা আছে: ``ধার্মিক কেউ নেই, একজনও নেই; বুঝদার কেউ নেই, ঈশ্বরের অন্বেষণকারী কেউ
+নেই। সকলে বিপথে গেছে, সকলে একসঙ্গে অকর্মণ্য হয়েছে; সৎকর্ম করে এমন কেউ নেই, একজনও নেই।''}
+\verseb{গালা.~2:21}{আমি ঈশ্বরের অনুগ্রহ ব্যর্থ করি না; কারণ ব্যবস্থার দ্বারা যদি ধার্মিকতা হয়, তবে খ্রীষ্ট অকারণে
+মরলেন।}
+\verseb{ইফি.~2:8-9}{কারণ অনুগ্রহেই বিশ্বাসের মাধ্যমে তোমরা পরিত্রাণ পেয়েছ; আর তা তোমাদের থেকে নয়, এ ঈশ্বরের দান —
+কর্মের ফলে নয়, যেন কেউ গর্ব করতে না পারে।}
+\end{bn}
+
+\begin{en}{Good, and good enough}
+\q{``You don't need God to be a good person.''}
+True --- many non-believers live good lives, because everyone is made in God's image and knows
+his law in their conscience. The question isn't whether you can be good without believing in
+God, but whether good and evil are real at all without him. Without a Lawgiver, ``good'' is just
+opinion --- nothing binding.
+\begin{itemize}
+\item The issue is grounding, not behaviour: without God, who says your ``good'' is better than
+  a tyrant's?
+\item Everyone knows some things are really wrong (cruelty, betrayal) --- that points to a moral
+  law above us.
+\end{itemize}
+\smallskip
+\verse{Rom. 2:14--15}{When Gentiles, who do not have the law, do by nature what the law requires,
+they are a law to themselves; they show that the work of the law is written on their hearts,
+their consciences also bearing witness.}
+\verse{Isa. 64:6}{All of us have become like one who is unclean, and all our righteous acts are
+like filthy rags.}
+
+\medskip
+\q{``I'm a good person --- I don't need to be saved.''}
+Compared to other people, perhaps --- but the standard isn't your neighbour, it's God's perfect
+holiness. By that measure none of us passes; we've all lied, hated, and put ourselves first. The
+good news is that salvation was never about being good enough --- it's a gift for people who know
+they aren't.
+\begin{itemize}
+\item Try the test: have you never lied, never hated, never wanted what isn't yours? God's law
+  reaches the heart.
+\item Heaven isn't earned by being good; if it were, Christ died for nothing.
+\item ``Good people'' don't think they need a Saviour --- which is the one thing that keeps them
+  from him.
+\end{itemize}
+\smallskip
+\verse{Rom. 3:10--12}{There is no one righteous, not even one; there is no one who understands,
+no one who seeks God. All have turned away; there is no one who does good, not even one.}
+\verse{Gal. 2:21}{I do not set aside the grace of God. For if righteousness comes through the law,
+Christ died for nothing.}
+\verse{Eph. 2:8--9}{For it is by grace you have been saved, through faith --- and this not from
+yourselves; it is the gift of God --- not by works, so that no one can boast.}
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\begin{bn}{কপটীরা}
+\qb{``মণ্ডলী কপটীতে পূর্ণ।''}
+
+কখনও কখনও এটা সত্য — যীশু বলেছিলেন এমন হবে, আর তিনি কপটতার নিন্দা অন্য যে কারও চেয়ে কঠোরভাবে করলেন। মণ্ডলী
+সিদ্ধ লোকদের সংগ্রহশালা নয়, বরং ভাঙা লোকদের জন্য হাসপাতাল; কিছু রোগীর মন্দ আচরণ ওষুধের বিরুদ্ধে যুক্তি নয়। কোনো
+কপটীকে আপনার ও খ্রীষ্টের মাঝে দাঁড়াতে দেবেন না।
+
+\labb{মূল বিষয়}
+\begin{itemize}
+\item কপটী একটি ভালো মানে পৌঁছাতে ব্যর্থ হয় — যা মেনে নেয় যে সেই মান ভালো।
+\item খ্রীষ্টধর্মকে খ্রীষ্ট দিয়ে বিচার করুন, তাঁর অনুসারীদের মধ্যে সবচেয়ে মন্দদের দিয়ে নয়।
+\item এই অভিযোগ আমাদের সকলের উপর খাটে; সুসমাচার ব্যর্থদের জন্য — সকলের জন্য শুভ সংবাদ।
+\end{itemize}
+
+\smallskip
+\verseb{মথি 23:27-28}{হা কপটী শাস্ত্রী ও ফরীশীরা, তোমাদের ধিক্! তোমরা চুনকাম করা কবরের মতো, যা বাইরে সুন্দর
+দেখায়, কিন্তু ভিতরে মৃতদের অস্থি ও সমস্ত অশুচিতায় পূর্ণ। তেমনি তোমরাও বাইরে লোকদের কাছে ধার্মিক দেখাও, কিন্তু ভিতরে
+কপটতা ও অধর্মে পূর্ণ।}
+\verseb{লূক 5:31-32}{সুস্থ লোকদের চিকিৎসকের প্রয়োজন নেই, কিন্তু পীড়িতদের প্রয়োজন। আমি ধার্মিকদের নয়, বরং পাপীদের
+মন পরিবর্তনের জন্য ডাকতে এসেছি।}
+\verseb{রোমীয় 3:23}{কারণ সকলেই পাপ করেছে এবং ঈশ্বরের মহিমাবিহীন হয়েছে।}
+
+\labb{আরও দেখুন} ``ভালো, এবং যথেষ্ট ভালো'' কার্ড।
+\end{bn}
+
+\begin{en}{Hypocrites}
+\q{``The church is full of hypocrites.''}
+
+Sometimes true --- Jesus said it would be, and he condemned hypocrisy more
+sharply than anyone. The church is not a museum of the perfect but a hospital for the broken;
+that some patients behave badly is no argument against the medicine. Don't let a hypocrite
+stand between you and Christ.
+
+\lab{Key points}
+\begin{itemize}
+\item A hypocrite fails to live up to a good standard --- which admits the standard is good.
+\item Judge Christianity by Christ, not by the worst of his followers.
+\item The charge fits us all; the gospel is for failures --- good news for everyone.
+\end{itemize}
+
+\smallskip
+\verse{Matt. 23:27--28}{Woe to you, scribes and Pharisees, you hypocrites! You are like
+whitewashed tombs, which look beautiful on the outside, but on the inside are full of dead men's
+bones. On the outside you appear to be righteous, but on the inside you are full of hypocrisy and
+wickedness.}
+\verse{Luke 5:31--32}{It is not the healthy who need a doctor, but the sick. I have not come to
+call the righteous, but sinners to repentance.}
+\verse{Rom. 3:23}{for all have sinned and fall short of the glory of God.}
+
+\lab{See also} The ``Good, and good enough'' card.
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+// Public-domain dedication — the closing page. No folio: this is back matter, not a card.
+// ════════════════════════════════════════════════════════════════════════════
+\def footline {\hss}
+\vfil
+\centerline{\font noto 30 regular Ἀπολογία}
+\vskip 30pt
+\centerline{\font bengali 14 bold সর্বসাধারণের অধিকারে}
+\vskip 5pt
+\centerline{\font lmroman 14 bold In the Public Domain}
+\vskip 30pt
+
+\noindent{\font bengali 10 regular আইন যতটা অনুমতি দেয়, লেখক এই রচনার উপর তাঁর সমস্ত কপিরাইট ও সংশ্লিষ্ট
+অধিকার ত্যাগ করেছেন (CC0~1.0 Universal)। আপনি একে স্বাধীনভাবে নকল করতে, পরিবর্তন করতে, বিতরণ করতে ও ছাপাতে —
+এমনকি বাণিজ্যিকভাবেও — অনুমতি না চেয়ে স্বাধীন। একে মুক্তভাবে ছড়িয়ে দিন।}
+
+\medskip
+\noindent{\font lmroman 10 regular To the extent possible under law, the author has waived all
+copyright and related rights to this work (CC0~1.0 Universal). You are free to copy, modify,
+distribute, and print it, even commercially, without asking permission. Spread it freely.}
+
+\vskip 26pt
+\noindent{\font bengali 9 regular বাংলা বাইবেল-উদ্ধৃতি ইব্রীয় ও গ্রিক মূল থেকে করা মৌলিক অনুবাদ, যা
+সর্বসাধারণের অধিকারে সমর্পিত; ইংরেজি উদ্ধৃতি Berean Standard Bible থেকে।}
+
+\medskip
+\noindent{\font lmroman 9 regular Bengali scripture is an original translation from the Hebrew and
+Greek, dedicated to the public domain; English scripture is the Berean Standard Bible.}
+\vfil
+\eject
