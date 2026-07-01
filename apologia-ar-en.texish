@@ -16,8 +16,8 @@
 // Scripture: public-domain translations — the Arabic from the Smith–Van Dyck Bible (1865), the
 // Berean Standard Bible in English.
 
-// AUTHORED BLIND: written before Arabic shaping landed on a released texish; render and verify when
-// it does. The Arabic prose is unverified and needs a fluent-Arabic proofread before print; the
+// Rendered and verified on texish 0.13.1 (right-to-left shaping, harakat, the Allah ligature, and
+// right-to-left lists). The Arabic prose is unverified and still needs a fluent-Arabic proofread; the
 // scripture is sourced verbatim from the Van Dyck text.
 
 \def footline {\hss}
