@@ -82,8 +82,10 @@
 \def lab t {\textbf{\t.}}
 \def laba t {\textbf{\t}}
 
-// \bull{…} — an Arabic bullet item: a flush-right paragraph led by a bullet on the right.
-\def bull text {\noindent •\hskip 4 \text
+// \bull{…} — an Arabic bullet item: a flush-right paragraph led by a bullet on the right, with a
+// hanging indent (negative \hangindent indents the right/leading edge) so wrapped continuation lines
+// align under the text rather than back at the bullet.
+\def bull text {\set hangindent {-14}\set hangafter {1}\noindent •\hskip 4 \text
 
 }
 
