@@ -56,8 +56,8 @@
 \newenvironment ar tag {
   \rtl
   \def bodyface {arabic}
-  \def qfontsize {12.5}
-  \font arabic 11.5 regular
+  \def qfontsize {11.5}
+  \font arabic 10.5 regular
   \stepcounter{card}
   \addcontentsline{tocar}{1}{\arabic{\value{card}}}{\tag}
   \cardheadarabic{\arabic{\value{card}}}{\topicar}{\tag}
@@ -90,7 +90,7 @@
 // \verse{ref}{text} — a printed scripture verse: a bold reference, then the verse set flush.
 \def verse r body {\noindent\textbf{\r}\hskip 6 \body
 
-\smallskip}
+\vskip 2pt}
 
 \def tocleader {\leaders\hbox to:0.5em {\hss.\hss}{0pt plus 1fil}}
 // Arabic TOC entry: a right-to-left paragraph so the title reorders; number on the right, page on
