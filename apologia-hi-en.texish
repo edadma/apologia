@@ -1,0 +1,816 @@
+\use{document}
+
+// ── Page frame: half-letter (5.5x8.5in) field guide, a uniform 1cm margin all round ──
+\geometry paperwidth:5.5in paperheight:8.5in left:1cm right:1cm top:1cm bottom:1cm
+
+// The Hindi/English edition of the field reference. Same facing-pair design as the other
+// editions: the Hindi take of each card sits on the left (verso) page and the matching English
+// take on the right (recto). Hindi is LTR (Devanagari), set in the bundled Noto Serif Devanagari
+// face via \font devanagari. The English cards are the same text as the other editions.
+
+// Scripture: the Hindi verses are an ORIGINAL translation from the Hebrew and Greek, dedicated to
+// the public domain (CC0) — no public-domain modern Hindi Bible was available, and a CC-BY-SA
+// source would be incompatible with this work's CC0 dedication. The Hindi rendering needs a fluent,
+// scholarly proofread before print. English scripture is the public-domain Berean Standard Bible.
+
+\def footline {\hss}
+
+// ════════════════════════════════════════════════════════════════════════════
+// Card authoring vocabulary. The left-hand (Hindi) environment is \begin{hi} and sets the
+// Devanagari face; its run-in helpers (\qh \labh \verseh \cardheadhi) mirror the English ones
+// but typeset in devanagari. The right-hand English side keeps the lmroman helpers.
+// ════════════════════════════════════════════════════════════════════════════
+\newcounter{card}
+
+\def topichi {}
+\def topicen {}
+\def settopic h e {\def topichi {\h}\def topicen {\e}}
+
+// English card head (lmroman)
+\def cardhead num topic tag {
+  \if {\> {\size{\topic}} {0}}\leftline{\font lmroman 9 regular \smallcaps{\topic}}\smallskip\fi
+  \leftline{\font lmroman 15 bold \num\hskip 10 \tag}
+  \vskip 6pt
+  \noindent
+}
+
+// Hindi card head (devanagari — no small caps in Devanagari)
+\def cardheadhi num topic tag {
+  \if {\> {\size{\topic}} {0}}\leftline{\font devanagari 9 regular \topic}\smallskip\fi
+  \leftline{\font devanagari 14 bold \num\hskip 10 \tag}
+  \vskip 6pt
+  \noindent
+}
+
+\newenvironment hi tag {
+  \font devanagari 10 regular
+  \stepcounter{card}
+  \addcontentsline{tochi}{1}{\arabic{\value{card}}}{\tag}
+  \cardheadhi{\arabic{\value{card}}}{\topichi}{\tag}
+} {\vfil\eject}
+
+\newenvironment en tag {
+  \font lmroman 10 regular
+  \usehyphenation{en-us}
+  \addcontentsline{tocen}{1}{\arabic{\value{card}}}{\tag}
+  \cardhead{\arabic{\value{card}}}{\topicen}{\tag}
+} {\vfil\eject}
+
+// English run-in helpers
+\def q text {\noindent{\font lmroman 11 bold \text}
+
+}
+\def lab t {\textbf{\t.}}
+\def verse r body {\noindent\textbf{\r}\hskip 6 \body
+
+\smallskip}
+
+// Hindi run-in helpers (devanagari)
+\def qh text {\noindent{\font devanagari 11 bold \text}
+
+}
+\def labh t {\textbf{\t}\hskip 5 }
+\def verseh r body {\noindent\textbf{\r}\hskip 6 \body
+
+\smallskip}
+
+\def tocleader {\leaders\hbox to:0.5em {\hss.\hss}{0pt plus 1fil}}
+\def tochiformat lvl num ttl pg {\hbox to:\hsize {\num\hskip 8 {\font devanagari 10 regular \ttl}\tocleader\hskip 6 \pg}}
+\def tocenformat lvl num ttl pg {\hbox to:\hsize {\num\hskip 8 \ttl\tocleader\hskip 6 \pg}}
+
+// ════════════════════════════════════════════════════════════════════════════
+// Cover (page 1, recto)
+// ════════════════════════════════════════════════════════════════════════════
+\vskip 90pt
+\centerline{\font noto 48 regular Ἀπολογία}
+\vskip 36pt
+\centerline{\font devanagari 14 regular सुसमाचार प्रचारक की क्षेत्र-पुस्तिका}
+\vskip 5pt
+\centerline{\font lmroman 13 regular A Field Reference for Evangelists}
+\vfil
+\centerline{\font lmroman 11 regular 1 July 2026}
+\vskip 24pt
+\eject
+
+// ── Hindi table of contents (verso) ────────────────────────────────────────────
+\leftline{\font devanagari 16 bold विषय-सूची}
+\vskip 12pt
+\noindent\contentslist{tochi}{tochiformat}
+\vfil\eject
+
+// ── English table of contents (recto) ─────────────────────────────────────────
+\leftline{\font lmroman 16 bold Contents}
+\vskip 12pt
+\noindent\contentslist{tocen}{tocenformat}
+\vfil\eject
+
+// ── Body: turn the folio on and number the first card page 1 ───────────────────
+\def footline {\hss\font lmroman 9 regular \the\pageno\hss}
+\set pageno {1}
+
+// ════════════════════════════════════════════════════════════════════════════
+\settopic{सुसमाचार सुनाना}{Sharing the Gospel}
+
+\begin{hi}{बातचीत की शुरुआत}
+\qh{जहाँ वे हैं वहाँ से आरम्भ करें, जहाँ आप हैं वहाँ से नहीं।}
+
+\labh{पूछें, फिर सुनें} अधिकांश लोग अपने बारे में और अपने विश्वासों के बारे में सहर्ष बात करेंगे, यदि आप नम्रता से
+पूछें। आपका पहला लक्ष्य समझना है, बहस जीतना नहीं।
+
+\labh{अच्छे प्रश्न}
+\begin{itemize}
+\item ``क्या आप आत्मिक बातों के विषय में अधिक सोचते हैं?''
+\item ``क्या आप किसी धर्म में पले-बढ़े हैं?''
+\item ``आपके विचार में यीशु कौन थे?''
+\item ``यदि यह सच हो, तो क्या आप परमेश्वर को व्यक्तिगत रूप से जानना चाहेंगे?''
+\item ``क्या मैं आपको बताऊँ कि मेरा जीवन किस बात से बदल गया?''
+\end{itemize}
+
+\labh{निर्णायक प्रश्न} भीतर आने का एक कोमल, पुराना मार्ग: ``यदि आज रात आपकी मृत्यु हो जाए, तो क्या आप निश्चय से
+जानते हैं कि आप परमेश्वर के साथ होंगे?'', फिर ``यदि परमेश्वर आपसे पूछे, \textbf{मैं तुम्हें भीतर क्यों आने दूँ?},
+तो आप क्या कहेंगे?'' उनका उत्तर बताता है कि वे मसीह पर भरोसा रखते हैं या अपनी भलाई पर।
+
+\smallskip
+\verseh{1~पतरस~3:15}{पर अपने-अपने हृदय में मसीह को प्रभु जानकर पवित्र मानो; और जो कोई तुमसे तुम्हारी आशा के विषय
+में कारण पूछे, तो उसे उत्तर देने के लिये सर्वदा तैयार रहो — पर नम्रता और भय के साथ।}
+\verseh{कुलु.~4:6}{तुम्हारा वचन सदा अनुग्रह सहित और नमकीन हो, कि तुम्हें हर एक को उत्तर देना आ जाए।}
+\end{hi}
+
+\begin{en}{Opening questions}
+\q{Start where they are, not where you are.}
+
+\lab{Ask, then listen} Most people will gladly talk about themselves and their beliefs if
+you ask kindly. Your first goal is to understand, not to win an argument.
+
+\lab{Good questions}
+\begin{itemize}
+\item ``Do you think much about spiritual things?''
+\item ``Were you raised with any faith?''
+\item ``Who do you think Jesus was?''
+\item ``If it were true, would you want to know God personally?''
+\item ``May I tell you what changed my life?''
+\end{itemize}
+
+\lab{The diagnostic question} A gentle, classic way in: ``If you were to die tonight, would
+you know for certain you'd be with God?'', then ``If God asked you, \emph{Why should I let
+you in?}, what would you say?'' Their answer shows whether they trust Christ or their own
+goodness.
+
+\smallskip
+\verse{1~Pet.~3:15}{But in your hearts sanctify Christ as Lord. Always be prepared to give a
+defense to everyone who asks you the reason for the hope that is in you. But respond with
+gentleness and respect.}
+\verse{Col. 4:6}{Let your speech always be gracious, seasoned with salt, so that you may know
+how to answer everyone.}
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\begin{hi}{शुभ समाचार}
+\qh{परमेश्वर, पाप, मसीह, प्रत्युत्तर — सन्देश का मर्म।}
+
+\labh{परमेश्वर} परमेश्वर पवित्र है, वह हमारा सृष्टिकर्ता है, और हमसे प्रेम करता है; उसने हमें अपने साथ सम्बन्ध में जीने
+के लिये रचा। (उत्पत्ति 1:1; 1 यूहन्ना 4:8)
+
+\labh{पाप} हम सबने बलवा किया है और उसकी महिमा से रहित हैं; पाप हमें परमेश्वर से अलग करता है और मृत्यु तक ले जाता
+है। (रोमियों 3:23; 6:23)
+
+\labh{मसीह} यीशु में परमेश्वर मनुष्य बना; उसने निष्पाप जीवन बिताया, हमारे पापों के लिये हमारे स्थान पर मरा, और जी
+उठा। (रोमियों 5:8; 1 कुरिन्थियों 15:3-4)
+
+\labh{प्रत्युत्तर} पाप से फिरो — यही मन फिराना है — और केवल मसीह पर भरोसा करो; क्षमा और अनन्त जीवन को सेंत-मेंत
+वरदान के रूप में ग्रहण करो। (रोमियों 10:9-10, 13; इफिसियों 2:8-9)
+
+\labh{रोमियों का मार्ग} एक-एक करके पढ़ने के लिये:
+
+\verseh{रोमियों 3:23}{इसलिये कि सबने पाप किया है और परमेश्वर की महिमा से रहित हैं।}
+\verseh{रोमियों 6:23}{क्योंकि पाप की मजदूरी मृत्यु है, परन्तु परमेश्वर का वरदान हमारे प्रभु यीशु मसीह में अनन्त जीवन है।}
+\verseh{रोमियों 5:8}{परन्तु परमेश्वर हम पर अपने प्रेम को इस रीति से प्रगट करता है, कि जब हम पापी ही थे, तब मसीह
+हमारे लिये मरा।}
+\verseh{रोमियों 10:9-10}{यदि तू अपने मुँह से यीशु को प्रभु जानकर अंगीकार करे, और अपने मन से विश्वास करे कि परमेश्वर
+ने उसे मरे हुओं में से जिलाया, तो तू उद्धार पाएगा। क्योंकि मन से विश्वास करने से धार्मिकता, और मुँह से अंगीकार करने से
+उद्धार होता है।}
+\verseh{रोमियों 10:13}{क्योंकि ``जो कोई प्रभु का नाम लेगा, वह उद्धार पाएगा।''}
+
+\medskip
+\labh{स्वयं सुसमाचार} वह सारांश जिसे पौलुस सबसे महत्त्वपूर्ण कहता है — एक विश्वास-कथन जो उसकी सब पत्रियों से पुराना है:
+
+\verseh{1~कुरि.~15:3-6}{क्योंकि मैंने सबसे पहले तुम्हें वही बात पहुँचा दी, जो मुझे भी पहुँची थी: कि पवित्रशास्त्र के
+अनुसार मसीह हमारे पापों के लिये मरा, और गाड़ा गया, और पवित्रशास्त्र के अनुसार तीसरे दिन जी उठा, और कैफा को, फिर उन
+बारहों को दिखाई दिया। इसके बाद वह एक साथ पाँच सौ से अधिक भाइयों को दिखाई दिया, जिनमें से बहुत-से अब तक जीवित हैं, पर
+कुछ सो गए।}
+\end{hi}
+
+\begin{en}{The good news}
+\q{God, sin, Christ, response --- the heart of the message.}
+
+\lab{God} God is holy, he is our Maker, and he loves us; he made us to live in relationship
+with him. (Gen.~1:1; 1~John~4:8)
+
+\lab{Sin} We have all rebelled and fall short of his glory; sin separates us from God and
+leads to death. (Rom.~3:23; 6:23a)
+
+\lab{Christ} In Jesus, God became man; he lived without sin, died in our place for our sins,
+and rose again. (Rom.~5:8; 1~Cor.~15:3--4)
+
+\lab{Response} Turn from sin --- this is repentance --- and trust Christ alone; receive
+forgiveness and eternal life as a free gift. (Rom.~10:9--10, 13; Eph.~2:8--9)
+
+\lab{The Roman Road} To read one by one (Berean Standard Bible):
+
+\verse{Romans 3:23}{for all have sinned and fall short of the glory of God,}
+\verse{Romans 6:23}{For the wages of sin is death, but the gift of God is eternal life in
+Christ Jesus our Lord.}
+\verse{Romans 5:8}{But God proves His love for us in this: While we were still sinners,
+Christ died for us.}
+\verse{Romans 10:9-10}{that if you confess with your mouth, ``Jesus is Lord,'' and believe in
+your heart that God raised Him from the dead, you will be saved. For with your heart you
+believe and are justified, and with your mouth you confess and are saved.}
+\verse{Romans 10:13}{for, ``Everyone who calls on the name of the Lord will be saved.''}
+
+\medskip
+\lab{The gospel itself} The summary Paul calls of first importance --- a creed older than any of
+his letters:
+
+\verse{1~Cor.~15:3--6}{For what I received I passed on to you as of first importance: that Christ
+died for our sins according to the Scriptures, that He was buried, that He was raised on the third
+day according to the Scriptures, and that He appeared to Cephas, and then to the Twelve. After
+that, He appeared to more than five hundred brothers at once, most of whom are still living,
+though some have fallen asleep.}
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\begin{hi}{विश्वास तक ले जाना}
+\qh{जब कोई तैयार हो, तो बिना जल्दबाजी या दबाव के उसे प्रत्युत्तर देने में सहायता करें।}
+
+\labh{सुनिश्चित करें कि वे समझ गए} संक्षेप में पुष्टि करें कि उन्होंने मूल बातें समझ ली हैं: अपना पाप, मसीह की मृत्यु और
+पुनरुत्थान, और यह कि उद्धार विश्वास के द्वारा पाया जानेवाला सेंत-मेंत वरदान है, कर्मों से कमाया नहीं जाता।
+
+\labh{प्रत्युत्तर के लिये बुलाएँ} सीधे पूछें: ``क्या कोई कारण है कि आप अभी मसीह की ओर फिरना नहीं चाहते?'' उद्धार मन
+फिराने और विश्वास से होता है, किसी सूत्र से नहीं।
+
+\labh{प्रार्थना के लिये एक प्रार्थना} उनके अपने शब्दों में, या उन्हें अगुवाई दें: ``हे परमेश्वर, मैंने तेरे विरुद्ध पाप किया
+है। धन्यवाद कि यीशु मेरे लिये मरा और जी उठा। मैं अपने पाप से फिरता हूँ और केवल उसी पर भरोसा करता हूँ। तू मेरा प्रभु और
+उद्धारकर्ता हो।''
+
+\labh{उन्हें आश्वासन दें} उद्धार मसीह की प्रतिज्ञा पर टिका है, भावनाओं पर नहीं। पहले कदमों को प्रोत्साहित करें: एक
+बाइबल, प्रार्थना, एक कलीसिया।
+
+\smallskip
+\verseh{यूहन्ना 1:12}{परन्तु जितनों ने उसे ग्रहण किया, उसने उन्हें परमेश्वर की सन्तान होने का अधिकार दिया — अर्थात्
+उन्हें जो उसके नाम पर विश्वास रखते हैं।}
+\verseh{प्रका.~3:20}{देख, मैं द्वार पर खड़ा हुआ खटखटाता हूँ; यदि कोई मेरा शब्द सुनकर द्वार खोलेगा, तो मैं उसके पास
+भीतर आकर उसके साथ भोजन करूँगा, और वह मेरे साथ।}
+\verseh{यूहन्ना 5:24}{मैं तुमसे सच-सच कहता हूँ: जो मेरा वचन सुनकर मेरे भेजनेवाले पर विश्वास करता है, अनन्त जीवन उसका
+है; उस पर दण्ड की आज्ञा नहीं होती, वरन् वह मृत्यु से पार होकर जीवन में प्रवेश कर चुका है।}
+\verseh{1~यूह.~5:11-13}{और वह गवाही यह है, कि परमेश्वर ने हमें अनन्त जीवन दिया है, और यह जीवन उसके पुत्र में है।
+जिसके पास पुत्र है, उसके पास जीवन है; और जिसके पास परमेश्वर का पुत्र नहीं, उसके पास जीवन भी नहीं। मैंने तुम्हें, जो परमेश्वर
+के पुत्र के नाम पर विश्वास करते हो, इसलिये लिखा है कि तुम जानो कि अनन्त जीवन तुम्हारा है।}
+\end{hi}
+
+\begin{en}{Leading to faith}
+\q{When someone is ready, help them respond --- without rushing or pressure.}
+
+\lab{Make sure they understand} Briefly confirm they grasp the essentials: their sin,
+Christ's death and resurrection, and that salvation is a free gift received by faith, not
+earned.
+
+\lab{Call for a response} Ask plainly: ``Is there any reason you wouldn't want to turn to
+Christ right now?'' It is repentance and faith, not a formula, that save.
+
+\lab{A prayer to pray} In their own words, or guide them: ``God, I have sinned against you.
+Thank you that Jesus died and rose for me. I turn from my sin and trust him alone. Be my Lord
+and Savior.''
+
+\lab{Assure them} Salvation rests on Christ's promise, not on feelings. Encourage the first
+steps: a Bible, prayer, a church.
+
+\smallskip
+\verse{John 1:12}{But to all who did receive Him, to those who believed in His name, He gave the
+right to become children of God.}
+\verse{Rev. 3:20}{Behold, I stand at the door and knock. If anyone hears My voice and opens the
+door, I will come in and dine with him, and he with Me.}
+\verse{John 5:24}{Truly, truly, I tell you, whoever hears My word and believes Him who sent Me
+has eternal life and will not come into judgment. Indeed, he has crossed over from death to
+life.}
+\verse{1~John 5:11--13}{And this is that testimony: God has given us eternal life, and this life
+is in His Son. Whoever has the Son has life; whoever does not have the Son of God does not have
+life. I have written these things to you who believe in the name of the Son of God, so that you
+may know that you have eternal life.}
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\settopic{परमेश्वर}{God}
+
+\begin{hi}{प्रमाण और विज्ञान}
+\qh{``इस बात का कोई प्रमाण नहीं कि परमेश्वर है।''}
+प्रमाण तो बहुत हैं — बस उस प्रकार के नहीं जो परखनली में रखे जाएँ। विश्व का आरम्भ, उसका सूक्ष्म सन्तुलन, नैतिक नियम का
+अस्तित्व, और चेतना की वास्तविकता — ये सब प्रकृति के परे किसी मन की ओर संकेत करते हैं।
+\begin{itemize}
+\item जो कुछ अस्तित्व में आता है उसका कोई कारण होता है; विश्व का आरम्भ हुआ — अतः उसका कारण उससे परे है।
+\item जो स्थिरांक जीवन को सम्भव बनाते हैं वे अत्यन्त सूक्ष्मता से सन्तुलित हैं; रचना ही सबसे स्वाभाविक व्याख्या है।
+\item आप वास्तविक सही और गलत को मानते हैं; एक नैतिक नियम किसी नियम-दाता की ओर संकेत करता है।
+\end{itemize}
+\smallskip
+\verseh{रोमियों 1:20}{क्योंकि उसके अनदेखे गुण — अर्थात् उसकी सनातन सामर्थ्य और परमेश्वरत्व — जगत की सृष्टि के समय से
+उसके कामों के द्वारा देखने में आते हैं, यहाँ तक कि लोग निरुत्तर हैं।}
+\verseh{भजन 19:1}{आकाश परमेश्वर की महिमा का वर्णन करता है, और आकाशमण्डल उसके हाथों के कामों को प्रगट करता है।}
+
+\medskip
+\qh{``विज्ञान ने सब कुछ समझा दिया है — हमें परमेश्वर की आवश्यकता नहीं।''}
+विज्ञान बताता है कि संसार \textbf{कैसे} चलता है; यह नहीं बता सकता कि संसार है ही \textbf{क्यों}, या वह किसलिये है।
+परमेश्वर विज्ञान का प्रतिद्वंद्वी स्पष्टीकरण नहीं — वही कारण है कि अध्ययन करने योग्य एक व्यवस्थित विश्व है।
+\begin{itemize}
+\item ``कैसे'' और ``क्यों'' भिन्न प्रश्न हैं; इंजन की व्याख्या यह नहीं बताती कि कार क्यों बनाई गई।
+\item विज्ञान एक व्यवस्थित, बोधगम्य विश्व को मान लेता है — ठीक वैसा जैसा एक बुद्धिमान परमेश्वर के बनाने पर अपेक्षित हो।
+\item अर्थ, नैतिकता और उद्देश्य के विषय में विज्ञान मौन है — और यही वे प्रश्न हैं जिनके उत्तर की हमें सबसे अधिक आवश्यकता है।
+\end{itemize}
+\smallskip
+\verseh{कुलु.~1:17}{और वही सब वस्तुओं में प्रथम है, और सब वस्तुएँ उसी में स्थिर रहती हैं।}
+\verseh{इब्रा.~11:3}{विश्वास ही से हम जान जाते हैं कि सारी सृष्टि परमेश्वर के वचन से बनी है — यह नहीं कि जो कुछ दिखाई
+देता है, वह दिखाई देनेवाली वस्तुओं से बना हो।}
+\end{hi}
+
+\begin{en}{Evidence and science}
+\q{``There's no evidence that God exists.''}
+There's a great deal of evidence --- just not the kind you put in a test
+tube. The beginning of the universe, its fine-tuning, the existence of a moral law, and the
+reality of consciousness all point beyond nature to a mind behind it.
+\begin{itemize}
+\item Everything that begins to exist has a cause; the universe began --- so it has a cause
+  beyond itself.
+\item The constants that make life possible are fine-tuned to a razor's edge; design is the
+  most natural explanation.
+\item You assume real right and wrong; a moral law points to a Lawgiver.
+\end{itemize}
+\smallskip
+\verse{Rom. 1:20}{For since the creation of the world God's invisible qualities --- His eternal
+power and divine nature --- have been clearly seen, being understood from His workmanship, so
+that men are without excuse.}
+\verse{Ps. 19:1}{The heavens declare the glory of God; the skies proclaim the work of His
+hands.}
+
+\medskip
+\q{``Science has explained everything --- we don't need God.''}
+Science explains \emph{how} the world works; it cannot tell you \emph{why}
+there is a world at all, or what it is for. God is not a rival explanation to science --- he
+is the reason there is an orderly universe to study.
+\begin{itemize}
+\item ``How'' and ``why'' are different questions; explaining an engine doesn't tell you why
+  the car was built.
+\item Science assumes an orderly, intelligible universe --- just what you'd expect if a
+  rational God made it.
+\item Science is silent on meaning, morality, and purpose --- the questions we most need
+  answered.
+\end{itemize}
+\smallskip
+\verse{Col. 1:17}{He is before all things, and in Him all things hold together.}
+\verse{Heb. 11:3}{By faith we understand that the universe was formed at God's command, so that
+what is seen was not made out of what was visible.}
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\begin{hi}{दुःख क्यों}
+\qh{``यदि परमेश्वर भला और सर्वशक्तिमान है, तो इतना दुःख क्यों है?''}
+
+बाइबल दुःख को कभी छोटा नहीं मानती — वह इसे किसी भी अन्य विश्वदृष्टि से अधिक गम्भीरता से लेती है। बुराई के प्रति परमेश्वर
+का उत्तर पहले कोई स्पष्टीकरण नहीं, वरन् एक व्यक्ति है: वह क्रूस पर हमारे दुःख में सम्मिलित हुआ, और प्रतिज्ञा करता है कि एक
+दिन वह इसे पूरी तरह मिटा देगा।
+
+\labh{मुख्य बातें}
+\begin{itemize}
+\item बहुत सा दुःख स्वतंत्रता के दुरुपयोग से आता है — जिस संसार में सच्चा प्रेम है, वही संसार ऐसा है जहाँ प्रेम को ठुकराया
+  भी जा सकता है।
+\item किसी वस्तु को ``बुरा'' कहने के लिये आपको भलाई का एक मानक चाहिए; बुराई की समस्या उसी परमेश्वर को मान लेती है जिस
+  पर वह प्रश्न उठाती है।
+\item क्रूस पर परमेश्वर पीड़ा से दूर नहीं रहता — वह स्वयं उसकी सबसे बड़ी मार सहता है।
+\end{itemize}
+
+\smallskip
+\verseh{रोमियों 8:18}{क्योंकि मैं समझता हूँ कि इस समय के दुःख उस महिमा के सामने, जो हम पर प्रगट होनेवाली है, कुछ भी
+नहीं हैं।}
+\verseh{प्रका.~21:4}{और परमेश्वर उनकी आँखों से सब आँसू पोंछ डालेगा; इसके बाद न मृत्यु रहेगी, न शोक, न विलाप, न पीड़ा —
+क्योंकि पहली बातें जाती रहीं।}
+\verseh{यूहन्ना 11:35}{यीशु रो पड़ा।}
+\end{hi}
+
+\begin{en}{Why suffering}
+\q{``If God is good and all-powerful, why is there so much suffering?''}
+
+The Bible never treats suffering as small --- it takes it more seriously
+than any other worldview. God's answer to evil is not first an explanation but a Person: he
+entered our suffering at the cross, and he promises one day to end it entirely.
+
+\lab{Key points}
+\begin{itemize}
+\item Much suffering flows from the misuse of freedom --- a world with real love is a world
+  where love can be refused.
+\item To call anything ``evil'' you need a standard of good; the problem of evil assumes the
+  very God it questions.
+\item At the cross God does not stay distant from pain --- he bears the worst of it himself.
+\end{itemize}
+
+\smallskip
+\verse{Rom. 8:18}{I consider that our present sufferings are not comparable to the glory that
+will be revealed in us.}
+\verse{Rev. 21:4}{He will wipe away every tear from their eyes. There will be no more death or
+mourning or crying or pain, for the former things have passed away.}
+\verse{John 11:35}{Jesus wept.}
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\settopic{बाइबल}{The Bible}
+
+\begin{hi}{विरोधाभास और प्रसारण}
+\qh{``बाइबल विरोधाभासों से भरी है।''}
+तथाकथित विरोधाभासों में अधिकांश दृष्टिकोण या ब्योरे के अन्तर हैं, तार्किक विरोधाभास नहीं। एक सच्चे विरोधाभास को एक ही
+बात को, एक ही अर्थ में, एक ही समय पर मानना और नकारना पड़ता है — और स्पष्ट उदाहरण देना आश्चर्यजनक रूप से कठिन है।
+\begin{itemize}
+\item कोई \textbf{विशिष्ट} उदाहरण माँगें; अस्पष्ट दावे जाँचने पर घुल जाते हैं।
+\item ब्योरे के अन्तर (कब्र पर स्वर्गदूतों की संख्या, किसी पट्टी का शब्द-रूप) \textbf{स्वतंत्र} प्रत्यक्षदर्शी गवाही के चिह्न
+  हैं, मिलीभगत के नहीं।
+\item अधिकांश दिखते टकराव सन्दर्भ, विधा और अभिप्राय को तौलने पर मिल जाते हैं।
+\end{itemize}
+\smallskip
+\verseh{2~तीमु.~3:16}{सम्पूर्ण पवित्रशास्त्र परमेश्वर की प्रेरणा से रचा गया है, और उपदेश, समझाने, सुधारने, और धार्मिकता
+की शिक्षा के लिये लाभदायक है।}
+\verseh{यूहन्ना 10:35}{और पवित्रशास्त्र की बात लोप नहीं हो सकती।}
+
+\medskip
+\qh{``बाइबल इतनी बार नकल की गई कि हम मूल को जान ही नहीं सकते।''}
+नया नियम प्राचीन संसार का सबसे अच्छी तरह प्रमाणित दस्तावेज़ है। हमारे पास लगभग पाँच हजार आठ सौ यूनानी हस्तलिपियाँ हैं;
+उनके बीच के भेद अत्यधिक रूप से तुच्छ हैं, और कोई भी मसीही सिद्धान्त किसी विवादित पाठ पर नहीं टिका।
+\begin{itemize}
+\item हस्तलिपियों की संख्या की तुलना अन्य प्राचीन कृतियों से करें, जो केवल कुछ ही पिछली नकलों में बची हैं।
+\item कुछ खण्ड मूल के एक-दो शताब्दी के भीतर के हैं — तुलनीय ग्रन्थों से कहीं अधिक निकट।
+\item अधिकांश भेद वर्तनी या शब्द-क्रम के हैं; पाठ-समीक्षा उच्च विश्वास के साथ मूल शब्दों को पुनर्निर्मित कर लेती है।
+\end{itemize}
+\smallskip
+\verseh{यशायाह 40:8}{घास तो सूख जाती है, और फूल मुर्झा जाता है; परन्तु हमारे परमेश्वर का वचन सदा अटल रहेगा।}
+\verseh{मत्ती 24:35}{आकाश और पृथ्वी टल जाएँगे, परन्तु मेरी बातें कभी न टलेंगी।}
+\end{hi}
+
+\begin{en}{Contradictions and transmission}
+\q{``The Bible is full of contradictions.''}
+Most alleged contradictions are differences of perspective or detail, not
+logical contradictions. A real contradiction must affirm and deny the same thing, in the same
+sense, at the same time --- and clear examples are remarkably hard to produce.
+\begin{itemize}
+\item Ask for a \emph{specific} example; vague claims dissolve once examined.
+\item Differing details (the number of angels at the tomb, the wording of a sign) are the mark
+  of \emph{independent} eyewitness testimony, not collusion.
+\item Most apparent conflicts harmonize once context, genre, and intent are weighed.
+\end{itemize}
+\smallskip
+\verse{2~Tim.~3:16}{All Scripture is God-breathed and is useful for instruction, for conviction,
+for correction, and for training in righteousness.}
+\verse{John 10:35}{If he called them gods to whom the word of God came --- and the Scripture
+cannot be broken.}
+
+\medskip
+\q{``The Bible was copied so many times we can't know the original.''}
+The New Testament is the best-attested document of the ancient world. We
+have roughly 5,800 Greek manuscripts, the variants among them are overwhelmingly trivial, and
+not one Christian doctrine hangs on a disputed reading.
+\begin{itemize}
+\item Compare the manuscript count to other ancient works, which survive in only a handful of
+  late copies.
+\item Some fragments date within a century or two of the originals --- far closer than for
+  comparable texts.
+\item The vast majority of variants are spelling or word order; textual criticism reconstructs
+  the wording with high confidence.
+\end{itemize}
+\smallskip
+\verse{Isa. 40:8}{The grass withers and the flowers fall, but the word of our God stands
+forever.}
+\verse{Matt. 24:35}{Heaven and earth will pass away, but My words will never pass away.}
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\begin{hi}{विकासवाद}
+\qh{``विकासवाद बाइबल को झुठलाता है।''}
+
+जीवन की क्रियाविधि के विषय में कोई सिद्धान्त इस बारे में कुछ नहीं कहता कि उसके पीछे कोई परमेश्वर है या नहीं। विज्ञान को
+मान भी लें, तो गहरे प्रश्न बने रहते हैं: कुछ भी क्यों है, बजाय इसके कि कुछ न हो; पहला जीवन कहाँ से आया; और विश्व उसके लिये
+इतना सूक्ष्मता से सन्तुलित क्यों है? उत्पत्ति की पुस्तक हमें बताती है कि परमेश्वर ने संसार बनाया — \textbf{यह} बात और
+\textbf{क्यों}; यह विज्ञान की पाठ्यपुस्तक नहीं है।
+
+\labh{मुख्य बातें}
+\begin{itemize}
+\item प्रक्रिया उद्देश्य नहीं है: एक स्वाभाविक क्रियाविधि भी वह साधन हो सकती है जिसे सृष्टिकर्ता प्रयोग करता है।
+\item विकासवाद विश्व की उत्पत्ति, स्वयं जीवन की उत्पत्ति, या जिन नियमों पर वह निर्भर है उनकी उत्पत्ति को नहीं छूता।
+\item विकासवाद को माननेवाले बहुत से वैज्ञानिक मसीही हैं; विश्वास और विज्ञान शत्रु नहीं हैं।
+\end{itemize}
+
+\labh{पवित्रशास्त्र} उत्पत्ति 1:1; भजन 139:14।
+
+\labh{यह भी देखें} परमेश्वर के अस्तित्व वाला कार्ड।
+\end{hi}
+
+\begin{en}{Evolution}
+\q{``Evolution disproves the Bible.''}
+
+A theory about the mechanism of life says nothing about whether there is a
+God behind it. Even granting the science, the deep questions remain: why is there anything at
+all, where did the first life come from, and why is the universe so finely tuned for it?
+Genesis tells us \emph{that} God made the world and \emph{why}; it is not a science textbook.
+
+\lab{Key points}
+\begin{itemize}
+\item Process is not purpose: even a natural mechanism could be the means a Creator uses.
+\item Evolution doesn't address the origin of the universe, of life itself, or of the laws it
+  depends on.
+\item Many scientists who accept evolution are Christians; faith and science are not enemies.
+\end{itemize}
+
+\lab{Scripture} Gen.~1:1; Ps.~139:14.
+
+\lab{See also} The card on the existence of God.
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\settopic{यीशु}{Jesus}
+
+\begin{hi}{भला गुरु और पुनरुत्थान}
+\qh{``यीशु तो बस एक भला नैतिक गुरु था।''}
+यही एक बात है जो वह नहीं हो सकता। एक भला गुरु जिसने पापों को क्षमा करने, पिता के साथ एक होने, और जगत का न्याय करने का
+दावा किया — वह या तो सच कह रहा है, या भ्रम में है, या झूठ बोल रहा है। ``भला गुरु'' विकल्पों में नहीं है — उसने हमारे लिये
+कोई बीच का रास्ता नहीं छोड़ा।
+\begin{itemize}
+\item उसने आराधना स्वीकार की, पापों को क्षमा किया, और अब्राहम से पहले होने का दावा किया — ऐसी बातें जो केवल परमेश्वर ही
+  उचित रूप से कर सकता है।
+\item ऐसी बातें कहनेवाला केवल एक भला मनुष्य महामानी होता, बुद्धिमान नहीं।
+\item चुनाव वास्तविक है: प्रभु, झूठा, या पागल — पर केवल एक महान गुरु नहीं।
+\end{itemize}
+\smallskip
+\verseh{यूहन्ना 8:58}{यीशु ने उनसे कहा, ``मैं तुमसे सच-सच कहता हूँ: इससे पहले कि अब्राहम उत्पन्न हुआ, मैं हूँ।''}
+\verseh{यूहन्ना 10:30}{मैं और पिता एक हैं।}
+\verseh{मरकुस 2:5-7}{यीशु ने उनका विश्वास देखकर उस लकवे के मारे हुए से कहा, ``हे पुत्र, तेरे पाप क्षमा हुए।'' तब कुछ
+शास्त्री जो वहाँ बैठे थे, अपने मन में विचार करने लगे, ``यह मनुष्य क्यों ऐसा कहता है? यह तो निन्दा करता है! परमेश्वर को छोड़
+और कौन पाप क्षमा कर सकता है?''}
+
+\medskip
+\qh{``पुनरुत्थान एक किंवदन्ती है जो समय के साथ बढ़ी।''}
+यह दावा किंवदन्ती होने के लिये बहुत जल्दी का और बहुत महँगा है। क्रूस के कुछ ही वर्षों के भीतर प्रत्यक्षदर्शी जी उठे यीशु का
+प्रचार कर रहे थे, और उनमें अधिकांश ने इसके लिये अपने प्राण दिए। किंवदन्तियों को बढ़ने में पीढ़ियाँ लगती हैं; यह तब प्रचार
+किया गया जब विरोधी प्रत्यक्षदर्शी अब भी जीवित थे और इसे झुठला सकते थे।
+\begin{itemize}
+\item सबसे पुराना विश्वास-कथन (1 कुरिन्थियों 15:3-7) प्रत्यक्षदर्शियों के नाम लेता है और घटनाओं के कुछ ही वर्षों के भीतर
+  का है।
+\item कब्र खाली थी — यीशु के विरोधियों ने भी माना कि देह चली गई, और उसे समझाने का प्रयत्न किया।
+\item लोग उसके लिये मरते हैं जिसे वे सच मानते हैं; चेले उसके लिये मरे जिसे सच या झूठ जानने की स्थिति में वे स्वयं थे।
+\end{itemize}
+\smallskip
+\verseh{लूका 24:39}{मेरे हाथ और मेरे पाँव देखो, कि मैं वही हूँ; मुझे छूकर देखो, क्योंकि आत्मा के हड्डी-माँस नहीं होता,
+जैसा तुम मुझमें देखते हो।}
+\verseh{प्रेरि.~2:32}{इसी यीशु को परमेश्वर ने जिलाया, जिसके हम सब गवाह हैं।}
+\end{hi}
+
+\begin{en}{Good teacher and resurrection}
+\q{``Jesus was just a good moral teacher.''}
+That is the one thing he cannot be. A good teacher who claimed to forgive
+sins, to be one with the Father, and to judge the world is either telling the truth, deluded,
+or lying. ``Good teacher'' is not on the menu --- he left us no middle ground.
+\begin{itemize}
+\item He accepted worship, forgave sins, and claimed to exist before Abraham --- things only
+  God can rightly do.
+\item A merely good man who said such things would be a megalomaniac, not a sage.
+\item The choice is real: Lord, liar, or lunatic --- but not merely a great teacher.
+\end{itemize}
+\smallskip
+\verse{John 8:58}{Jesus said to them, ``Truly, truly, I tell you, before Abraham was born, I
+am!''}
+\verse{John 10:30}{I and the Father are one.}
+\verse{Mark 2:5--7}{When Jesus saw their faith, He said to the paralytic, ``Son, your sins are
+forgiven.'' But some of the scribes were sitting there, thinking in their hearts, ``Why does
+this man speak like this? He is blaspheming! Who can forgive sins but God alone?''}
+
+\medskip
+\q{``The resurrection is a legend that grew over time.''}
+The claim is too early and too costly to be legend. Within a few years of
+the cross, eyewitnesses were proclaiming a risen Jesus, and most went to their deaths for it.
+Legends take generations to grow; this was preached while hostile eyewitnesses were still alive
+to deny it.
+\begin{itemize}
+\item The earliest creed (1~Cor.~15:3--7) names eyewitnesses and dates to within a few years of
+  the events.
+\item The tomb was empty --- even Jesus' opponents admitted the body was gone and tried to
+  explain it away.
+\item People die for what they believe is true; the disciples died for what they were in a
+  position to know was true or false.
+\end{itemize}
+\smallskip
+\verse{Luke 24:39}{Look at My hands and My feet. It is I Myself. Touch Me and see; for a spirit
+does not have flesh and bones, as you see I have.}
+\verse{Acts 2:32}{God has raised this Jesus to life, to which we are all witnesses.}
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\begin{hi}{सभी मार्ग परमेश्वर तक}
+\qh{``सभी धर्म परमेश्वर तक पहुँचाते हैं — वे मूल रूप से एक ही हैं।''}
+
+वे सब सच नहीं हो सकते, क्योंकि जो सबसे अधिक महत्त्वपूर्ण है उसके विषय में वे परस्पर विरोधी बातें कहते हैं — परमेश्वर कौन
+है, हममें क्या गड़बड़ है, और वह कैसे ठीक होता है। लोगों का आदर करने का अर्थ यह नहीं कि हम बहाना करें कि उनके विश्वास
+एक-दूसरे को नहीं काटते। मसीहियत अनोखी है: यह हमारा परमेश्वर तक ऊपर पहुँचना नहीं, वरन् परमेश्वर का अनुग्रह में हम तक नीचे
+पहुँचना है।
+
+\labh{मुख्य बातें}
+\begin{itemize}
+\item धर्म परमेश्वर के विषय में असहमत हैं (एक, अनेक, कोई नहीं, अवैयक्तिक), मानव-समस्या पर, और उपचार पर — वास्तविक
+  विरोधाभास, एक ही सत्य के रूप नहीं।
+\item हर दूसरी व्यवस्था कहती है ``करो''; सुसमाचार कहता है ``हो चुका'' — उद्धार वरदान है, मजदूरी नहीं।
+\item सहनशीलता का अर्थ है लोगों के साथ आदर से व्यवहार करना, यह मानना नहीं कि हर दावा समान रूप से सच है।
+\end{itemize}
+
+\smallskip
+\verseh{यूहन्ना 14:6}{यीशु ने उससे कहा, ``मार्ग और सत्य और जीवन मैं ही हूँ; बिना मेरे द्वारा कोई पिता के पास नहीं पहुँच
+सकता।''}
+\verseh{प्रेरि.~4:12}{और किसी दूसरे के द्वारा उद्धार नहीं; क्योंकि स्वर्ग के नीचे मनुष्यों में और कोई दूसरा नाम नहीं दिया
+गया, जिसके द्वारा हम उद्धार पा सकें।}
+\end{hi}
+
+\begin{en}{All roads to God}
+\q{``All religions lead to God --- they're basically the same.''}
+
+They cannot all be true, because they say opposite things about what
+matters most --- who God is, what is wrong with us, and how it is fixed. Respecting people
+doesn't mean pretending their beliefs don't contradict. Christianity is unique: not us
+reaching up to God, but God reaching down to us in grace.
+
+\lab{Key points}
+\begin{itemize}
+\item The religions disagree on God (one, many, none, impersonal), on the human problem, and
+  on the cure --- real contradictions, not flavors of one truth.
+\item Every other system says ``do''; the gospel says ``done'' --- salvation is a gift, not a
+  wage.
+\item Tolerance means treating people with respect, not believing every claim is equally true.
+\end{itemize}
+
+\smallskip
+\verse{John 14:6}{Jesus answered, ``I am the way and the truth and the life. No one comes to the
+Father except through Me.''}
+\verse{Acts 4:12}{Salvation exists in no one else, for there is no other name under heaven given
+to men by which we must be saved.}
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\settopic{मानव हृदय}{The human heart}
+
+\begin{hi}{भला, और पर्याप्त भला}
+\qh{``भला मनुष्य होने के लिये आपको परमेश्वर की आवश्यकता नहीं।''}
+यह सच है — बहुत से अविश्वासी भले जीवन जीते हैं, क्योंकि हर मनुष्य परमेश्वर के स्वरूप में बना है और अपने विवेक में उसके नियम
+को जानता है। प्रश्न यह नहीं कि आप परमेश्वर पर विश्वास किए बिना भले हो सकते हैं या नहीं, वरन् यह कि उसके बिना भला और बुरा
+वास्तव में हैं भी या नहीं। बिना किसी नियम-दाता के, ``भला'' केवल राय है — कुछ भी बाध्य करनेवाला नहीं।
+\begin{itemize}
+\item प्रश्न आधार का है, व्यवहार का नहीं: परमेश्वर के बिना, कौन कहे कि आपका ``भला'' किसी अत्याचारी के ``भले'' से उत्तम है?
+\item सब जानते हैं कि कुछ बातें सचमुच बुरी हैं (क्रूरता, विश्वासघात) — यह हमसे ऊपर के किसी नैतिक नियम की ओर संकेत करता है।
+\end{itemize}
+\smallskip
+\verseh{रोमियों 2:14-15}{जब अन्यजाति लोग, जिनके पास व्यवस्था नहीं, स्वभाव ही से व्यवस्था की बातों पर चलते हैं, तो
+व्यवस्था न रखते हुए भी वे अपने लिये आप ही व्यवस्था हैं। वे व्यवस्था की बातें अपने हृदयों में लिखी हुई दिखाते हैं, और उनका
+विवेक भी साक्षी देता है।}
+\verseh{यशायाह 64:6}{हम सब अशुद्ध मनुष्य के समान हो गए हैं, और हमारे धर्म के सब काम मैले चिथड़ों के समान हैं।}
+
+\medskip
+\qh{``मैं एक भला मनुष्य हूँ — मुझे उद्धार की आवश्यकता नहीं।''}
+दूसरों की तुलना में शायद — पर मानक आपका पड़ोसी नहीं, वरन् परमेश्वर की सिद्ध पवित्रता है। उस माप से हममें से कोई उत्तीर्ण
+नहीं होता; हम सबने झूठ बोला, बैर किया, और अपने आप को पहले रखा है। शुभ समाचार यह है कि उद्धार कभी पर्याप्त भला होने पर
+निर्भर नहीं था — यह उनके लिये वरदान है जो जानते हैं कि वे नहीं हैं।
+\begin{itemize}
+\item परीक्षा करके देखें: क्या आपने कभी झूठ नहीं बोला, कभी बैर नहीं किया, कभी दूसरे की वस्तु नहीं चाही? परमेश्वर का नियम
+  हृदय तक पहुँचता है।
+\item स्वर्ग भला होने से नहीं कमाया जाता; यदि ऐसा होता, तो मसीह व्यर्थ ही मरा।
+\item ``भले लोग'' नहीं सोचते कि उन्हें उद्धारकर्ता की आवश्यकता है — और यही एक बात उन्हें उससे दूर रखती है।
+\end{itemize}
+\smallskip
+\verseh{रोमियों 3:10-12}{जैसा लिखा है: ``कोई धर्मी नहीं, एक भी नहीं; कोई समझनेवाला नहीं, कोई परमेश्वर का खोजी नहीं।
+सब भटक गए, सब के सब निकम्मे बन गए; कोई भला करनेवाला नहीं, एक भी नहीं।''}
+\verseh{गला.~2:21}{मैं परमेश्वर के अनुग्रह को व्यर्थ नहीं ठहराता; क्योंकि यदि धार्मिकता व्यवस्था के द्वारा मिलती, तो मसीह
+का मरना व्यर्थ होता।}
+\verseh{इफि.~2:8-9}{क्योंकि विश्वास के द्वारा अनुग्रह ही से तुम्हारा उद्धार हुआ है; और यह तुम्हारी ओर से नहीं, वरन्
+परमेश्वर का दान है — और न कर्मों के कारण, ऐसा न हो कि कोई घमण्ड करे।}
+\end{hi}
+
+\begin{en}{Good, and good enough}
+\q{``You don't need God to be a good person.''}
+True --- many non-believers live good lives, because everyone is made in God's image and knows
+his law in their conscience. The question isn't whether you can be good without believing in
+God, but whether good and evil are real at all without him. Without a Lawgiver, ``good'' is just
+opinion --- nothing binding.
+\begin{itemize}
+\item The issue is grounding, not behaviour: without God, who says your ``good'' is better than
+  a tyrant's?
+\item Everyone knows some things are really wrong (cruelty, betrayal) --- that points to a moral
+  law above us.
+\end{itemize}
+\smallskip
+\verse{Rom. 2:14--15}{When Gentiles, who do not have the law, do by nature what the law requires,
+they are a law to themselves; they show that the work of the law is written on their hearts,
+their consciences also bearing witness.}
+\verse{Isa. 64:6}{All of us have become like one who is unclean, and all our righteous acts are
+like filthy rags.}
+
+\medskip
+\q{``I'm a good person --- I don't need to be saved.''}
+Compared to other people, perhaps --- but the standard isn't your neighbour, it's God's perfect
+holiness. By that measure none of us passes; we've all lied, hated, and put ourselves first. The
+good news is that salvation was never about being good enough --- it's a gift for people who know
+they aren't.
+\begin{itemize}
+\item Try the test: have you never lied, never hated, never wanted what isn't yours? God's law
+  reaches the heart.
+\item Heaven isn't earned by being good; if it were, Christ died for nothing.
+\item ``Good people'' don't think they need a Saviour --- which is the one thing that keeps them
+  from him.
+\end{itemize}
+\smallskip
+\verse{Rom. 3:10--12}{There is no one righteous, not even one; there is no one who understands,
+no one who seeks God. All have turned away; there is no one who does good, not even one.}
+\verse{Gal. 2:21}{I do not set aside the grace of God. For if righteousness comes through the law,
+Christ died for nothing.}
+\verse{Eph. 2:8--9}{For it is by grace you have been saved, through faith --- and this not from
+yourselves; it is the gift of God --- not by works, so that no one can boast.}
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+\begin{hi}{पाखंडी}
+\qh{``कलीसिया पाखंडियों से भरी है।''}
+
+कभी-कभी यह सच है — यीशु ने कहा था कि ऐसा होगा, और उसने पाखंड की निन्दा किसी और से अधिक कठोरता से की। कलीसिया सिद्ध
+लोगों का संग्रहालय नहीं, वरन् टूटे हुओं के लिये अस्पताल है; कुछ रोगियों का बुरा व्यवहार औषधि के विरुद्ध तर्क नहीं। किसी
+पाखंडी को अपने और मसीह के बीच खड़ा न होने दें।
+
+\labh{मुख्य बातें}
+\begin{itemize}
+\item पाखंडी एक भले मानक पर खरा नहीं उतरता — जो यह मान लेता है कि वह मानक भला है।
+\item मसीहियत को मसीह से आँकें, उसके अनुयायियों में सबसे बुरों से नहीं।
+\item यह दोष हम सब पर लागू होता है; सुसमाचार असफलों के लिये है — सबके लिये शुभ समाचार।
+\end{itemize}
+
+\smallskip
+\verseh{मत्ती 23:27-28}{हे कपटी शास्त्रियो और फरीसियो, तुम पर हाय! तुम चूना फिरी हुई कब्रों के समान हो, जो ऊपर से तो
+सुन्दर दिखाई देती हैं, परन्तु भीतर मुर्दों की हड्डियों और सब प्रकार की अशुद्धता से भरी हैं। इसी रीति से तुम भी ऊपर से लोगों
+को धर्मी दिखाई देते हो, परन्तु भीतर कपट और अधर्म से भरे हो।}
+\verseh{लूका 5:31-32}{जो भले-चंगे हैं, उन्हें वैद्य की आवश्यकता नहीं, परन्तु बीमारों को। मैं धर्मियों को नहीं, वरन्
+पापियों को मन फिराने के लिये बुलाने आया हूँ।}
+\verseh{रोमियों 3:23}{इसलिये कि सबने पाप किया है और परमेश्वर की महिमा से रहित हैं।}
+
+\labh{यह भी देखें} ``भला, और पर्याप्त भला'' कार्ड।
+\end{hi}
+
+\begin{en}{Hypocrites}
+\q{``The church is full of hypocrites.''}
+
+Sometimes true --- Jesus said it would be, and he condemned hypocrisy more
+sharply than anyone. The church is not a museum of the perfect but a hospital for the broken;
+that some patients behave badly is no argument against the medicine. Don't let a hypocrite
+stand between you and Christ.
+
+\lab{Key points}
+\begin{itemize}
+\item A hypocrite fails to live up to a good standard --- which admits the standard is good.
+\item Judge Christianity by Christ, not by the worst of his followers.
+\item The charge fits us all; the gospel is for failures --- good news for everyone.
+\end{itemize}
+
+\smallskip
+\verse{Matt. 23:27--28}{Woe to you, scribes and Pharisees, you hypocrites! You are like
+whitewashed tombs, which look beautiful on the outside, but on the inside are full of dead men's
+bones. On the outside you appear to be righteous, but on the inside you are full of hypocrisy and
+wickedness.}
+\verse{Luke 5:31--32}{It is not the healthy who need a doctor, but the sick. I have not come to
+call the righteous, but sinners to repentance.}
+\verse{Rom. 3:23}{for all have sinned and fall short of the glory of God.}
+
+\lab{See also} The ``Good, and good enough'' card.
+\end{en}
+
+// ════════════════════════════════════════════════════════════════════════════
+// Public-domain dedication — the closing page. No folio: this is back matter, not a card.
+// ════════════════════════════════════════════════════════════════════════════
+\def footline {\hss}
+\vfil
+\centerline{\font noto 30 regular Ἀπολογία}
+\vskip 30pt
+\centerline{\font devanagari 14 bold सार्वजनिक डोमेन में}
+\vskip 5pt
+\centerline{\font lmroman 14 bold In the Public Domain}
+\vskip 30pt
+
+\noindent{\font devanagari 10 regular जहाँ तक कानून अनुमति देता है, लेखक ने इस कृति पर अपने सारे कॉपीराइट
+और सम्बन्धित अधिकारों का त्याग कर दिया है (CC0~1.0 Universal)। आप इसे स्वतंत्र रूप से नकल करने, बदलने, बाँटने और
+छापने के लिये — यहाँ तक कि व्यावसायिक रूप से भी — बिना अनुमति माँगे स्वतंत्र हैं। इसे मुक्त रूप से फैलाएँ।}
+
+\medskip
+\noindent{\font lmroman 10 regular To the extent possible under law, the author has waived all
+copyright and related rights to this work (CC0~1.0 Universal). You are free to copy, modify,
+distribute, and print it, even commercially, without asking permission. Spread it freely.}
+
+\vskip 26pt
+\noindent{\font devanagari 9 regular हिन्दी बाइबल-उद्धरण इब्रानी और यूनानी मूल से किए गए मौलिक अनुवाद हैं, जो
+सार्वजनिक डोमेन में समर्पित हैं; अंग्रेज़ी उद्धरण Berean Standard Bible से हैं।}
+
+\medskip
+\noindent{\font lmroman 9 regular Hindi scripture is an original translation from the Hebrew and
+Greek, dedicated to the public domain; English scripture is the Berean Standard Bible.}
+\vfil
+\eject
