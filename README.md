@@ -56,7 +56,7 @@ bold weight); the Hebrew edition needs texish ≥ 0.13.1 (right-to-left Hebrew w
 right-to-left lists).
 
 A ready-to-print PDF of the latest version is attached to the most recent
-[GitHub release](https://github.com/edadma/apologia/releases). Releases are versioned by the
+[GitHub release](https://github.com/christian-evangelism-media/apologia/releases). Releases are versioned by the
 cover date (tag `v<YYYY.MM.DD>`), which doubles as the document version.
 
 ## License
